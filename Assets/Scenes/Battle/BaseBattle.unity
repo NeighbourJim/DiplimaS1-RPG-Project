@@ -760,6 +760,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0cf40ab73c270e46b781ca2153dd26e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  battleController: {fileID: 919247275}
+  m1: {fileID: 107016734}
+  m2: {fileID: 1046173998}
+  m3: {fileID: 720223088}
+  m4: {fileID: 850234895}
 --- !u!1 &330959978
 GameObject:
   m_ObjectHideFlags: 0
@@ -2404,6 +2409,7 @@ MonoBehaviour:
   enemy: {fileID: 0}
   playerMon: {fileID: 0}
   enemyMon: {fileID: 0}
+  battleUI: {fileID: 324930247}
 --- !u!4 &919247277
 Transform:
   m_ObjectHideFlags: 0

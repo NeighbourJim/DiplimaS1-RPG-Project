@@ -6,7 +6,7 @@ public class Move
 {
     public int moveID = 000;
     public string moveName = "-";
-    public Type type = Type.normal;
+    public MonType type = MonType.normal;
     public PhysSpec physSpec = PhysSpec.status;
     public int basePower = 0;
     public int accuracy = 0;

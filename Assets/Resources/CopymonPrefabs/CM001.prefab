@@ -1377,9 +1377,9 @@ MonoBehaviour:
   xpYield: 64
   weaknesses: 03000000
   moveId1: 2
-  moveId2: 0
-  moveId3: 0
-  moveId4: 0
+  moveId2: 3
+  moveId3: 4
+  moveId4: 1
 --- !u!137 &137572690162999170
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

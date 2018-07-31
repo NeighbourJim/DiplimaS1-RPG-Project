@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SpawnMonsters : MonoBehaviour {
 
+    DataList data;
+
     public GameObject playerSpawn;
     public GameObject enemSpawn;
 
@@ -13,10 +15,18 @@ public class SpawnMonsters : MonoBehaviour {
     public Copymon playerMon;
     public Copymon enemyMon;
 
+    public GameObject battleUI;
+    BattleUIControl uiScript;
+
 
     void Start ()
     {                
         Spawn();
+        data = GetComponent<DataList>();
+        uiScript = battleUI.GetComponent<BattleUIControl>();
+
+        SetButtonColours();
+        SetButtonNames();
     }
 
     void Spawn()
@@ -49,5 +59,21 @@ public class SpawnMonsters : MonoBehaviour {
     private void Update()
     {
         
+    }
+
+    void SetButtonColours()
+    {
+        uiScript.ChangeButtonColour(uiScript.m1, data.moveDex[playerMon.moveId1].type);
+        uiScript.ChangeButtonColour(uiScript.m2, data.moveDex[playerMon.moveId2].type);
+        uiScript.ChangeButtonColour(uiScript.m3, data.moveDex[playerMon.moveId3].type);
+        uiScript.ChangeButtonColour(uiScript.m4, data.moveDex[playerMon.moveId4].type);
+    }
+
+    void SetButtonNames()
+    {
+        uiScript.ChangeButtonText(uiScript.m1, data.moveDex[playerMon.moveId1].moveName);
+        uiScript.ChangeButtonText(uiScript.m2, data.moveDex[playerMon.moveId2].moveName);
+        uiScript.ChangeButtonText(uiScript.m3, data.moveDex[playerMon.moveId3].moveName);
+        uiScript.ChangeButtonText(uiScript.m4, data.moveDex[playerMon.moveId4].moveName);
     }
 }

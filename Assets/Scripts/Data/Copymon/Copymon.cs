@@ -10,7 +10,7 @@ public class Copymon : MonoBehaviour
 
     public Ownership ownership = Ownership.wild;
     
-    public Type type = Type.normal;
+    public MonType type = MonType.normal;
     
     public int level = 1;
     public int baseHP;
@@ -43,7 +43,7 @@ public class Copymon : MonoBehaviour
 
     public int xpYield = 64;
 
-    public Type[] weaknesses;
+    public MonType[] weaknesses;
 
     public int moveId1;
     public int moveId2;
@@ -142,7 +142,7 @@ public class Copymon : MonoBehaviour
 
 }
 
-public enum Type
+public enum MonType
     {
         normal,
         grass,
