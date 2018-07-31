@@ -5,7 +5,7 @@ using UnityEngine;
 public class Move
 {
     public int moveID = 000;
-    public string moveName = "NONAME";
+    public string moveName = "-";
     public Type type = Type.normal;
     public PhysSpec physSpec = PhysSpec.status;
     public int basePower = 0;

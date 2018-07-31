@@ -7,8 +7,8 @@ public class SpawnMonsters : MonoBehaviour {
     public GameObject playerSpawn;
     public GameObject enemSpawn;
 
-    GameObject player;
-    GameObject enemy;
+    public GameObject player;
+    public GameObject enemy;
 
     public Copymon playerMon;
     public Copymon enemyMon;
@@ -42,17 +42,12 @@ public class SpawnMonsters : MonoBehaviour {
         player.transform.position = playerSpawn.transform.position;
         enemy.transform.position = enemSpawn.transform.position;
 
-
         player.transform.LookAt(new Vector3(enemy.transform.position.x - 5, enemy.transform.position.y, enemy.transform.position.z));
-        print(enemy.transform.position.x - 50);
         enemy.transform.LookAt(player.transform);
     }
 
     private void Update()
     {
-        if(Input.anyKeyDown)
-        {
-            playerMon.LevelUp();
-        }
+        
     }
 }

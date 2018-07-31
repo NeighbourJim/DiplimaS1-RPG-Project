@@ -19,6 +19,13 @@ public class Copymon : MonoBehaviour
     public int baseSpAtk;
     public int baseSpDef;
     public int baseSpeed;
+
+    public int ivHP;
+    public int ivAtk;
+    public int ivDef;
+    public int ivSpAtk;
+    public int ivSpDef;
+    public int ivSpeed;
     
     public int maxHP;    
     public int curHP;
@@ -38,7 +45,10 @@ public class Copymon : MonoBehaviour
 
     public Type[] weaknesses;
 
-    public int[] knownMovesIds = new int[4];
+    public int moveId1;
+    public int moveId2;
+    public int moveId3;
+    public int moveId4;
 
     private void Awake()
     {
@@ -133,12 +143,12 @@ public class Copymon : MonoBehaviour
 }
 
 public enum Type
-{
-    normal,
-    grass,
-    water,
-    fire
-}
+    {
+        normal,
+        grass,
+        water,
+        fire
+    }
 
 public enum Ownership
 {

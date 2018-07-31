@@ -1358,6 +1358,12 @@ MonoBehaviour:
   baseSpAtk: 50
   baseSpDef: 64
   baseSpeed: 43
+  ivHP: 0
+  ivAtk: 0
+  ivDef: 0
+  ivSpAtk: 0
+  ivSpDef: 0
+  ivSpeed: 0
   maxHP: 0
   curHP: 0
   curAtk: 0
@@ -1370,7 +1376,10 @@ MonoBehaviour:
   hasStatus: 0
   xpYield: 64
   weaknesses: 01000000
-  knownMovesIds: 03000000000000000000000000000000
+  moveId1: 3
+  moveId2: 0
+  moveId3: 0
+  moveId4: 0
 --- !u!137 &137121314618081312
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
