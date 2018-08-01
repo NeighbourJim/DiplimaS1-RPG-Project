@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnMonsters : MonoBehaviour {
+public class BattleControl : MonoBehaviour {
 
     DataList data;
 

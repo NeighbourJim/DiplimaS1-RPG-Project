@@ -5,10 +5,12 @@ using UnityEngine;
 public class BattleStateControl : MonoBehaviour {
 
 
+
     public enum TurnState
     {
         Intro,
         SelectingAction,
+        SelectingMove,
         DetermineOrder,
         FirstAction,
         SecondAction,
@@ -21,13 +23,17 @@ public class BattleStateControl : MonoBehaviour {
     public TurnState currentState;
     private Copymon firstToGo;
     private Copymon secondToGo;
-    SpawnMonsters spawnScript;
-    DataList moveData;
 
-	// Use this for initialization
-	void Start () {
-        spawnScript = GetComponent<SpawnMonsters>();
+    BattleControl battleControl;
+    DataList moveData;
+    public GameObject battleUI;
+    BattleUIControl uiScript;
+
+    // Use this for initialization
+    void Start () {
+        battleControl = GetComponent<BattleControl>();
         moveData = GetComponent<DataList>();
+        uiScript = battleUI.GetComponent<BattleUIControl>();
     }
 	
 	// Update is called once per frame
@@ -36,16 +42,13 @@ public class BattleStateControl : MonoBehaviour {
         switch (currentState)
         {
             case (TurnState.Intro):
-                print("A wild " + spawnScript.enemyMon.monName + " appeared!");
-                print("Go, " + spawnScript.playerMon.monName + "!");
+                print("A wild " + battleControl.enemyMon.monName + " appeared!");
+                print("Go, " + battleControl.playerMon.monName + "!");
+                uiScript.ShowActionSelect();
                 AdvanceState(TurnState.SelectingAction);
                 break;
 
-            case (TurnState.SelectingAction):
-                if (Input.GetButtonDown("Jump"))
-                {
-                    AdvanceState(TurnState.DetermineOrder);
-                }
+            case (TurnState.SelectingAction):                
                 break;
 
             case (TurnState.DetermineOrder):
@@ -85,27 +88,27 @@ public class BattleStateControl : MonoBehaviour {
 
     void DetermineTurnOrder()
     {
-        if (spawnScript.playerMon.curSpeed > spawnScript.enemyMon.curSpeed)
+        if (battleControl.playerMon.curSpeed > battleControl.enemyMon.curSpeed)
         {
-            firstToGo = spawnScript.playerMon;
-            secondToGo = spawnScript.enemyMon;
+            firstToGo = battleControl.playerMon;
+            secondToGo = battleControl.enemyMon;
         }
-        else if (spawnScript.playerMon.curSpeed < spawnScript.enemyMon.curSpeed)
+        else if (battleControl.playerMon.curSpeed < battleControl.enemyMon.curSpeed)
         {
-            firstToGo = spawnScript.enemyMon;
-            secondToGo = spawnScript.playerMon;
+            firstToGo = battleControl.enemyMon;
+            secondToGo = battleControl.playerMon;
         }
         else
         {
             if (Random.value < 0.5f)
             {
-                firstToGo = spawnScript.playerMon;
-                secondToGo = spawnScript.enemyMon;
+                firstToGo = battleControl.playerMon;
+                secondToGo = battleControl.enemyMon;
             }
             else
             {
-                firstToGo = spawnScript.enemyMon;
-                secondToGo = spawnScript.playerMon;
+                firstToGo = battleControl.enemyMon;
+                secondToGo = battleControl.playerMon;
             }                
         }
     }
