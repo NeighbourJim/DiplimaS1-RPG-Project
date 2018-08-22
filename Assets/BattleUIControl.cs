@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class BattleUIControl : MonoBehaviour {
 
     public GameObject battleController;
-    Dictionary<MonType, int[]> typeColours = new Dictionary<MonType, int[]>();
+    Dictionary<TypeNum, int[]> typeColours = new Dictionary<TypeNum, int[]>();
     BattleControl spawnScript;
     Copymon mon;
     public Button m1;
@@ -35,13 +36,13 @@ public class BattleUIControl : MonoBehaviour {
 	}
     void PopulateTypeColours()
     {
-        typeColours.Add(MonType.normal, new int[] { 245, 232, 206 });
-        typeColours.Add(MonType.fire, new int[] { 255, 163, 64 });
-        typeColours.Add(MonType.grass, new int[] { 131, 219, 64 });
-        typeColours.Add(MonType.water, new int[] { 112, 165, 250 });
+        typeColours.Add(TypeNum.normal, new int[] { 245, 232, 206 });
+        typeColours.Add(TypeNum.fire, new int[] { 255, 163, 64 });
+        typeColours.Add(TypeNum.grass, new int[] { 131, 219, 64 });
+        typeColours.Add(TypeNum.water, new int[] { 112, 165, 250 });
     }
 
-    public void ChangeButtonColour(Button button, MonType type)
+    public void ChangeButtonColour(Button button, TypeNum type)
     {
         ColorBlock colors = button.colors;
         tmpRGB = typeColours[type];
@@ -68,5 +69,15 @@ public class BattleUIControl : MonoBehaviour {
         baseSelectPanel.SetActive(false);
         moveSelectPanel.SetActive(true);
         backButton.gameObject.SetActive(true);
+    }
+
+    public string GetClickedButton()
+    {
+        return(EventSystem.current.currentSelectedGameObject.name);
+    }
+
+    public void SelectMove()
+    {
+        spawnScript.SetSelectedMove(GetClickedButton());
     }
 }
