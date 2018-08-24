@@ -8,7 +8,6 @@ public class BattleStateControl : MonoBehaviour {
     private MonData secondToGo;
 
     BattleControl battleControl;
-    DataList moveData;
     public GameObject battleUI;
     BattleUIControl uiScript;
 
@@ -18,7 +17,6 @@ public class BattleStateControl : MonoBehaviour {
     // Use this for initialization
     void Start () {
         battleControl = GetComponent<BattleControl>();
-        moveData = GetComponent<DataList>();
         uiScript = battleUI.GetComponent<BattleUIControl>();
     }
 	

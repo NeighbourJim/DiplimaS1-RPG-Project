@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class BattleUIControl : MonoBehaviour {
 
     public GameObject battleController;
-    Dictionary<TypeData, int[]> typeColours = new Dictionary<TypeData, int[]>();
     BattleControl spawnScript;
     Copymon mon;
     public Button m1;
@@ -18,7 +17,6 @@ public class BattleUIControl : MonoBehaviour {
     public GameObject baseSelectPanel;
     public GameObject moveSelectPanel;
     public GameObject switchPanel;
-    DataList data;
     int[] tmpRGB;
 
 
@@ -26,7 +24,6 @@ public class BattleUIControl : MonoBehaviour {
     void Awake () {
         
         spawnScript = battleController.GetComponent<BattleControl>();
-        data = battleController.GetComponent<DataList>();
     }
 	
 	// Update is called once per frame

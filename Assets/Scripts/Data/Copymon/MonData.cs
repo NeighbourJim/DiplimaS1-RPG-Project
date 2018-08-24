@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 
 [CreateAssetMenu()]
 public class MonData : ScriptableObject
@@ -99,8 +98,6 @@ public class MonData : ScriptableObject
 
     [Header("Monster Learnset")]
     public LevelMovePair[] learnset;
-
-    private TypeList typeList = new TypeList();
 
     #endregion
 
@@ -233,35 +230,35 @@ public class MonData : ScriptableObject
 
         // If Primary type is weak to attack type, add 2 to damage multiplier
         // Else if Primary type is resistant to attack type, subtract 2 from damage multiplier
-        if (ArrayUtility.IndexOf(primaryType.weaknesses, attackingType) != -1)
+        if (primaryType.FindInWeaknesses(attackingType))
         {
             damageModifier += 2;
         }
-        else if (ArrayUtility.IndexOf(primaryType.resistances, attackingType) != -1)
+        else if (primaryType.FindInResistances(attackingType))
         {
             damageModifier -= 2;
         }
         if (secondaryType != null)
         {
             // Same for secondary type
-            if (ArrayUtility.IndexOf(secondaryType.weaknesses, attackingType) != -1)
+            if (secondaryType.FindInWeaknesses(attackingType))
             {
                 damageModifier += 2;
             }
-            else if (ArrayUtility.IndexOf(secondaryType.resistances, attackingType) != -1)
+            else if (secondaryType.FindInResistances(attackingType))
             {
                 damageModifier -= 2;
             }
         }
 
         // If either primary or secondary type is immune to attacking type, the damage multiplier is always -10 (immune)
-        if (ArrayUtility.IndexOf(primaryType.immunities, attackingType) != -1)
+        if (primaryType.FindInImmunities(attackingType))
         {
             damageModifier = -10;
         }
         if(secondaryType != null)
         {
-            if(ArrayUtility.IndexOf(secondaryType.immunities, attackingType) != -1)
+            if(secondaryType.FindInImmunities(attackingType))
             {
                 damageModifier = -10;
             }

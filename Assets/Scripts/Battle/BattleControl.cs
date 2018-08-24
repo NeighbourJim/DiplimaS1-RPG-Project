@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BattleControl : MonoBehaviour {
-
-    DataList data;
+public class BattleControl : MonoBehaviour
+{
+    public GameObject dataController;
 
     public GameObject playerSpawn;
     public GameObject enemSpawn;
@@ -20,10 +20,15 @@ public class BattleControl : MonoBehaviour {
     BattleUIControl uiScript;
     BattleStateControl stateControl;
 
+    Monpedia mp;
+
     void Start ()
-    {                
+    {
+        mp = dataController.GetComponent<Monpedia>();
+        playerMon = Instantiate(mp.monpedia[1]);
+        enemyMon = Instantiate(mp.monpedia[10]);
+        print(playerMon.monName);
         Spawn();
-        data = GetComponent<DataList>();
         stateControl = GetComponent<BattleStateControl>();
         uiScript = battleUI.GetComponent<BattleUIControl>();
 
