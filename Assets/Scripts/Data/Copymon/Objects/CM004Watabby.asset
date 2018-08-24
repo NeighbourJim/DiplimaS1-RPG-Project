@@ -16,13 +16,14 @@ MonoBehaviour:
   cry: {fileID: 0}
   monID: 4
   monName: Watabby
+  monpediaEntry: ?ENTRY?
   nickname: Watabby
   ownership: 0
-  primaryType: 3
-  secondaryType: 0
+  primaryType: {fileID: 11400000, guid: b263572aa250ee043922a1bd995c9457, type: 2}
+  secondaryType: {fileID: 0}
   level: 1
-  curXP: 0
-  xpToNextLevel: 0
+  curXP: 125
+  xpToNextLevel: 216
   xpYield: 64
   evolves: 0
   levelToEvolve: -1
@@ -33,21 +34,21 @@ MonoBehaviour:
   baseSpAtk: 50
   baseSpDef: 64
   baseSpeed: 43
-  ivHP: 0
-  ivAtk: 0
-  ivDef: 0
-  ivSpAtk: 0
-  ivSpDef: 0
-  ivSpeed: 0
-  curAtk: 0
-  curDef: 0
-  curSpAtk: 0
-  curSpDef: 0
-  curSpeed: 0
+  ivHP: 4
+  ivAtk: 29
+  ivDef: 21
+  ivSpAtk: 11
+  ivSpDef: 30
+  ivSpeed: 1
+  curAtk: 12
+  curDef: 14
+  curSpAtk: 11
+  curSpDef: 14
+  curSpeed: 10
   curAcc: 100
   curEva: 100
-  maxHP: 0
-  curHP: 0
+  maxHP: 21
+  curHP: 21
   hasStatus: 0
   buffStageAtk: 0
   buffStageDef: 0
@@ -61,4 +62,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 93f9dbcb4f63d944498e75941314359a, type: 2}
   - {fileID: 11400000, guid: 6976a41fbe546dc4d8353215223731fe, type: 2}
   - {fileID: 0}
+  selectedMove: {fileID: 11400000, guid: 6976a41fbe546dc4d8353215223731fe, type: 2}
   learnset: []

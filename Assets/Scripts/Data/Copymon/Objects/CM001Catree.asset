@@ -18,12 +18,12 @@ MonoBehaviour:
   monName: Catree
   monpediaEntry: A cat that is a plant
   nickname: Catree
-  ownership: 0
-  primaryType: 2
-  secondaryType: 0
+  ownership: 1
+  primaryType: {fileID: 11400000, guid: dceac4decc4624644b7ca3437ec9a013, type: 2}
+  secondaryType: {fileID: 0}
   level: 1
-  curXP: 0
-  xpToNextLevel: 0
+  curXP: 64
+  xpToNextLevel: 125
   xpYield: 64
   evolves: 0
   levelToEvolve: -1
@@ -34,21 +34,21 @@ MonoBehaviour:
   baseSpAtk: 65
   baseSpDef: 65
   baseSpeed: 65
-  ivHP: 0
-  ivAtk: 0
-  ivDef: 0
-  ivSpAtk: 0
-  ivSpDef: 0
-  ivSpeed: 0
-  curAtk: 0
-  curDef: 0
-  curSpAtk: 0
-  curSpDef: 0
-  curSpeed: 0
+  ivHP: 3
+  ivAtk: 14
+  ivDef: 20
+  ivSpAtk: 23
+  ivSpDef: 2
+  ivSpeed: 26
+  curAtk: 10
+  curDef: 10
+  curSpAtk: 12
+  curSpDef: 11
+  curSpeed: 12
   curAcc: 100
   curEva: 100
-  maxHP: 0
-  curHP: 0
+  maxHP: 19
+  curHP: 19
   hasStatus: 0
   buffStageAtk: 0
   buffStageDef: 0
@@ -62,6 +62,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 906fe41e38222954583ccdc2739dd098, type: 2}
   - {fileID: 0}
   - {fileID: 0}
+  selectedMove: {fileID: 11400000, guid: 4e0f88931c13d60458d0ce04d12643d8, type: 2}
   learnset:
   - levelToLearn: 1
     moveToLearn: {fileID: 11400000, guid: 4e0f88931c13d60458d0ce04d12643d8, type: 2}

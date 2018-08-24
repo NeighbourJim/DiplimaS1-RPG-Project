@@ -14,7 +14,7 @@ MonoBehaviour:
   moveID: 3
   moveName: WaterSplash
   moveDescription: The user splashes the target with water.
-  type: 3
+  moveType: {fileID: 11400000, guid: b263572aa250ee043922a1bd995c9457, type: 2}
   physSpec: 1
   basePower: 40
   accuracy: 100

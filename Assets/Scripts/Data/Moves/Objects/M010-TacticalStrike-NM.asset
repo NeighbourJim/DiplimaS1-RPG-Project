@@ -15,7 +15,7 @@ MonoBehaviour:
   moveName: Tactical Strike
   moveDescription: The user takes it's time to aim a blow at the target's weak spot.
     Has lowered priority, but greater chance to critical hit.
-  type: 1
+  moveType: {fileID: 11400000, guid: 04060546dafaa5a419a5dcc8b9dded1d, type: 2}
   physSpec: 0
   basePower: 40
   accuracy: 100

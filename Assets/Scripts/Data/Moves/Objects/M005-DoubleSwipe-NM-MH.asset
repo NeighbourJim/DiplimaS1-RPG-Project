@@ -14,7 +14,7 @@ MonoBehaviour:
   moveID: 5
   moveName: Double Swipe
   moveDescription: The user swipes at the target twice in quick succession.
-  type: 1
+  moveType: {fileID: 11400000, guid: 04060546dafaa5a419a5dcc8b9dded1d, type: 2}
   physSpec: 0
   basePower: 25
   accuracy: 100

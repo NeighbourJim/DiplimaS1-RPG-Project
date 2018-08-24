@@ -15,7 +15,7 @@ MonoBehaviour:
   moveName: Blazing Speed
   moveDescription: The user attacks with flames at a high velocity. This move has
     increased priority.
-  type: 4
+  moveType: {fileID: 11400000, guid: 5478089db321b704a9aa4c1242f3c5cd, type: 2}
   physSpec: 1
   basePower: 40
   accuracy: 100

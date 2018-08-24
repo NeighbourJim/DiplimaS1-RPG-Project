@@ -15,7 +15,7 @@ MonoBehaviour:
   moveName: Spicy Slash
   moveDescription: The user slashes the target with heated claws. It may leave the
     target with a burn.
-  type: 4
+  moveType: {fileID: 11400000, guid: 5478089db321b704a9aa4c1242f3c5cd, type: 2}
   physSpec: 0
   basePower: 40
   accuracy: 100

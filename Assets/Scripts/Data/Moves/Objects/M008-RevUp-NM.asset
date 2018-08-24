@@ -14,7 +14,7 @@ MonoBehaviour:
   moveID: 8
   moveName: Rev Up
   moveDescription: The user prepares to move quickly, increasing it speed sharply.
-  type: 1
+  moveType: {fileID: 11400000, guid: 257184f944371724c85db14f6e347cba, type: 2}
   physSpec: 2
   basePower: 0
   accuracy: 100

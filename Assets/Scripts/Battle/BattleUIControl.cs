@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class BattleUIControl : MonoBehaviour {
 
     public GameObject battleController;
-    Dictionary<TypeNum, int[]> typeColours = new Dictionary<TypeNum, int[]>();
+    Dictionary<TypeData, int[]> typeColours = new Dictionary<TypeData, int[]>();
     BattleControl spawnScript;
     Copymon mon;
     public Button m1;
@@ -27,27 +27,18 @@ public class BattleUIControl : MonoBehaviour {
         
         spawnScript = battleController.GetComponent<BattleControl>();
         data = battleController.GetComponent<DataList>();
-        PopulateTypeColours();
     }
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
-    void PopulateTypeColours()
-    {
-        typeColours.Add(TypeNum.normal, new int[] { 245, 232, 206 });
-        typeColours.Add(TypeNum.fire, new int[] { 255, 163, 64 });
-        typeColours.Add(TypeNum.grass, new int[] { 131, 219, 64 });
-        typeColours.Add(TypeNum.water, new int[] { 112, 165, 250 });
-    }
 
-    public void ChangeButtonColour(Button button, TypeNum type)
+    public void ChangeButtonColour(Button button, TypeData type)
     {
         ColorBlock colors = button.colors;
-        tmpRGB = typeColours[type];
-        colors.normalColor = new Color(tmpRGB[0] / 255f, tmpRGB[1] / 255f, tmpRGB[2] / 255f);
-        colors.highlightedColor = new Color(tmpRGB[0] * 1.5f / 255f, tmpRGB[1] * 1.5f / 255f, tmpRGB[2] * 1.5f / 255f);
+        colors.normalColor = type.buttonColour;
+        colors.highlightedColor = new Color(type.buttonColour.r * 1.5f, type.buttonColour.g * 1.5f, type.buttonColour.b * 1.5f);
         button.colors = colors;
     }
 

@@ -20,3 +20,4 @@ MonoBehaviour:
   resistances:
   - {fileID: 11400000}
   immunities: []
+  buttonColour: {r: 0.71139705, g: 0.8896552, b: 0.9485294, a: 1}

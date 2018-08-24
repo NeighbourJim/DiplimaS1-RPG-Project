@@ -14,7 +14,7 @@ MonoBehaviour:
   moveID: 2
   moveName: Leaf Blast
   moveDescription: The user attacks by pelting the target with leaves.
-  type: 2
+  moveType: {fileID: 11400000, guid: dceac4decc4624644b7ca3437ec9a013, type: 2}
   physSpec: 1
   basePower: 40
   accuracy: 100

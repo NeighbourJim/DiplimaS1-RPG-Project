@@ -16,3 +16,4 @@ MonoBehaviour:
   weaknesses: []
   resistances: []
   immunities: []
+  buttonColour: {r: 0.72794116, g: 0.72794116, b: 0.72794116, a: 1}

@@ -15,7 +15,7 @@ MonoBehaviour:
   moveName: Threaten
   moveDescription: The user assumes a threatening posture, lowering the target's Attack
     stat.
-  type: 1
+  moveType: {fileID: 11400000, guid: 04060546dafaa5a419a5dcc8b9dded1d, type: 2}
   physSpec: 2
   basePower: 0
   accuracy: 100

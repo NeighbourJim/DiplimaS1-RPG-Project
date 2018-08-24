@@ -11,11 +11,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 366284312d2880646b9ced82846cc5d0, type: 3}
   m_Name: M007-DefensiveBlow-FT
   m_EditorClassIdentifier: 
-  moveID: 0
-  moveName: ?MOVENAME?
+  moveID: 7
+  moveName: Defensive Blow
   moveDescription: The user performs a quick jab while protecting themselves. Deals
     low damage, but increases the user's defense.
-  type: 9
+  moveType: {fileID: 11400000, guid: fde76722823e33a4d9ee30701823f145, type: 2}
   physSpec: 0
   basePower: 15
   accuracy: 100

@@ -16,10 +16,11 @@ MonoBehaviour:
   cry: {fileID: 0}
   monID: 10
   monName: Catt
+  monpediaEntry: ?ENTRY?
   nickname: Catt
   ownership: 0
-  primaryType: 1
-  secondaryType: 0
+  primaryType: {fileID: 11400000, guid: 04060546dafaa5a419a5dcc8b9dded1d, type: 2}
+  secondaryType: {fileID: 0}
   level: 1
   curXP: 0
   xpToNextLevel: 0
@@ -61,4 +62,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 092796f6356df0049a6f73f11826f85c, type: 2}
   - {fileID: 0}
   - {fileID: 0}
+  selectedMove: {fileID: 0}
   learnset: []

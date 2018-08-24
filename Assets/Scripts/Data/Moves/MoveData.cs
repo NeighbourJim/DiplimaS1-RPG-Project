@@ -14,7 +14,7 @@ public class MoveData : ScriptableObject {
     public string moveDescription = "?DESC?";
 
     [Header("Move Type & Physical/Special")]
-    public TypeNum type = TypeNum.normal;
+    public TypeData moveType;
     [Tooltip("This determines which attacking and defending stats are used in damage calculations, or if the move is a non-damaging move.")]
     public PhysSpec physSpec = PhysSpec.status;
 

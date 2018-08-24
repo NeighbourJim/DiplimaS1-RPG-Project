@@ -15,7 +15,7 @@ MonoBehaviour:
   moveName: Venomous Vine
   moveDescription: The user strikes the target with a vine coated in poison. The target
     may be left poisoned.
-  type: 11
+  moveType: {fileID: 11400000, guid: 52385197a4c00e547ac0e75e8a307a0f, type: 2}
   physSpec: 0
   basePower: 30
   accuracy: 100

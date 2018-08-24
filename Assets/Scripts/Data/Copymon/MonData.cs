@@ -24,10 +24,8 @@ public class MonData : ScriptableObject
 
     [Tooltip("All monsters must have at least a primary type.")]
     [Header("Type")]
-    public TypeNum primaryType = TypeNum.normal;
-    public TypeNum secondaryType = TypeNum.none;
-    public MonType pType;
-    public MonType sType;
+    public TypeData primaryType;
+    public TypeData secondaryType; // hello
 
     [Header("Level / XP")]
     public int level = 1;
@@ -108,8 +106,7 @@ public class MonData : ScriptableObject
 
     private void Start()
     {
-        pType = typeList.typeList[(int)primaryType];
-        sType = typeList.typeList[(int)secondaryType];
+
     }
 
     private void CalculateXPToNextLevel(int lvl)
@@ -230,43 +227,44 @@ public class MonData : ScriptableObject
         hasStatus = StatusEffect.fainted;
     }
 
-    public Effectiveness GetEffectiveness(TypeNum attackingType)
+    public Effectiveness GetEffectiveness(TypeData attackingType)
     {
-        // Primary Type
-        TypeNum[] pWeak = typeList.typeList[pType.typeID].weaknesses;
-        TypeNum[] pRes = typeList.typeList[pType.typeID].resistances;
-        TypeNum[] pImm = typeList.typeList[pType.typeID].immunities;
-        // Secondary Type
-        TypeNum[] sWeak = typeList.typeList[sType.typeID].weaknesses;
-        TypeNum[] sRes = typeList.typeList[sType.typeID].resistances;
-        TypeNum[] sImm = typeList.typeList[sType.typeID].immunities;
-
         int damageModifier = 0;
 
         // If Primary type is weak to attack type, add 2 to damage multiplier
         // Else if Primary type is resistant to attack type, subtract 2 from damage multiplier
-        if (ArrayUtility.IndexOf(pWeak, attackingType) != -1)
+        if (ArrayUtility.IndexOf(primaryType.weaknesses, attackingType) != -1)
         {
             damageModifier += 2;
         }
-        else if (ArrayUtility.IndexOf(pRes, attackingType) != -1)
+        else if (ArrayUtility.IndexOf(primaryType.resistances, attackingType) != -1)
         {
             damageModifier -= 2;
         }
-        // Same for secondary type
-        if (ArrayUtility.IndexOf(sWeak, attackingType) != -1)
+        if (secondaryType != null)
         {
-            damageModifier += 2;
-        }
-        else if (ArrayUtility.IndexOf(sRes, attackingType) != -1)
-        {
-            damageModifier -= 2;
+            // Same for secondary type
+            if (ArrayUtility.IndexOf(secondaryType.weaknesses, attackingType) != -1)
+            {
+                damageModifier += 2;
+            }
+            else if (ArrayUtility.IndexOf(secondaryType.resistances, attackingType) != -1)
+            {
+                damageModifier -= 2;
+            }
         }
 
         // If either primary or secondary type is immune to attacking type, the damage multiplier is always -10 (immune)
-        if (ArrayUtility.IndexOf(pImm, attackingType) != -1 || ArrayUtility.IndexOf(sImm, attackingType) != -1)
+        if (ArrayUtility.IndexOf(primaryType.immunities, attackingType) != -1)
         {
             damageModifier = -10;
+        }
+        if(secondaryType != null)
+        {
+            if(ArrayUtility.IndexOf(secondaryType.immunities, attackingType) != -1)
+            {
+                damageModifier = -10;
+            }
         }
 
         return (Effectiveness)damageModifier;

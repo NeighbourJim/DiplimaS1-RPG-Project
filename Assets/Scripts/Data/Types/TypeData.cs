@@ -11,4 +11,6 @@ public class TypeData : ScriptableObject
     public TypeData[] weaknesses;
     public TypeData[] resistances;
     public TypeData[] immunities;
+
+    public Color buttonColour;
 }

@@ -14,7 +14,7 @@ MonoBehaviour:
   moveID: 1
   moveName: Claw
   moveDescription: The monster scratches the opponent with sharp claws.
-  type: 1
+  moveType: {fileID: 11400000, guid: 04060546dafaa5a419a5dcc8b9dded1d, type: 2}
   physSpec: 0
   basePower: 50
   accuracy: 90

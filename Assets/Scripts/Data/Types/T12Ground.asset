@@ -22,3 +22,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3cc3a70a088909745a082312ba4b2713, type: 2}
   immunities:
   - {fileID: 11400000, guid: 58b2dd05e06394741adaa3746bf5700c, type: 2}
+  buttonColour: {r: 0.66176474, g: 0.51129043, b: 0.37467563, a: 1}

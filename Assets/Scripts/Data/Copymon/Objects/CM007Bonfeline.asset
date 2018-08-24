@@ -16,13 +16,14 @@ MonoBehaviour:
   cry: {fileID: 0}
   monID: 7
   monName: Bonfeline
+  monpediaEntry: ?ENTRY?
   nickname: Bonfeline
   ownership: 0
-  primaryType: 4
-  secondaryType: 0
+  primaryType: {fileID: 11400000, guid: 5478089db321b704a9aa4c1242f3c5cd, type: 2}
+  secondaryType: {fileID: 0}
   level: 1
-  curXP: 0
-  xpToNextLevel: 0
+  curXP: 125
+  xpToNextLevel: 216
   xpYield: 64
   evolves: 0
   levelToEvolve: -1
@@ -33,21 +34,21 @@ MonoBehaviour:
   baseSpAtk: 52
   baseSpDef: 50
   baseSpeed: 65
-  ivHP: 0
-  ivAtk: 0
-  ivDef: 0
-  ivSpAtk: 0
-  ivSpDef: 0
-  ivSpeed: 0
-  curAtk: 0
-  curDef: 0
-  curSpAtk: 0
-  curSpDef: 0
-  curSpeed: 0
+  ivHP: 23
+  ivAtk: 29
+  ivDef: 26
+  ivSpAtk: 6
+  ivSpDef: 12
+  ivSpeed: 23
+  curAtk: 13
+  curDef: 11
+  curSpAtk: 11
+  curSpDef: 11
+  curSpeed: 14
   curAcc: 100
   curEva: 100
-  maxHP: 0
-  curHP: 0
+  maxHP: 22
+  curHP: 22
   hasStatus: 0
   buffStageAtk: 0
   buffStageDef: 0
@@ -61,4 +62,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8acb5e0ee6f48894a932585a0da9a7a6, type: 2}
   - {fileID: 11400000, guid: 0f50b0bd05a32814599fe16219d549e3, type: 2}
   - {fileID: 0}
+  selectedMove: {fileID: 11400000, guid: 8acb5e0ee6f48894a932585a0da9a7a6, type: 2}
   learnset: []
