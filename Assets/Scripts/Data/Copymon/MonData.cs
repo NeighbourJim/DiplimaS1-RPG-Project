@@ -6,6 +6,8 @@ using UnityEditor;
 [CreateAssetMenu()]
 public class MonData : ScriptableObject
 {
+    #region: Field Declarations
+
     [Header("Model Prefab")]
     public GameObject monsterPrefab;
 
@@ -15,6 +17,8 @@ public class MonData : ScriptableObject
     [Header("Identity")]
     public int monID;
     public string monName;
+    [TextArea(2,3)]
+    public string monpediaEntry = "?ENTRY?";
     public string nickname;
     public Ownership ownership = Ownership.wild;
 
@@ -22,14 +26,22 @@ public class MonData : ScriptableObject
     [Header("Type")]
     public TypeNum primaryType = TypeNum.normal;
     public TypeNum secondaryType = TypeNum.none;
-    private MonType pType;
-    private MonType sType;
+    public MonType pType;
+    public MonType sType;
 
     [Header("Level / XP")]
     public int level = 1;
     public int curXP;
     public int xpToNextLevel;
-    public int xpYield = 64;
+    public int xpYield = 64; 
+
+    [Header("Evolution")]
+    [Tooltip("Whether or not the monster evolves.")]
+    public bool evolves = false;
+    [Tooltip("What level the monster evolves at")]
+    public int levelToEvolve = -1;
+    [Tooltip("Which monster it evolves into")]
+    public MonData evolvesInto;
 
     [Tooltip("The base stats for the monster, used in calculating its current stats for each level.")]
     [Header("Base Stats")]
@@ -77,11 +89,8 @@ public class MonData : ScriptableObject
     public int buffStageEva = 0;
 
     [Header("Moves")]
-    public int moveId1;
-    public int moveId2;
-    public int moveId3;
-    public int moveId4;
-    public int selectedMove = 0;
+    public MoveData[] learnedMoves = new MoveData[4];
+    public MoveData selectedMove;
 
     [System.Serializable]
     public struct LevelMovePair
@@ -95,15 +104,17 @@ public class MonData : ScriptableObject
 
     private TypeList typeList = new TypeList();
 
-    private void Awake()
+    #endregion
+
+    private void Start()
     {
         pType = typeList.typeList[(int)primaryType];
         sType = typeList.typeList[(int)secondaryType];
     }
 
-    private void CalculateXPToNextLevel()
+    private void CalculateXPToNextLevel(int lvl)
     {
-        xpToNextLevel = (int)Mathf.Pow(level, 3);
+        xpToNextLevel = (int)Mathf.Pow(lvl, 3);
     }
 
     public int CalculateStat(int statBase, int statIV, int level)
@@ -138,6 +149,15 @@ public class MonData : ScriptableObject
         curSpeed = CalculateStat(baseSpeed, ivSpeed, lvl);
     }
 
+    public void GenerateWildStats(int lvl)
+    {
+        GenerateIVs();
+        CalculateAllStats(lvl);
+        CalculateXPToNextLevel(lvl - 1);
+        curXP = xpToNextLevel;
+        CalculateXPToNextLevel(lvl);
+    }
+
     public void IncrementExp(int expToAdd)
     {
         curXP += expToAdd;
@@ -151,7 +171,7 @@ public class MonData : ScriptableObject
     {
         level++;
         CalculateAllStats(level);
-        CalculateXPToNextLevel();
+        CalculateXPToNextLevel(level);
     }
 
     public int GetXPValue()
@@ -205,7 +225,9 @@ public class MonData : ScriptableObject
 
     public void Faint()
     {
-        
+        // TODO: ACTUALLY CREATE THIS METHOD
+        curHP = 0;
+        hasStatus = StatusEffect.fainted;
     }
 
     public Effectiveness GetEffectiveness(TypeNum attackingType)

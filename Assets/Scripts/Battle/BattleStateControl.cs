@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class BattleStateControl : MonoBehaviour {
     public TurnState currentState;
-    private Copymon firstToGo;
-    private Copymon secondToGo;
+    private MonData firstToGo;
+    private MonData secondToGo;
 
     BattleControl battleControl;
     DataList moveData;
     public GameObject battleUI;
     BattleUIControl uiScript;
 
-    public int playerSelectedMove;
-    public int enemySelectedMove;
+    public MoveData playerSelectedMove;
+    public MoveData enemySelectedMove;
 
     // Use this for initialization
     void Start () {
@@ -48,12 +48,12 @@ public class BattleStateControl : MonoBehaviour {
                 break;
 
             case (TurnState.FirstAction):
-                print(string.Format("{0} attacks with {1}!",firstToGo.monName, moveData.moveDex[firstToGo.selectedMove].moveName));
+                print(string.Format("{0} attacks with {1}!",firstToGo.monName, firstToGo.selectedMove.moveName));
                 AdvanceState(TurnState.SecondAction);
                 break;
 
             case (TurnState.SecondAction):
-                print(string.Format("{0} attacks with {1}!", secondToGo.monName, moveData.moveDex[secondToGo.selectedMove].moveName));
+                print(string.Format("{0} attacks with {1}!", secondToGo.monName, secondToGo.selectedMove.moveName));
                 AdvanceState(TurnState.SelectingAction);
                 break;
             case (TurnState.FirstFaints):

@@ -31,7 +31,7 @@ public class MoveData : ScriptableObject {
     public int statusChance = 0;
 
     [Header("Stat Change")]
-    [Tooltip("Which stat this move changes, if any. As of now, only one stat can be buffed per move.")]
+    [Tooltip("Which stat this move changes, if any.")]
     public Stat statToChange = Stat.none;
     [Tooltip("Whether or not the stat change is applied to the user or the opponent.")]
     public bool affectSelf = false;

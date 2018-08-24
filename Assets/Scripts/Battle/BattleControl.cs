@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,8 +13,8 @@ public class BattleControl : MonoBehaviour {
     public GameObject player;
     public GameObject enemy;
 
-    public Copymon playerMon;
-    public Copymon enemyMon;
+    public MonData playerMon;
+    public MonData enemyMon;
 
     public GameObject battleUI;
     BattleUIControl uiScript;
@@ -32,20 +33,21 @@ public class BattleControl : MonoBehaviour {
 
     void Spawn()
     {
-        player = (GameObject)Instantiate(Resources.Load("CopymonPrefabs/CM001"));
-        enemy = (GameObject)Instantiate(Resources.Load("CopymonPrefabs/CM002"));
+        player = Instantiate(playerMon.monsterPrefab);
+        enemy = Instantiate(enemyMon.monsterPrefab);
+
         player.tag = "PlayerMonster";
         enemy.tag = "EnemyMonster";
 
-        playerMon = player.GetComponent<Copymon>();
-        enemyMon = enemy.GetComponent<Copymon>();
-
         playerMon.ownership = Ownership.player;
+        enemyMon.ownership = Ownership.wild;
 
-        playerMon.CalculateStats(5);
-        enemyMon.CalculateStats(6);
+        playerMon.GenerateWildStats(5);
+        enemyMon.GenerateWildStats(6);
 
         Face();
+
+        print(playerMon.pType.typeName);
     }
 
     void Face()
@@ -64,18 +66,18 @@ public class BattleControl : MonoBehaviour {
 
     void SetButtonColours()
     {
-        uiScript.ChangeButtonColour(uiScript.m1, data.moveDex[playerMon.moveId1].type);
-        uiScript.ChangeButtonColour(uiScript.m2, data.moveDex[playerMon.moveId2].type);
-        uiScript.ChangeButtonColour(uiScript.m3, data.moveDex[playerMon.moveId3].type);
-        uiScript.ChangeButtonColour(uiScript.m4, data.moveDex[playerMon.moveId4].type);
+        uiScript.ChangeButtonColour(uiScript.m1, playerMon.learnedMoves[0].type);
+        uiScript.ChangeButtonColour(uiScript.m2, playerMon.learnedMoves[1].type);
+        uiScript.ChangeButtonColour(uiScript.m3, playerMon.learnedMoves[2].type);
+        uiScript.ChangeButtonColour(uiScript.m4, playerMon.learnedMoves[3].type);
     }
 
     void SetButtonNames()
     {
-        uiScript.ChangeButtonText(uiScript.m1, data.moveDex[playerMon.moveId1].moveName);
-        uiScript.ChangeButtonText(uiScript.m2, data.moveDex[playerMon.moveId2].moveName);
-        uiScript.ChangeButtonText(uiScript.m3, data.moveDex[playerMon.moveId3].moveName);
-        uiScript.ChangeButtonText(uiScript.m4, data.moveDex[playerMon.moveId4].moveName);
+        uiScript.ChangeButtonText(uiScript.m1, playerMon.learnedMoves[0].moveName);
+        uiScript.ChangeButtonText(uiScript.m2, playerMon.learnedMoves[1].moveName);
+        uiScript.ChangeButtonText(uiScript.m3, playerMon.learnedMoves[2].moveName);
+        uiScript.ChangeButtonText(uiScript.m4, playerMon.learnedMoves[3].moveName);
     }
 
     public void SetSelectedMove(string buttonName)
@@ -83,19 +85,19 @@ public class BattleControl : MonoBehaviour {
         switch (buttonName)
         {
             case("Move1Button"):
-                playerMon.selectedMove = playerMon.moveId1;
+                playerMon.selectedMove = playerMon.learnedMoves[0];
                 break;
             case("Move2Button"):
-                playerMon.selectedMove = playerMon.moveId2;
+                playerMon.selectedMove = playerMon.learnedMoves[1];
                 break;
             case("Move3Button"):
-                playerMon.selectedMove = playerMon.moveId3;
+                playerMon.selectedMove = playerMon.learnedMoves[2];
                 break;
             case("Move4Button"):
-                playerMon.selectedMove = playerMon.moveId4;
+                playerMon.selectedMove = playerMon.learnedMoves[3];
                 break;
             default:
-                playerMon.selectedMove = 0;
+                playerMon.selectedMove = null;
                 break;
         }
         stateControl.AdvanceState(TurnState.EnemySelectAction);
@@ -103,11 +105,37 @@ public class BattleControl : MonoBehaviour {
 
     public void SelectEnemyMove()
     {
-        int[] enemyMoves = new int[] { enemyMon.moveId1, enemyMon.moveId2, enemyMon.moveId3, enemyMon.moveId4 };
-        enemyMon.selectedMove = enemyMoves[Random.Range(0, enemyMoves.Length)];
-        if(enemyMon.selectedMove == 0)
+        List<MoveData> selectableMovesList = new List<MoveData>();
+        List<MoveData> strongMovesList = new List<MoveData>();
+        MoveData[] selectable;
+        MoveData[] strong;
+
+        foreach(MoveData move in enemyMon.learnedMoves)
         {
-            SelectEnemyMove();
+            if(move != null)
+            {
+                selectableMovesList.Add(move);
+            }
+        }
+
+        foreach(MoveData move in selectableMovesList)
+        {
+            if(playerMon.GetEffectiveness(move.type) > 0)
+            {
+                strongMovesList.Add(move);
+            }
+        }
+
+        selectable = selectableMovesList.ToArray();
+        strong = strongMovesList.ToArray();
+
+        if(strong.Length > 0)
+        {
+            enemyMon.selectedMove = strong[UnityEngine.Random.Range(0, strong.Length)];
+        }
+        else
+        {
+            enemyMon.selectedMove = selectable[UnityEngine.Random.Range(0, selectable.Length)];
         }
     }
 }

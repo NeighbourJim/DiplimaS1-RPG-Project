@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4503a970237cf384dabc25ab4cc53fb1, type: 3}
+  m_Name: T13Rock
+  m_EditorClassIdentifier: 
+  typeID: 13
+  typeName: Rock
+  weaknesses:
+  - {fileID: 11400000, guid: b263572aa250ee043922a1bd995c9457, type: 2}
+  - {fileID: 11400000, guid: dceac4decc4624644b7ca3437ec9a013, type: 2}
+  - {fileID: 11400000, guid: fde76722823e33a4d9ee30701823f145, type: 2}
+  - {fileID: 11400000, guid: 370c4fdd1bfedf246a02dc92749b2fae, type: 2}
+  resistances:
+  - {fileID: 11400000, guid: 04060546dafaa5a419a5dcc8b9dded1d, type: 2}
+  - {fileID: 11400000, guid: 5478089db321b704a9aa4c1242f3c5cd, type: 2}
+  - {fileID: 11400000, guid: 52385197a4c00e547ac0e75e8a307a0f, type: 2}
+  - {fileID: 11400000, guid: 08d5e9f6bc614044ab8ef85830966b45, type: 2}
+  immunities: []

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DataList : MonoBehaviour {
 	
-	public Copymon[] copyDex;
+	public MonData[] monsterpedia;
 
 
     public Move[] moveDex = new Move[] 
@@ -19,7 +19,13 @@ public class DataList : MonoBehaviour {
 
     private void Start()
     {
-
+        foreach (MonData monster in monsterpedia)
+        {
+            if (monster != null)
+            {
+                print(monster.monName);
+            }
+        }
     }
 
     Move[] GetMoveDex()

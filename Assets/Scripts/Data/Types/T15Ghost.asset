@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4503a970237cf384dabc25ab4cc53fb1, type: 3}
+  m_Name: T15Ghost
+  m_EditorClassIdentifier: 
+  typeID: 0
+  typeName: ?TYPE?
+  weaknesses:
+  - {fileID: 11400000}
+  resistances:
+  - {fileID: 11400000, guid: 52385197a4c00e547ac0e75e8a307a0f, type: 2}
+  - {fileID: 11400000, guid: 7734e818bef8f0c4d96db1008fc44388, type: 2}
+  immunities:
+  - {fileID: 11400000, guid: 04060546dafaa5a419a5dcc8b9dded1d, type: 2}
+  - {fileID: 11400000, guid: fde76722823e33a4d9ee30701823f145, type: 2}

@@ -11,10 +11,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7da0d475b1a02564888f008c0850215f, type: 3}
   m_Name: CM001Catree
   m_EditorClassIdentifier: 
-  monsterPrefab: {fileID: 0}
+  monsterPrefab: {fileID: 1815166685113868, guid: 57ff946a6e7ba074f8e04ee10797e1a1,
+    type: 2}
   cry: {fileID: 0}
   monID: 1
   monName: Catree
+  monpediaEntry: A cat that is a plant
   nickname: Catree
   ownership: 0
   primaryType: 2
@@ -23,6 +25,9 @@ MonoBehaviour:
   curXP: 0
   xpToNextLevel: 0
   xpYield: 64
+  evolves: 0
+  levelToEvolve: -1
+  evolvesInto: {fileID: 0}
   baseHP: 45
   baseAtk: 49
   baseDef: 49
@@ -52,11 +57,11 @@ MonoBehaviour:
   buffStageSpeed: 0
   buffStageAcc: 0
   buffStageEva: 0
-  moveId1: 2
-  moveId2: 3
-  moveId3: 4
-  moveId4: 1
-  selectedMove: 0
+  learnedMoves:
+  - {fileID: 11400000, guid: 4e0f88931c13d60458d0ce04d12643d8, type: 2}
+  - {fileID: 11400000, guid: 906fe41e38222954583ccdc2739dd098, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
   learnset:
   - levelToLearn: 1
     moveToLearn: {fileID: 11400000, guid: 4e0f88931c13d60458d0ce04d12643d8, type: 2}

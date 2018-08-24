@@ -9,11 +9,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7da0d475b1a02564888f008c0850215f, type: 3}
-  m_Name: CM011Catt
+  m_Name: CM010Catt
   m_EditorClassIdentifier: 
-  monsterPrefab: {fileID: 0}
+  monsterPrefab: {fileID: 1833725059086602, guid: 97def4597fd842f48bd978d751fdcadc,
+    type: 2}
   cry: {fileID: 0}
-  monID: 11
+  monID: 10
   monName: Catt
   nickname: Catt
   ownership: 0
@@ -23,6 +24,9 @@ MonoBehaviour:
   curXP: 0
   xpToNextLevel: 0
   xpYield: 64
+  evolves: 0
+  levelToEvolve: -1
+  evolvesInto: {fileID: 0}
   baseHP: 55
   baseAtk: 55
   baseDef: 50
@@ -52,8 +56,9 @@ MonoBehaviour:
   buffStageSpeed: 0
   buffStageAcc: 0
   buffStageEva: 0
-  moveId1: 1
-  moveId2: 0
-  moveId3: 0
-  moveId4: 0
-  selectedMove: 0
+  learnedMoves:
+  - {fileID: 11400000, guid: 9509e6fd2d654264ba5f2bd74d428f74, type: 2}
+  - {fileID: 11400000, guid: 092796f6356df0049a6f73f11826f85c, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  learnset: []
