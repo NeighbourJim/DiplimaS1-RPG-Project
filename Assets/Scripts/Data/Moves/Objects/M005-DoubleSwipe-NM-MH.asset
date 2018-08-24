@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55e8ef2c950476646aada667ec176f19, type: 3}
+  m_Name: M005-DoubleSwipe-NM-MH
+  m_EditorClassIdentifier: 
+  moveID: 5
+  moveName: Double Swipe
+  moveDescription: The user swipes at the target twice in quick succession.
+  type: 1
+  physSpec: 0
+  basePower: 25
+  accuracy: 100
+  causesStatus: 0
+  statusChance: 0
+  statToChange: 0
+  affectSelf: 0
+  buffAmount: 0
+  priority: 0
+  increasedCritRatio: 0
+  causesFlinch: 0
+  multiHit: 1
+  minimumHits: 2
+  maximumHits: 2

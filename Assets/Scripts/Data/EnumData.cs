@@ -60,7 +60,8 @@ public enum StatusEffect
     paralyzed,
     sleep,
     frozen,
-    confused
+    confused,
+    fainted = 50
 }
 
 public enum Stat

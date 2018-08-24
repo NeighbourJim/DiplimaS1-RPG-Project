@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7da0d475b1a02564888f008c0850215f, type: 3}
+  m_Name: CM001Catree
+  m_EditorClassIdentifier: 
+  monsterPrefab: {fileID: 0}
+  cry: {fileID: 0}
+  monID: 1
+  monName: Catree
+  nickname: Catree
+  ownership: 0
+  primaryType: 2
+  secondaryType: 0
+  level: 1
+  curXP: 0
+  xpToNextLevel: 0
+  xpYield: 64
+  baseHP: 45
+  baseAtk: 49
+  baseDef: 49
+  baseSpAtk: 65
+  baseSpDef: 65
+  baseSpeed: 65
+  ivHP: 0
+  ivAtk: 0
+  ivDef: 0
+  ivSpAtk: 0
+  ivSpDef: 0
+  ivSpeed: 0
+  curAtk: 0
+  curDef: 0
+  curSpAtk: 0
+  curSpDef: 0
+  curSpeed: 0
+  curAcc: 100
+  curEva: 100
+  maxHP: 0
+  curHP: 0
+  hasStatus: 0
+  buffStageAtk: 0
+  buffStageDef: 0
+  buffStageSpAtk: 0
+  buffStageSpDef: 0
+  buffStageSpeed: 0
+  buffStageAcc: 0
+  buffStageEva: 0
+  moveId1: 2
+  moveId2: 3
+  moveId3: 4
+  moveId4: 1
+  selectedMove: 0
+  learnset:
+  - levelToLearn: 1
+    moveToLearn: {fileID: 11400000, guid: 4e0f88931c13d60458d0ce04d12643d8, type: 2}
+  - levelToLearn: 8
+    moveToLearn: {fileID: 11400000, guid: 906fe41e38222954583ccdc2739dd098, type: 2}
+  - levelToLearn: 12
+    moveToLearn: {fileID: 11400000, guid: bc162d97af182554dbd91483f05f3c84, type: 2}
