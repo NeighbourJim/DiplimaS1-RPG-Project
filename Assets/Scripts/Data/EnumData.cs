@@ -11,8 +11,8 @@ public enum TurnState
     DetermineOrder,
     FirstAction,
     SecondAction,
-    FirstFaints,
-    SecondFaints,
+    PlayerFaints,
+    EnemyFaints,
     BothFaint,
     PlayerLose,
     PlayerWin
@@ -64,7 +64,7 @@ public enum StatusEffect
     fainted = 50
 }
 
-public enum Stat
+public enum MonStat
 {
     none,
     atk,

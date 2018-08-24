@@ -17,6 +17,6 @@ public class Move
     public StatusEffect causesStatus = StatusEffect.none;
     public int statusChance = 0;
 
-    public Stat statToChange = Stat.none;
+    public MonStat statToChange = MonStat.none;
     public int buffAmount = 0;
 }

@@ -34,21 +34,19 @@ MonoBehaviour:
   baseSpAtk: 65
   baseSpDef: 65
   baseSpeed: 65
-  ivHP: 3
-  ivAtk: 14
-  ivDef: 20
-  ivSpAtk: 23
+  ivHP: 21
+  ivAtk: 3
+  ivDef: 3
+  ivSpAtk: 1
   ivSpDef: 2
-  ivSpeed: 26
+  ivSpeed: 2
   curAtk: 10
   curDef: 10
-  curSpAtk: 12
+  curSpAtk: 11
   curSpDef: 11
-  curSpeed: 12
-  curAcc: 100
-  curEva: 100
-  maxHP: 19
-  curHP: 19
+  curSpeed: 11
+  maxHP: 20
+  curHP: 20
   hasStatus: 0
   buffStageAtk: 0
   buffStageDef: 0
@@ -60,7 +58,7 @@ MonoBehaviour:
   learnedMoves:
   - {fileID: 11400000, guid: 4e0f88931c13d60458d0ce04d12643d8, type: 2}
   - {fileID: 11400000, guid: 906fe41e38222954583ccdc2739dd098, type: 2}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 9509e6fd2d654264ba5f2bd74d428f74, type: 2}
   - {fileID: 0}
   selectedMove: {fileID: 11400000, guid: 4e0f88931c13d60458d0ce04d12643d8, type: 2}
   learnset:

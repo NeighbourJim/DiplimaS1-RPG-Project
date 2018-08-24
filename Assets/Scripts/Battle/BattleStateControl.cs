@@ -47,6 +47,8 @@ public class BattleStateControl : MonoBehaviour {
 
             case (TurnState.FirstAction):
                 print(string.Format("{0} attacks with {1}!",firstToGo.monName, firstToGo.selectedMove.moveName));
+                battleControl.ResolveAttack(firstToGo.selectedMove,firstToGo, secondToGo);
+                CheckFainted();
                 AdvanceState(TurnState.SecondAction);
                 break;
 
@@ -54,10 +56,10 @@ public class BattleStateControl : MonoBehaviour {
                 print(string.Format("{0} attacks with {1}!", secondToGo.monName, secondToGo.selectedMove.moveName));
                 AdvanceState(TurnState.SelectingAction);
                 break;
-            case (TurnState.FirstFaints):
+            case (TurnState.PlayerFaints):
 
                 break;
-            case (TurnState.SecondFaints):
+            case (TurnState.EnemyFaints):
 
                 break;
             case (TurnState.BothFaint):
@@ -101,6 +103,22 @@ public class BattleStateControl : MonoBehaviour {
                 firstToGo = battleControl.enemyMon;
                 secondToGo = battleControl.playerMon;
             }                
+        }
+    }
+
+    void CheckFainted()
+    {
+        if(battleControl.playerMon.hasStatus == StatusEffect.fainted && battleControl.enemyMon.hasStatus == StatusEffect.fainted)
+        {
+            AdvanceState(TurnState.BothFaint);
+        }
+        else if(battleControl.playerMon.hasStatus == StatusEffect.fainted)
+        {
+            AdvanceState(TurnState.PlayerFaints);
+        }
+        else if(battleControl.enemyMon.hasStatus == StatusEffect.fainted)
+        {
+            AdvanceState(TurnState.EnemyFaints);
         }
     }
 }

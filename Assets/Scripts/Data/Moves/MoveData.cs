@@ -31,7 +31,7 @@ public class MoveData : ScriptableObject {
 
     [Header("Stat Change")]
     [Tooltip("Which stat this move changes, if any.")]
-    public Stat statToChange = Stat.none;
+    public MonStat statToChange = MonStat.none;
     [Tooltip("Whether or not the stat change is applied to the user or the opponent.")]
     public bool affectSelf = false;
     [Tooltip("How many stages to buff by (cap is at -6 / 6)")]

@@ -65,12 +65,7 @@ public class MonData : ScriptableObject
     public int curSpAtk;
     public int curSpDef;
     public int curSpeed;
-
-    [Tooltip("These stats work differently to regular base stats in that they are multipliers applied to a move's accuracy.")]
-    [Header("Accuracy & Evasion")]
-    public int curAcc = 100;
-    public int curEva = 100;
-
+    
     [Header("HP and Status")]
     public int maxHP;
     public int curHP;
@@ -266,4 +261,6 @@ public class MonData : ScriptableObject
 
         return (Effectiveness)damageModifier;
     }
+
+    
 }
