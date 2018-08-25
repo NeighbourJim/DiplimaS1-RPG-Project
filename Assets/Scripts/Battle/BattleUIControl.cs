@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public class BattleUIControl : MonoBehaviour {
 
     public GameObject battleController;
-    BattleControl spawnScript;
+    BattleControl battleControlScript;
+    BattleStateControl battleStateControlScript;
     Copymon mon;
     public Button m1;
     public Button m2;
@@ -23,7 +24,8 @@ public class BattleUIControl : MonoBehaviour {
     // Use this for initialization
     void Awake () {
         
-        spawnScript = battleController.GetComponent<BattleControl>();
+        battleControlScript = battleController.GetComponent<BattleControl>();
+        battleStateControlScript = battleController.GetComponent<BattleStateControl>();
     }
 	
 	// Update is called once per frame
@@ -46,14 +48,15 @@ public class BattleUIControl : MonoBehaviour {
 
     public void ShowActionSelect()
     {
+        battleStateControlScript.AdvanceState(TurnState.SelectingAction);
         baseSelectPanel.SetActive(true);
         moveSelectPanel.SetActive(false);
         backButton.gameObject.SetActive(false);
-
     }
 
     public void ShowMoveSelect()
     {
+        battleStateControlScript.AdvanceState(TurnState.SelectingMove);
         baseSelectPanel.SetActive(false);
         moveSelectPanel.SetActive(true);
         backButton.gameObject.SetActive(true);
@@ -66,6 +69,6 @@ public class BattleUIControl : MonoBehaviour {
 
     public void SelectMove()
     {
-        spawnScript.SetSelectedMove(GetClickedButton());
+        battleControlScript.SetSelectedMove(GetClickedButton());
     }
 }

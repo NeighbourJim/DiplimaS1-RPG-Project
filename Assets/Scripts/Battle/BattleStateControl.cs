@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class BattleStateControl : MonoBehaviour {
     public TurnState currentState;
-    private MonData firstToGo;
-    private MonData secondToGo;
+    public TurnState previousState;
+    private MonBattleData firstToGo;
+    private MonBattleData secondToGo;
 
     BattleControl battleControl;
     public GameObject battleUI;
@@ -28,11 +29,11 @@ public class BattleStateControl : MonoBehaviour {
             case (TurnState.Intro):
                 print("A wild " + battleControl.enemyMon.monName + " appeared!");
                 print("Go, " + battleControl.playerMon.monName + "!");
-                uiScript.ShowActionSelect();
                 AdvanceState(TurnState.SelectingAction);
                 break;
 
-            case (TurnState.SelectingAction): 
+            case (TurnState.SelectingAction):
+                uiScript.ShowActionSelect();
                 break;
 
             case (TurnState.EnemySelectAction):
@@ -48,34 +49,60 @@ public class BattleStateControl : MonoBehaviour {
             case (TurnState.FirstAction):
                 print(string.Format("{0} attacks with {1}!",firstToGo.monName, firstToGo.selectedMove.moveName));
                 battleControl.ResolveAttack(firstToGo.selectedMove,firstToGo, secondToGo);
-                CheckFainted();
-                AdvanceState(TurnState.SecondAction);
+                AdvanceState(TurnState.FaintCheck);
                 break;
 
             case (TurnState.SecondAction):
                 print(string.Format("{0} attacks with {1}!", secondToGo.monName, secondToGo.selectedMove.moveName));
-                AdvanceState(TurnState.SelectingAction);
+                battleControl.ResolveAttack(secondToGo.selectedMove, secondToGo, firstToGo);
+                AdvanceState(TurnState.FaintCheck);
                 break;
-            case (TurnState.PlayerFaints):
 
+            case (TurnState.FaintCheck):
+                if (CheckFainted(battleControl.playerMon))
+                {
+                    AdvanceState(TurnState.PlayerFaints);
+                }
+                else if (CheckFainted(battleControl.enemyMon))
+                {
+                    AdvanceState(TurnState.EnemyFaints);
+                }
+                else
+                {
+                    if(previousState == TurnState.FirstAction)
+                    {
+                        AdvanceState(TurnState.SecondAction);
+                    }
+                    if(previousState == TurnState.SecondAction)
+                    {
+                        AdvanceState(TurnState.SelectingAction);
+                    }
+                }
+                break;
+
+            case (TurnState.PlayerFaints):
+                print(battleControl.playerMon.monName + " fainted!");
+                AdvanceState(TurnState.PlayerLose);
                 break;
             case (TurnState.EnemyFaints):
-
+                print("The foe " + battleControl.enemyMon.monName + " fainted!");
+                AdvanceState(TurnState.PlayerWin);
                 break;
             case (TurnState.BothFaint):
 
                 break;
             case (TurnState.PlayerLose):
-
+                print("You lose.");
                 break;
             case (TurnState.PlayerWin):
-
+                print("You win!");
                 break;
         }
 	}
 
     public void AdvanceState(TurnState state)
     {
+        previousState = currentState;
         currentState = state;
     }
 
@@ -106,19 +133,8 @@ public class BattleStateControl : MonoBehaviour {
         }
     }
 
-    void CheckFainted()
+    bool CheckFainted(MonBattleData mon)
     {
-        if(battleControl.playerMon.hasStatus == StatusEffect.fainted && battleControl.enemyMon.hasStatus == StatusEffect.fainted)
-        {
-            AdvanceState(TurnState.BothFaint);
-        }
-        else if(battleControl.playerMon.hasStatus == StatusEffect.fainted)
-        {
-            AdvanceState(TurnState.PlayerFaints);
-        }
-        else if(battleControl.enemyMon.hasStatus == StatusEffect.fainted)
-        {
-            AdvanceState(TurnState.EnemyFaints);
-        }
+        return (mon.curHP == 0);
     }
 }

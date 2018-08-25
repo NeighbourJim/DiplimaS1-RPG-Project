@@ -71,15 +71,6 @@ public class MonData : ScriptableObject
     public int curHP;
     public StatusEffect hasStatus = StatusEffect.none;
 
-    [Header("Stat Boosts")]    
-    public int buffStageAtk = 0;
-    public int buffStageDef = 0;
-    public int buffStageSpAtk = 0;
-    public int buffStageSpDef = 0;
-    public int buffStageSpeed = 0;
-    public int buffStageAcc = 0;
-    public int buffStageEva = 0;
-
     [Header("Moves")]
     public MoveData[] learnedMoves = new MoveData[4];
     public MoveData selectedMove;
@@ -192,75 +183,4 @@ public class MonData : ScriptableObject
 
         return Mathf.FloorToInt(exp);
     }
-
-    public void TakeDamage(int damage)
-    {
-        curHP -= damage;
-        if (curHP <= 0)
-        {
-            curHP = 0;
-            Faint();
-        }
-    }
-
-    public void HealDamage(int heal)
-    {
-        curHP += heal;
-        if (curHP > maxHP)
-        {
-            curHP = maxHP;
-        }
-    }
-
-    public void Faint()
-    {
-        // TODO: ACTUALLY CREATE THIS METHOD
-        curHP = 0;
-        hasStatus = StatusEffect.fainted;
-    }
-
-    public Effectiveness GetEffectiveness(TypeData attackingType)
-    {
-        int damageModifier = 0;
-
-        // If Primary type is weak to attack type, add 2 to damage multiplier
-        // Else if Primary type is resistant to attack type, subtract 2 from damage multiplier
-        if (primaryType.FindInWeaknesses(attackingType))
-        {
-            damageModifier += 2;
-        }
-        else if (primaryType.FindInResistances(attackingType))
-        {
-            damageModifier -= 2;
-        }
-        if (secondaryType != null)
-        {
-            // Same for secondary type
-            if (secondaryType.FindInWeaknesses(attackingType))
-            {
-                damageModifier += 2;
-            }
-            else if (secondaryType.FindInResistances(attackingType))
-            {
-                damageModifier -= 2;
-            }
-        }
-
-        // If either primary or secondary type is immune to attacking type, the damage multiplier is always -10 (immune)
-        if (primaryType.FindInImmunities(attackingType))
-        {
-            damageModifier = -10;
-        }
-        if(secondaryType != null)
-        {
-            if(secondaryType.FindInImmunities(attackingType))
-            {
-                damageModifier = -10;
-            }
-        }
-
-        return (Effectiveness)damageModifier;
-    }
-
-    
 }

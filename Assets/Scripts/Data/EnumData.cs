@@ -11,6 +11,7 @@ public enum TurnState
     DetermineOrder,
     FirstAction,
     SecondAction,
+    FaintCheck,
     PlayerFaints,
     EnemyFaints,
     BothFaint,

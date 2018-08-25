@@ -13,8 +13,8 @@ public class BattleControl : MonoBehaviour
     public GameObject player;
     public GameObject enemy;
 
-    public MonData playerMon;
-    public MonData enemyMon;
+    public MonBattleData playerMon;
+    public MonBattleData enemyMon;
 
     public GameObject battleUI;
     BattleUIControl uiScript;
@@ -25,8 +25,8 @@ public class BattleControl : MonoBehaviour
     void Start ()
     {
         mp = dataController.GetComponent<Monpedia>();
-        playerMon = Instantiate(mp.monpedia[7]);
-        enemyMon = Instantiate(mp.monpedia[4]);
+        playerMon = Instantiate(new MonBattleData(mp.monpedia[1]));
+        enemyMon = Instantiate(new MonBattleData(mp.monpedia[4]));
         print(playerMon.monName);
         Spawn();
         stateControl = GetComponent<BattleStateControl>();
@@ -161,7 +161,7 @@ public class BattleControl : MonoBehaviour
         }
     }
 
-    public void ResolveAttack(MoveData move, MonData attacker, MonData defender)
+    public void ResolveAttack(MoveData move, MonBattleData attacker, MonBattleData defender)
     {
         bool crit;
         Effectiveness effectiveness;
@@ -188,7 +188,8 @@ public class BattleControl : MonoBehaviour
             {
                 print("It had no effect...");
             }
-            print("Dealt damage: " + damage.ToString());
+            defender.TakeDamage(damage);
+            print(string.Format("Dealt {0} damage. {1} has {2}/{3} health remaining.", damage, defender.monName, defender.curHP, defender.maxHP));
         }
         else
         {
@@ -196,7 +197,7 @@ public class BattleControl : MonoBehaviour
         }
     }
 
-    public bool CheckIfHit(MoveData move, MonData attacker, MonData defender)
+    public bool CheckIfHit(MoveData move, MonBattleData attacker, MonBattleData defender)
     {
         int rand = Random.Range(1, 101);
         int threshold;
@@ -236,7 +237,7 @@ public class BattleControl : MonoBehaviour
         }
     }
 
-    public int CalculateDamage(MoveData move, MonData attacker, MonData defender, bool criticalHit)
+    public int CalculateDamage(MoveData move, MonBattleData attacker, MonBattleData defender, bool criticalHit)
     {
         int dmg;
         int L;
@@ -249,17 +250,16 @@ public class BattleControl : MonoBehaviour
         P = move.basePower;
         if(move.physSpec == PhysSpec.physical)
         {
-            A = attacker.curAtk;
-            D = attacker.curDef;
+            A = attacker.curAtk * (int)GetStatMultiplier(attacker.buffStageAtk);
+            D = defender.curDef * (int)GetStatMultiplier(defender.buffStageDef);
         }
         else
         {
-            A = attacker.curSpAtk;
-            D = attacker.curSpDef;
+            A = attacker.curSpAtk * (int)GetStatMultiplier(attacker.buffStageSpAtk);
+            D = defender.curSpDef * (int)GetStatMultiplier(defender.buffStageSpDef);
         }
 
         M = CalculateDamageModifier(move, attacker, defender, criticalHit);
-        print(M);
 
         // Source: https://bulbapedia.bulbagarden.net/wiki/Damage#Damage_calculation
         dmg = ((((2 * L / 5 + 2) * P * A / D) / 50 + 2) * M) / 100;
@@ -267,7 +267,7 @@ public class BattleControl : MonoBehaviour
         return dmg;
     }
 
-    private int CalculateDamageModifier(MoveData move, MonData attacker, MonData defender, bool criticalHit)
+    private int CalculateDamageModifier(MoveData move, MonBattleData attacker, MonBattleData defender, bool criticalHit)
     {
         float modifier;
         int rand = 100;     // Random number that gives some variance in damage
@@ -397,5 +397,13 @@ public class BattleControl : MonoBehaviour
         }
 
         return mult;
+    }
+
+    void SetFainted()
+    {
+        if (playerMon.curHP == 0)
+            playerMon.hasStatus = StatusEffect.fainted;
+        if (enemyMon.curHP == 0)
+            enemyMon.hasStatus = StatusEffect.fainted;
     }
 }
