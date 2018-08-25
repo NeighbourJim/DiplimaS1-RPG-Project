@@ -16,8 +16,10 @@ public class BattleControl : MonoBehaviour
     public MonBattleData playerMon;
     public MonBattleData enemyMon;
 
-    public GameObject battleUI;
-    BattleUIControl uiScript;
+    public GameObject battleUIController;
+    BattleUIControl uiButtonControl;
+    BattleTextUIControl uiTextControl;
+
     BattleStateControl stateControl;
 
     Monpedia mp;
@@ -25,13 +27,17 @@ public class BattleControl : MonoBehaviour
     void Start ()
     {
         mp = dataController.GetComponent<Monpedia>();
-        playerMon = Instantiate(new MonBattleData(mp.monpedia[1]));
-        enemyMon = Instantiate(new MonBattleData(mp.monpedia[4]));
-        print(playerMon.monName);
-        Spawn();
-        stateControl = GetComponent<BattleStateControl>();
-        uiScript = battleUI.GetComponent<BattleUIControl>();
 
+        playerMon = ScriptableObject.CreateInstance<MonBattleData>();
+        playerMon.SetData(mp.monpedia[1]);
+
+        enemyMon = ScriptableObject.CreateInstance<MonBattleData>();
+        enemyMon.SetData(mp.monpedia[4]);
+
+        stateControl = GetComponent<BattleStateControl>();
+        uiButtonControl = battleUIController.GetComponent<BattleUIControl>();
+
+        Spawn();
         SetButtonColours();
         SetButtonNames();
     }
@@ -67,19 +73,19 @@ public class BattleControl : MonoBehaviour
     {
         if (playerMon.learnedMoves[0] != null)
         {
-            uiScript.ChangeButtonColour(uiScript.m1, playerMon.learnedMoves[0].moveType);
+            uiButtonControl.ChangeButtonColour(uiButtonControl.m1, playerMon.learnedMoves[0].moveType);
         }
         if (playerMon.learnedMoves[1] != null)
         {
-            uiScript.ChangeButtonColour(uiScript.m2, playerMon.learnedMoves[1].moveType);
+            uiButtonControl.ChangeButtonColour(uiButtonControl.m2, playerMon.learnedMoves[1].moveType);
         }
         if (playerMon.learnedMoves[2] != null)
         {
-            uiScript.ChangeButtonColour(uiScript.m3, playerMon.learnedMoves[2].moveType);
+            uiButtonControl.ChangeButtonColour(uiButtonControl.m3, playerMon.learnedMoves[2].moveType);
         }
         if (playerMon.learnedMoves[3] != null)
         {
-            uiScript.ChangeButtonColour(uiScript.m4, playerMon.learnedMoves[3].moveType);
+            uiButtonControl.ChangeButtonColour(uiButtonControl.m4, playerMon.learnedMoves[3].moveType);
         }
     }
 
@@ -87,19 +93,43 @@ public class BattleControl : MonoBehaviour
     {
         if (playerMon.learnedMoves[0] != null)
         {
-            uiScript.ChangeButtonText(uiScript.m1, playerMon.learnedMoves[0].moveName);
+            uiButtonControl.ChangeButtonText(uiButtonControl.m1, playerMon.learnedMoves[0].moveName);
+            uiButtonControl.m1.enabled = true;
+        }
+        else
+        {
+            uiButtonControl.ChangeButtonText(uiButtonControl.m1, "---");
+            uiButtonControl.m1.enabled = false;
         }
         if (playerMon.learnedMoves[1] != null)
         {
-            uiScript.ChangeButtonText(uiScript.m2, playerMon.learnedMoves[1].moveName);
+            uiButtonControl.ChangeButtonText(uiButtonControl.m2, playerMon.learnedMoves[1].moveName);
+            uiButtonControl.m2.enabled = true;
+        }
+        else
+        {
+            uiButtonControl.ChangeButtonText(uiButtonControl.m2, "---");
+            uiButtonControl.m2.enabled = false;
         }
         if (playerMon.learnedMoves[2] != null)
         {
-            uiScript.ChangeButtonText(uiScript.m3, playerMon.learnedMoves[2].moveName);
+            uiButtonControl.ChangeButtonText(uiButtonControl.m3, playerMon.learnedMoves[2].moveName);
+            uiButtonControl.m3.enabled = true;
+        }
+        else
+        {
+            uiButtonControl.ChangeButtonText(uiButtonControl.m3, "---");
+            uiButtonControl.m3.enabled = false;
         }
         if (playerMon.learnedMoves[3] != null)
         {
-            uiScript.ChangeButtonText(uiScript.m4, playerMon.learnedMoves[3].moveName);
+            uiButtonControl.ChangeButtonText(uiButtonControl.m4, playerMon.learnedMoves[3].moveName);
+            uiButtonControl.m4.enabled = true;
+        }
+        else
+        {
+            uiButtonControl.ChangeButtonText(uiButtonControl.m4, "---");
+            uiButtonControl.m4.enabled = false;
         }
     }
 

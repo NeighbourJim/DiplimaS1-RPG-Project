@@ -86,3 +86,36 @@ public enum Effectiveness
     weak2x = 2,
     weak4x = 4
 }
+
+public enum BattleEvent
+{
+    wildMonEncounter,
+    wildMonFaint,
+    wildMonCaptured,
+
+    trainerMonSentOut,
+    trainerMonWithdrawn,
+    trainerMonFainted,
+
+    playerMonSentOut,
+    playerMonWithdrawn,
+    playerMonFainted,
+
+    playerMonUseMove,
+    enemyMonUseMove,
+
+    moveCritical,
+    moveMiss,
+    moveImmune,
+    moveEffective,
+    moveResisted,
+    moveBuffStat,
+    moveDebuffStat,
+    moveCauseStatus,
+
+    receiveExp,
+    levelUp,
+
+    completedPlayerWin,
+    completedPlayerLose,
+}

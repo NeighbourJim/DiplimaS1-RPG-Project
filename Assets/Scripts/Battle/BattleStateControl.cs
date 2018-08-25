@@ -10,7 +10,8 @@ public class BattleStateControl : MonoBehaviour {
 
     BattleControl battleControl;
     public GameObject battleUI;
-    BattleUIControl uiScript;
+    BattleUIControl uiButtonControl;
+    BattleTextUIControl uiTextControl;
 
     public MoveData playerSelectedMove;
     public MoveData enemySelectedMove;
@@ -18,7 +19,8 @@ public class BattleStateControl : MonoBehaviour {
     // Use this for initialization
     void Start () {
         battleControl = GetComponent<BattleControl>();
-        uiScript = battleUI.GetComponent<BattleUIControl>();
+        uiButtonControl = battleUI.GetComponent<BattleUIControl>();
+        uiTextControl = battleUI.GetComponent<BattleTextUIControl>();
     }
 	
 	// Update is called once per frame
@@ -27,13 +29,13 @@ public class BattleStateControl : MonoBehaviour {
         switch (currentState)
         {
             case (TurnState.Intro):
-                print("A wild " + battleControl.enemyMon.monName + " appeared!");
-                print("Go, " + battleControl.playerMon.monName + "!");
+                uiTextControl.DisplayText(string.Format("A wild {0} appeared!", battleControl.enemyMon.monName));
+                uiTextControl.DisplayText(string.Format("Go, {0}!", battleControl.playerMon.monName));
                 AdvanceState(TurnState.SelectingAction);
                 break;
 
             case (TurnState.SelectingAction):
-                uiScript.ShowActionSelect();
+                uiButtonControl.ShowActionSelect();
                 break;
 
             case (TurnState.EnemySelectAction):
@@ -47,13 +49,13 @@ public class BattleStateControl : MonoBehaviour {
                 break;
 
             case (TurnState.FirstAction):
-                print(string.Format("{0} attacks with {1}!",firstToGo.monName, firstToGo.selectedMove.moveName));
+                uiTextControl.DisplayText(string.Format("{0} attacks with {1}!",firstToGo.monName, firstToGo.selectedMove.moveName));
                 battleControl.ResolveAttack(firstToGo.selectedMove,firstToGo, secondToGo);
                 AdvanceState(TurnState.FaintCheck);
                 break;
 
             case (TurnState.SecondAction):
-                print(string.Format("{0} attacks with {1}!", secondToGo.monName, secondToGo.selectedMove.moveName));
+                uiTextControl.DisplayText(string.Format("{0} attacks with {1}!", secondToGo.monName, secondToGo.selectedMove.moveName));
                 battleControl.ResolveAttack(secondToGo.selectedMove, secondToGo, firstToGo);
                 AdvanceState(TurnState.FaintCheck);
                 break;
@@ -81,21 +83,21 @@ public class BattleStateControl : MonoBehaviour {
                 break;
 
             case (TurnState.PlayerFaints):
-                print(battleControl.playerMon.monName + " fainted!");
+                uiTextControl.DisplayText(battleControl.playerMon.monName + " fainted!");
                 AdvanceState(TurnState.PlayerLose);
                 break;
             case (TurnState.EnemyFaints):
-                print("The foe " + battleControl.enemyMon.monName + " fainted!");
+                uiTextControl.DisplayText("The foe " + battleControl.enemyMon.monName + " fainted!");
                 AdvanceState(TurnState.PlayerWin);
                 break;
             case (TurnState.BothFaint):
 
                 break;
             case (TurnState.PlayerLose):
-                print("You lose.");
+                uiTextControl.DisplayText("You lose.");
                 break;
             case (TurnState.PlayerWin):
-                print("You win!");
+                uiTextControl.DisplayText("You win!");
                 break;
         }
 	}

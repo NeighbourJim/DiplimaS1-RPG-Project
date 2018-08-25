@@ -75,6 +75,7 @@ public class MonData : ScriptableObject
     public MoveData[] learnedMoves = new MoveData[4];
     public MoveData selectedMove;
 
+
     [System.Serializable]
     public struct LevelMovePair
     {

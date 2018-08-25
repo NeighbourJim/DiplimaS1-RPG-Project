@@ -71,4 +71,5 @@ public class BattleUIControl : MonoBehaviour {
     {
         battleControlScript.SetSelectedMove(GetClickedButton());
     }
+
 }
