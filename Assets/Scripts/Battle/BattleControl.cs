@@ -19,6 +19,7 @@ public class BattleControl : MonoBehaviour
     public GameObject battleUIController;
     BattleUIControl uiButtonControl;
     BattleTextUIControl uiTextControl;
+    BattleHPControl uiHPControl;
 
     BattleStateControl stateControl;
 
@@ -36,6 +37,7 @@ public class BattleControl : MonoBehaviour
 
         stateControl = GetComponent<BattleStateControl>();
         uiButtonControl = battleUIController.GetComponent<BattleUIControl>();
+        uiHPControl = battleUIController.GetComponent<BattleHPControl>();
 
         Spawn();
         SetButtonColours();
@@ -69,6 +71,7 @@ public class BattleControl : MonoBehaviour
         enemy.transform.LookAt(player.transform);
     }
 
+    #region User Interface
     void SetButtonColours()
     {
         if (playerMon.learnedMoves[0] != null)
@@ -133,6 +136,12 @@ public class BattleControl : MonoBehaviour
         }
     }
 
+    void UpdateHPBar(MonBattleData monster)
+    {
+        uiHPControl.UpdateMonsterHP(monster);
+    }
+    #endregion
+
     public void SetSelectedMove(string buttonName)
     {
         switch (buttonName)
@@ -191,6 +200,7 @@ public class BattleControl : MonoBehaviour
         }
     }
 
+    #region Attack Resolution
     public void ResolveAttack(MoveData move, MonBattleData attacker, MonBattleData defender)
     {
         bool crit;
@@ -219,6 +229,7 @@ public class BattleControl : MonoBehaviour
                 print("It had no effect...");
             }
             defender.TakeDamage(damage);
+            UpdateHPBar(defender);
             print(string.Format("Dealt {0} damage. {1} has {2}/{3} health remaining.", damage, defender.monName, defender.curHP, defender.maxHP));
         }
         else
@@ -436,4 +447,5 @@ public class BattleControl : MonoBehaviour
         if (enemyMon.curHP == 0)
             enemyMon.hasStatus = StatusEffect.fainted;
     }
+    #endregion
 }
