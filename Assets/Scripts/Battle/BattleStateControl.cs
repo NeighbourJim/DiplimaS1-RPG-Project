@@ -58,7 +58,7 @@ public class BattleStateControl : MonoBehaviour {
                 break;
 
             case (TurnState.SecondAction):
-                uiTextControl.DisplayText(string.Format("{0} attacks with {1}!", secondToGo.monName, secondToGo.selectedMove.moveName));
+                //uiTextControl.DisplayText(string.Format("{0} attacks with {1}!", secondToGo.monName, secondToGo.selectedMove.moveName));
                 battleControl.ResolveAttack(secondToGo.selectedMove, secondToGo, firstToGo);
                 AdvanceState(TurnState.FaintCheck);
                 break;

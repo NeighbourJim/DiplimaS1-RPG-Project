@@ -63,10 +63,12 @@ public class BattleHPControl : MonoBehaviour {
         if(monster == player)
         {
             SetHPBarSize(playerHPBarRect, playerHPDamageRect, monster.curHP, monster.maxHP);
+            playerMonHPCount.text = string.Format("{0}/{1}", monster.curHP, monster.maxHP);
         }
         else
         {
             SetHPBarSize(enemyHPBarRect, enemyHPDamageRect, monster.curHP, monster.maxHP);
+            enemyMonHPCount.text = string.Format("{0}/{1}", monster.curHP, monster.maxHP);
         }
     }
 
