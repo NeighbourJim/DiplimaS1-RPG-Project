@@ -13,6 +13,7 @@ public class BattleStateControl : MonoBehaviour {
     BattleUIControl uiButtonControl;
     BattleTextUIControl uiTextControl;
     BattleHPControl uiHPControl;
+    BattleCameraControl cameraControl;
 
     public MoveData playerSelectedMove;
     public MoveData enemySelectedMove;
@@ -20,9 +21,11 @@ public class BattleStateControl : MonoBehaviour {
     // Use this for initialization
     void Start () {
         battleControl = GetComponent<BattleControl>();
+        cameraControl = FindObjectOfType<BattleCameraControl>();
         uiButtonControl = battleUI.GetComponent<BattleUIControl>();
         uiTextControl = battleUI.GetComponent<BattleTextUIControl>();
         uiHPControl = battleUI.GetComponent<BattleHPControl>();
+
     }
 	
 	// Update is called once per frame
@@ -33,7 +36,7 @@ public class BattleStateControl : MonoBehaviour {
             case (TurnState.Intro):
                 uiTextControl.DisplayText(string.Format("A wild {0} appeared!", battleControl.enemyMon.monName));
                 uiHPControl.SetMonsters(battleControl.playerMon, battleControl.enemyMon);
-                //uiTextControl.DisplayText(string.Format("Go, {0}!", battleControl.playerMon.monName));
+                //uiTextControl.DisplayText(string.Format("Go, {0}!", battleControl.playerMon.monName));               
                 AdvanceState(TurnState.SelectingAction);
                 break;
 
@@ -48,6 +51,7 @@ public class BattleStateControl : MonoBehaviour {
 
             case (TurnState.DetermineOrder):
                 DetermineTurnOrder();
+                cameraControl.ResetCamera();
                 AdvanceState(TurnState.FirstAction);
                 break;
 

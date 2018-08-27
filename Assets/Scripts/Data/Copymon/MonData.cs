@@ -133,6 +133,7 @@ public class MonData : ScriptableObject
     public void GenerateWildStats(int lvl)
     {
         GenerateIVs();
+        level = lvl;
         CalculateAllStats(lvl);
         CalculateXPToNextLevel(lvl - 1);
         curXP = xpToNextLevel;
