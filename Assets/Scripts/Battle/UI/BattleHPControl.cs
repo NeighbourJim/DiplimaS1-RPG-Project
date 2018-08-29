@@ -36,6 +36,12 @@ public class BattleHPControl : MonoBehaviour {
     MonBattleData player;
     MonBattleData enemy;
 
+    public Color healthy;
+    public Color damaged;
+
+    Coroutine flashBarP;
+    Coroutine flashBarE;
+
     private void Start()
     {
         uiController = GetComponent<BattleUIControl>();
@@ -48,6 +54,8 @@ public class BattleHPControl : MonoBehaviour {
 
         hpSizeMax = playerHPBarRect.rect.width;
         hpSize = hpSizeMax;
+
+        
     }
 
     public void SetMonsters(MonBattleData p, MonBattleData e)
@@ -56,6 +64,8 @@ public class BattleHPControl : MonoBehaviour {
         enemy = e;
         SetPlayerMonster(player);
         SetEnemyMonster(enemy);
+        flashBarP = StartCoroutine(LowHPFlash(playerHPBarRect, player));
+        flashBarE = StartCoroutine(LowHPFlash(enemyHPBarRect, enemy));
     }
 
     public void UpdateMonsterHP(MonBattleData monster)
@@ -64,11 +74,27 @@ public class BattleHPControl : MonoBehaviour {
         {
             SetHPBarSize(playerHPBarRect, playerHPDamageRect, monster.curHP, monster.maxHP);
             playerMonHPCount.text = string.Format("{0}/{1}", monster.curHP, monster.maxHP);
+            if (GetPer(monster.curHP, monster.maxHP) < 0.30)
+            {
+                playerHPBarRect.GetComponent<Image>().color = damaged;
+            }
+            else
+            {
+                playerHPBarRect.GetComponent<Image>().color = healthy;
+            }
         }
         else
         {
             SetHPBarSize(enemyHPBarRect, enemyHPDamageRect, monster.curHP, monster.maxHP);
             enemyMonHPCount.text = string.Format("{0}/{1}", monster.curHP, monster.maxHP);
+            if (GetPer(monster.curHP, monster.maxHP) < 0.30)
+            {
+                enemyHPBarRect.GetComponent<Image>().color = damaged;
+            }
+            else
+            {
+                enemyHPBarRect.GetComponent<Image>().color = healthy;
+            }
         }
     }
 
@@ -112,6 +138,33 @@ public class BattleHPControl : MonoBehaviour {
         {
             bar.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, bar.rect.width - 1);
             yield return new WaitForSeconds(0.01f);
+        }
+    }
+
+    IEnumerator LowHPFlash(RectTransform bar, MonBattleData monster)
+    {
+        Color newColor;
+        Color oldColor;
+        Image barImage = bar.GetComponent<Image>();
+        while (true)
+        {
+            while (GetPer(monster.curHP, monster.maxHP) <= 0.3f)
+            {
+                oldColor = barImage.color;
+                if (oldColor.r < 0.95)
+                {
+                    newColor = new Color(oldColor.r * 1.5f, (oldColor.g + 0.1f) * 1.5f, (oldColor.b + 0.1f) * 1.5f);
+                    barImage.color = newColor;
+                    yield return new WaitForSeconds(0.1f);
+                }
+                else
+                {
+                    newColor = new Color(oldColor.r / 1.5f, (oldColor.g / 1.5f) - 0.1f, (oldColor.b / 1.5f) - 0.1f);
+                    barImage.color = newColor;
+                    yield return new WaitForSeconds(0.1f);
+                }
+            }
+            yield return null;
         }
     }
 }

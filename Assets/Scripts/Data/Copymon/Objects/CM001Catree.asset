@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterPrefab: {fileID: 1815166685113868, guid: 57ff946a6e7ba074f8e04ee10797e1a1,
     type: 2}
-  cry: {fileID: 0}
+  cry: {fileID: 8300000, guid: 26968f45315024ecbac760219d6911ed, type: 3}
   monID: 1
   monName: Catree
   monpediaEntry: A cat that is a plant
@@ -48,13 +48,6 @@ MonoBehaviour:
   maxHP: 20
   curHP: 20
   hasStatus: 0
-  buffStageAtk: 0
-  buffStageDef: 0
-  buffStageSpAtk: 0
-  buffStageSpDef: 0
-  buffStageSpeed: 0
-  buffStageAcc: 0
-  buffStageEva: 0
   learnedMoves:
   - {fileID: 11400000, guid: 4e0f88931c13d60458d0ce04d12643d8, type: 2}
   - {fileID: 11400000, guid: 906fe41e38222954583ccdc2739dd098, type: 2}

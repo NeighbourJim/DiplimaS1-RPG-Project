@@ -12,15 +12,11 @@ public class BattleTextUIControl : MonoBehaviour {
     string toDisplay;
     bool completed = false;
 
+    Coroutine co;
+
     public void DisplayText(string txt)
     {
-        StopCoroutine(AnimText(txt));
-        StartCoroutine(AnimText(txt));
-    }
-
-    public void ContinueClicked()
-    {
-        completed = true;
+        co = StartCoroutine(AnimText(txt));
     }
 
     IEnumerator AnimText(string txt)
