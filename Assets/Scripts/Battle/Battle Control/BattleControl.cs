@@ -410,6 +410,14 @@ public class BattleControl : MonoBehaviour
 
     public int CalculateDamage(MoveData move, MonBattleData attacker, MonBattleData defender, bool criticalHit)
     {
+        // Damage Calculation Formula is ((((2 * L / 5 + 2) * P * A / D) / 50 + 2) * M) / 100
+        // Where: 
+        // L is Attacker's Level
+        // P is the Base Power of the move
+        // A is the Attacker's attacking stat, modified by their stat boosts
+        // D is the Defender's defending stat, modified by their stat boosts
+        // M is an additional modifier, calculated separately
+        // Source: https://bulbapedia.bulbagarden.net/wiki/Damage#Damage_calculation
         int dmg;
         int L;
         int P;
@@ -423,8 +431,6 @@ public class BattleControl : MonoBehaviour
         {
             A = Mathf.FloorToInt(attacker.curAtk * GetStatMultiplier(attacker.buffStageAtk));
             D = Mathf.FloorToInt(defender.curDef * GetStatMultiplier(defender.buffStageDef));
-            print(attacker.monName + " atk" + A.ToString());
-            print(attacker.monName + " atkMod" + GetStatMultiplier(attacker.buffStageAtk).ToString());
         }
         else
         {
@@ -434,7 +440,6 @@ public class BattleControl : MonoBehaviour
 
         M = CalculateDamageModifier(move, attacker, defender, criticalHit);
 
-        // Source: https://bulbapedia.bulbagarden.net/wiki/Damage#Damage_calculation
         dmg = ((((2 * L / 5 + 2) * P * A / D) / 50 + 2) * M) / 100;
 
         return dmg;
@@ -487,6 +492,8 @@ public class BattleControl : MonoBehaviour
 
     private float GetEffectivenessModifier(Effectiveness eff)
     {
+        // returns the damage multiplier for a type's effectiveness
+        // resisting halves or quarters the damage, while weak doubles or quadruples it
         switch (eff)
         {
             case Effectiveness.immune:
@@ -506,6 +513,9 @@ public class BattleControl : MonoBehaviour
 
     public float GetStatMultiplier(int stage)
     {
+        // This method returns the multiplier for a stat based on its buff stage
+        // Eg: 1 stage buffs a stat by 1.5x, 2 stages by 2x, etc.
+        // While -1 stage is 0.66x, -2 is 0.5x, etc.
         float mult = 1f;
 
         if (stage < 0)
@@ -522,6 +532,10 @@ public class BattleControl : MonoBehaviour
 
     public float GetAccEvaMultiplier(int attackerAccStage, int defenderEvaStage)
     {
+        // This method returns the multiplier for accuracy or evasion, based on its buff stage
+        // Accuracy and Evasion work slightly differently to the other stats
+        // 1 stage is 1.33x, then 1.66x, etc.
+        // -1 stage is 0.75x, then 0.6x, etc.
         float mult;
         int stage = attackerAccStage - defenderEvaStage;
 
