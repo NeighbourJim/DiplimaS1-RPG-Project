@@ -203,11 +203,23 @@ public class BattleControl : MonoBehaviour
     #region Attack Resolution
     public void ResolveAttack(MoveData move, MonBattleData attacker, MonBattleData defender)
     {
+        if(move.physSpec == PhysSpec.physical || move.physSpec == PhysSpec.special)
+        {
+            ResolveDamagingAttack(move, attacker, defender);
+        }
+        else
+        {
+            ResolveNonDamagingAttack(move, attacker, defender);
+        }
+    }
+
+    void ResolveDamagingAttack(MoveData move, MonBattleData attacker, MonBattleData defender)
+    {
         bool crit;
         Effectiveness effectiveness;
         int damage;
 
-        if(CheckIfHit(move, attacker, defender))
+        if (CheckIfHit(move, attacker, defender))
         {
             crit = CheckIfCrit(move);
             effectiveness = defender.GetEffectiveness(move.moveType);
@@ -216,21 +228,37 @@ public class BattleControl : MonoBehaviour
             {
                 print("A critical hit!");
             }
-            if(effectiveness == Effectiveness.resist2x || effectiveness == Effectiveness.resist4x)
+            if (effectiveness == Effectiveness.resist2x || effectiveness == Effectiveness.resist4x)
             {
                 print("It's not very effective...");
             }
-            else if(effectiveness == Effectiveness.weak2x || effectiveness == Effectiveness.weak4x)
+            else if (effectiveness == Effectiveness.weak2x || effectiveness == Effectiveness.weak4x)
             {
                 print("It's super effective!!!");
             }
-            if(effectiveness == Effectiveness.immune)
+            if (effectiveness == Effectiveness.immune)
             {
                 print("It had no effect...");
             }
             defender.TakeDamage(damage);
             UpdateHPBar(defender);
             print(string.Format("Dealt {0} damage. {1} has {2}/{3} health remaining.", damage, defender.monName, defender.curHP, defender.maxHP));
+
+            if (move.causesStatus != StatusEffect.none)
+            {
+                ResolveStatus(move, defender);
+            }
+            if (move.statToChange != MonStat.none)
+            {
+                if (move.affectSelf)
+                {
+                    ResolveStatChange(move, attacker);
+                }
+                else
+                {
+                    ResolveStatChange(move, defender);
+                }
+            }
         }
         else
         {
@@ -238,7 +266,98 @@ public class BattleControl : MonoBehaviour
         }
     }
 
-    public bool CheckIfHit(MoveData move, MonBattleData attacker, MonBattleData defender)
+    void ResolveNonDamagingAttack(MoveData move, MonBattleData attacker, MonBattleData defender)
+    {
+        Effectiveness effectiveness;
+
+        effectiveness = defender.GetEffectiveness(move.moveType);
+        if (effectiveness != Effectiveness.immune && CheckIfHit(move, attacker, defender))
+        {
+            if (move.causesStatus != StatusEffect.none)
+            {
+                ResolveStatus(move, defender);
+            }
+            if (move.statToChange != MonStat.none) 
+            {
+                if (move.affectSelf)
+                {
+                    ResolveStatChange(move, attacker);
+                }
+                else
+                {
+                    ResolveStatChange(move, defender);
+                }
+            }
+        }
+        else
+        {
+            print("It had no effect...");
+        }
+    }
+
+    void ResolveStatus(MoveData move, MonBattleData monster)
+    {
+        if (CheckEffectHit(move.statusChance))
+        {
+            if (monster.GainStatus(move.causesStatus))
+            {
+                print(string.Format("{0} was afflicted with {1}!", monster.monName, move.causesStatus.ToString()));
+            }
+            else
+            {
+                print(string.Format("{0} was not affected...", monster.monName));
+            }
+        }
+    }
+
+    void ResolveStatChange(MoveData move, MonBattleData monster)
+    {
+        string changeDesc = "";
+
+        if(monster.ModStat(move.statToChange, move.buffAmount))
+        {
+            if(move.buffAmount > 0)
+            {
+                if(move.buffAmount == 1)
+                {
+                    changeDesc = "";
+                }
+                else if(move.buffAmount == 2)
+                {
+                    changeDesc = " sharply";
+                }
+                else if(move.buffAmount >= 3)
+                {
+                    changeDesc = " drastically";
+                }
+
+                print(string.Format("{0}'s {1} rose{2}!", monster.monName, move.statToChange.ToString(), changeDesc));
+            }
+            else
+            {
+                if (move.buffAmount == -1)
+                {
+                    changeDesc = "";
+                }
+                else if (move.buffAmount == -2)
+                {
+                    changeDesc = " sharply";
+                }
+                else if (move.buffAmount <= -3)
+                {
+                    changeDesc = " drastically";
+                }
+
+                print(string.Format("{0}'s {1} fell{2}!", monster.monName, move.statToChange.ToString(), changeDesc));
+            }
+        }
+        else
+        {
+            print(string.Format("{0}'s {1} can't change any more!", monster.monName, move.statToChange));
+        }
+    }
+
+    bool CheckIfHit(MoveData move, MonBattleData attacker, MonBattleData defender)
     {
         int rand = Random.Range(1, 101);
         int threshold;
@@ -253,9 +372,9 @@ public class BattleControl : MonoBehaviour
         {
             return false;
         }
-    }
+    }    
 
-    public bool CheckIfCrit(MoveData move)
+    bool CheckIfCrit(MoveData move)
     {
         int rand = Random.Range(1, 101);
         float threshold;
@@ -276,6 +395,12 @@ public class BattleControl : MonoBehaviour
         {
             return false;
         }
+    }
+    bool CheckEffectHit(int baseChance)
+    {
+        int rand = Random.Range(1, 101);
+
+        return rand <= baseChance;
     }
 
     public int CalculateDamage(MoveData move, MonBattleData attacker, MonBattleData defender, bool criticalHit)

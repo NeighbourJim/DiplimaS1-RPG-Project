@@ -137,6 +137,87 @@ public class MonBattleData : MonData
         }
     }
 
+    public bool GainStatus(StatusEffect status)
+    {
+        if(hasStatus == StatusEffect.none)
+        {
+            hasStatus = status;
+            return true;
+        }
+
+        return false;
+    }
+
+    public bool HealStatus()
+    {
+        if(hasStatus != StatusEffect.none)
+        {
+            hasStatus = StatusEffect.none;
+            return true;
+        }
+        return false;
+    }
+
+    public bool ModStat(MonStat stat, int stages)
+    {
+        switch (stat)
+        {
+            case MonStat.atk:
+                return ModStat(ref buffStageAtk, stages);
+            case MonStat.def:
+                return ModStat(ref buffStageDef, stages);
+            case MonStat.spatk:
+                return ModStat(ref buffStageSpAtk, stages);
+            case MonStat.spdef:
+                return ModStat(ref buffStageSpDef, stages);
+            case MonStat.speed:
+                return ModStat(ref buffStageSpeed, stages);
+            case MonStat.acc:
+                return ModStat(ref buffStageAcc, stages);
+            case MonStat.eva:
+                return ModStat(ref buffStageEva, stages);
+            default:
+                return false;
+        }
+    }
+
+    bool ModStat(ref int stat, int stages)
+    {
+        if (stages > 0)
+        {
+            if (stat < 6)
+            {
+                stat += stages;
+                if(stat >= 6)
+                {
+                    stat = 6;
+                }
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            
+        }
+        else
+        {
+            if(stat > -6)
+            {
+                stat += stages;
+                if(stat <= -6)
+                {
+                    stat = -6;
+                }
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
+
     public void Faint()
     {
         // TODO: ACTUALLY CREATE THIS METHOD
