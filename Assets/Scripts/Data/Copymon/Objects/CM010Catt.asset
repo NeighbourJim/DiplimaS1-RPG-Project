@@ -50,8 +50,8 @@ MonoBehaviour:
   hasStatus: 0
   learnedMoves:
   - {fileID: 11400000, guid: 9509e6fd2d654264ba5f2bd74d428f74, type: 2}
-  - {fileID: 11400000, guid: 092796f6356df0049a6f73f11826f85c, type: 2}
-  - {fileID: 11400000, guid: 6976a41fbe546dc4d8353215223731fe, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   selectedMove: {fileID: 0}
   learnset: []

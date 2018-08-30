@@ -16,6 +16,7 @@ public class BattleHPControl : MonoBehaviour {
     public Text playerMonName;
     public Text playerMonLevel;
     public Text playerMonHPCount;
+    public Text playerStatus;
     public GameObject playerHPBar;
     private RectTransform playerHPBarRect;
     public GameObject playerHPDamage;
@@ -25,6 +26,7 @@ public class BattleHPControl : MonoBehaviour {
     public Text enemyMonName;
     public Text enemyMonLevel;
     public Text enemyMonHPCount;
+    public Text enemyStatus;
     public GameObject enemyHPBar;
     private RectTransform enemyHPBarRect;
     public GameObject enemyHPDamage;
@@ -54,7 +56,6 @@ public class BattleHPControl : MonoBehaviour {
 
         hpSizeMax = playerHPBarRect.rect.width;
         hpSize = hpSizeMax;
-
         
     }
 
@@ -96,6 +97,74 @@ public class BattleHPControl : MonoBehaviour {
                 enemyHPBarRect.GetComponent<Image>().color = healthy;
             }
         }
+        UpdateMonsterStatus(monster);
+    }
+
+    public void UpdateMonsterStatus(MonBattleData monster)
+    {
+        string statusDesc = "";
+        if(monster == player)
+        {
+            switch (monster.hasStatus)
+            {
+                case (StatusEffect.none):
+                    statusDesc = "";
+                    break;
+                case (StatusEffect.burned):
+                    statusDesc = "Burned";
+                    break;
+                case (StatusEffect.confused):
+                    statusDesc = "Confused";
+                    break;
+                case (StatusEffect.frozen):
+                    statusDesc = "Frozen";
+                    break;
+                case (StatusEffect.paralyzed):
+                    statusDesc = "Paralyzed";
+                    break;
+                case (StatusEffect.poisoned):
+                    statusDesc = "Poisoned";
+                    break;
+                case (StatusEffect.sleep):
+                    statusDesc = "Asleep";
+                    break;
+                default:
+                    statusDesc = "";
+                    break;
+            }
+            playerStatus.text = statusDesc;
+        }
+        else
+        {
+            switch (monster.hasStatus)
+            {
+                case (StatusEffect.none):
+                    statusDesc = "";
+                    break;
+                case (StatusEffect.burned):
+                    statusDesc = "Burned";
+                    break;
+                case (StatusEffect.confused):
+                    statusDesc = "Confused";
+                    break;
+                case (StatusEffect.frozen):
+                    statusDesc = "Frozen";
+                    break;
+                case (StatusEffect.paralyzed):
+                    statusDesc = "Paralyzed";
+                    break;
+                case (StatusEffect.poisoned):
+                    statusDesc = "Poisoned";
+                    break;
+                case (StatusEffect.sleep):
+                    statusDesc = "Asleep";
+                    break;
+                default:
+                    statusDesc = "";
+                    break;
+            }
+            enemyStatus.text = statusDesc;
+        }
     }
 
     void SetPlayerMonster(MonBattleData monster)
@@ -104,6 +173,7 @@ public class BattleHPControl : MonoBehaviour {
         playerMonLevel.text = string.Format("Lv: {0}", monster.level);
         playerMonHPCount.text = string.Format("{0}/{1}", monster.curHP, monster.maxHP);
         SetHPBarSize(playerHPBarRect, playerHPDamageRect, monster.curHP, monster.maxHP);
+        UpdateMonsterStatus(monster);
     }
 
     void SetEnemyMonster(MonBattleData monster)
@@ -112,6 +182,7 @@ public class BattleHPControl : MonoBehaviour {
         enemyMonLevel.text = string.Format("Lv: {0}", monster.level);
         enemyMonHPCount.text = string.Format("{0}/{1}", monster.curHP, monster.maxHP);
         SetHPBarSize(enemyHPBarRect, enemyHPDamageRect, monster.curHP, monster.maxHP);
+        UpdateMonsterStatus(monster);
     }
 
     void SetHPBarSize(RectTransform bar, RectTransform dmgBar, float hp, float maxHP)

@@ -52,7 +52,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4e0f88931c13d60458d0ce04d12643d8, type: 2}
   - {fileID: 11400000, guid: 906fe41e38222954583ccdc2739dd098, type: 2}
   - {fileID: 11400000, guid: 9509e6fd2d654264ba5f2bd74d428f74, type: 2}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 1d209c64126c6084483f95b34908e02e, type: 2}
   selectedMove: {fileID: 11400000, guid: 4e0f88931c13d60458d0ce04d12643d8, type: 2}
   learnset:
   - levelToLearn: 1

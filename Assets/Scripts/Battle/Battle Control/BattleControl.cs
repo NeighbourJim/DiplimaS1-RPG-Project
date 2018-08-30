@@ -33,7 +33,7 @@ public class BattleControl : MonoBehaviour
         playerMon.SetData(mp.monpedia[1]);
 
         enemyMon = ScriptableObject.CreateInstance<MonBattleData>();
-        enemyMon.SetData(mp.monpedia[4]);
+        enemyMon.SetData(mp.monpedia[10]);
 
         stateControl = GetComponent<BattleStateControl>();
         uiButtonControl = battleUIController.GetComponent<BattleUIControl>();
@@ -55,8 +55,8 @@ public class BattleControl : MonoBehaviour
         playerMon.ownership = Ownership.player;
         enemyMon.ownership = Ownership.wild;
 
-        playerMon.GenerateWildStats(5);
-        enemyMon.GenerateWildStats(6);
+        playerMon.GenerateWildStats(100);
+        enemyMon.GenerateWildStats(100);
 
         Face();
 
@@ -241,7 +241,6 @@ public class BattleControl : MonoBehaviour
                 print("It had no effect...");
             }
             defender.TakeDamage(damage);
-            UpdateHPBar(defender);
             print(string.Format("Dealt {0} damage. {1} has {2}/{3} health remaining.", damage, defender.monName, defender.curHP, defender.maxHP));
 
             if (move.causesStatus != StatusEffect.none)
@@ -259,6 +258,9 @@ public class BattleControl : MonoBehaviour
                     ResolveStatChange(move, defender);
                 }
             }
+
+            UpdateHPBar(defender);
+            UpdateHPBar(attacker);
         }
         else
         {
@@ -277,7 +279,7 @@ public class BattleControl : MonoBehaviour
             {
                 ResolveStatus(move, defender);
             }
-            if (move.statToChange != MonStat.none) 
+            if (move.statToChange != MonStat.none)
             {
                 if (move.affectSelf)
                 {
@@ -288,6 +290,9 @@ public class BattleControl : MonoBehaviour
                     ResolveStatChange(move, defender);
                 }
             }
+
+            UpdateHPBar(defender);
+            UpdateHPBar(attacker);
         }
         else
         {
@@ -416,13 +421,15 @@ public class BattleControl : MonoBehaviour
         P = move.basePower;
         if(move.physSpec == PhysSpec.physical)
         {
-            A = attacker.curAtk * (int)GetStatMultiplier(attacker.buffStageAtk);
-            D = defender.curDef * (int)GetStatMultiplier(defender.buffStageDef);
+            A = Mathf.FloorToInt(attacker.curAtk * GetStatMultiplier(attacker.buffStageAtk));
+            D = Mathf.FloorToInt(defender.curDef * GetStatMultiplier(defender.buffStageDef));
+            print(attacker.monName + " atk" + A.ToString());
+            print(attacker.monName + " atkMod" + GetStatMultiplier(attacker.buffStageAtk).ToString());
         }
         else
         {
-            A = attacker.curSpAtk * (int)GetStatMultiplier(attacker.buffStageSpAtk);
-            D = defender.curSpDef * (int)GetStatMultiplier(defender.buffStageSpDef);
+            A = Mathf.FloorToInt(attacker.curSpAtk * GetStatMultiplier(attacker.buffStageSpAtk));
+            D = Mathf.FloorToInt(defender.curSpDef * GetStatMultiplier(defender.buffStageSpDef));
         }
 
         M = CalculateDamageModifier(move, attacker, defender, criticalHit);
