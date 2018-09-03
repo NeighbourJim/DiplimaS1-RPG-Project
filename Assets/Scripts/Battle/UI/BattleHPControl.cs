@@ -219,6 +219,14 @@ public class BattleHPControl : MonoBehaviour {
         Image barImage = bar.GetComponent<Image>();
         while (true)
         {
+            if (GetPer(monster.curHP, monster.maxHP) <= 0.30f)
+            {
+                bar.GetComponent<Image>().color = damaged;
+            }
+            else
+            {
+                bar.GetComponent<Image>().color = healthy;
+            }
             while (GetPer(monster.curHP, monster.maxHP) <= 0.3f)
             {
                 oldColor = barImage.color;

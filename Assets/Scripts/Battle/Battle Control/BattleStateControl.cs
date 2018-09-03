@@ -36,7 +36,7 @@ public class BattleStateControl : MonoBehaviour {
             case (TurnState.Intro):
                 uiTextControl.DisplayText(string.Format("A wild {0} appeared!", battleControl.enemyMon.monName));
                 uiHPControl.SetMonsters(battleControl.playerMon, battleControl.enemyMon);
-                //uiTextControl.DisplayText(string.Format("Go, {0}!", battleControl.playerMon.monName));               
+                uiTextControl.DisplayText(string.Format("Go, {0}!", battleControl.playerMon.monName));               
                 AdvanceState(TurnState.SelectingAction);
                 break;
 
@@ -56,15 +56,31 @@ public class BattleStateControl : MonoBehaviour {
                 break;
 
             case (TurnState.FirstAction):
-                uiTextControl.DisplayText(string.Format("{0} attacks with {1}!",firstToGo.monName, firstToGo.selectedMove.moveName));
-                battleControl.ResolveAttack(firstToGo.selectedMove,firstToGo, secondToGo);
+                if (battleControl.ResolveMidTurnStatusEffect(firstToGo))
+                {
+                    uiTextControl.DisplayText(string.Format("{0} attacks with {1}!", firstToGo.monName, firstToGo.selectedMove.moveName));
+                    battleControl.ResolveAttack(firstToGo.selectedMove, firstToGo, secondToGo);
+                }
+                print(firstToGo.remainingSleepTurns);
                 AdvanceState(TurnState.FaintCheck);
                 break;
 
             case (TurnState.SecondAction):
                 //uiTextControl.DisplayText(string.Format("{0} attacks with {1}!", secondToGo.monName, secondToGo.selectedMove.moveName));
-                battleControl.ResolveAttack(secondToGo.selectedMove, secondToGo, firstToGo);
-                AdvanceState(TurnState.FaintCheck);
+                if (battleControl.ResolveMidTurnStatusEffect(secondToGo))
+                {
+                    battleControl.ResolveAttack(secondToGo.selectedMove, secondToGo, firstToGo);
+                }
+                AdvanceState(TurnState.TurnEnding);
+                print(secondToGo.remainingSleepTurns);
+                break;
+
+            case (TurnState.TurnEnding):
+                if(firstToGo.hasStatus != StatusEffect.none)
+                    battleControl.ResolveEndTurnStatusEffect(firstToGo);
+                if (secondToGo.hasStatus != StatusEffect.none)
+                    battleControl.ResolveEndTurnStatusEffect(secondToGo);
+                AdvanceState(TurnState.SelectingAction);
                 break;
 
             case (TurnState.FaintCheck):
@@ -84,7 +100,7 @@ public class BattleStateControl : MonoBehaviour {
                     }
                     if(previousState == TurnState.SecondAction)
                     {
-                        AdvanceState(TurnState.SelectingAction);
+                        AdvanceState(TurnState.TurnEnding);
                     }
                 }
                 break;

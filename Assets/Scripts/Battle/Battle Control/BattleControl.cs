@@ -33,7 +33,7 @@ public class BattleControl : MonoBehaviour
         playerMon.SetData(mp.monpedia[1]);
 
         enemyMon = ScriptableObject.CreateInstance<MonBattleData>();
-        enemyMon.SetData(mp.monpedia[10]);
+        enemyMon.SetData(mp.monpedia[4]);
 
         stateControl = GetComponent<BattleStateControl>();
         uiButtonControl = battleUIController.GetComponent<BattleUIControl>();
@@ -593,5 +593,77 @@ public class BattleControl : MonoBehaviour
         if (enemyMon.curHP == 0)
             enemyMon.hasStatus = StatusEffect.fainted;
     }
+    #endregion
+
+    #region Status Resolution
+
+    public void ResolveEndTurnStatusEffect(MonBattleData monster)
+    {
+        switch (monster.hasStatus)
+        {
+            case (StatusEffect.burned):
+                monster.TakeDamage(Mathf.FloorToInt(monster.maxHP * 0.06f));
+                print(string.Format("{0} took damage from it's burn.", monster.monName));
+                break;
+            case (StatusEffect.poisoned):
+                monster.TakeDamage(Mathf.FloorToInt(monster.maxHP * 0.12f));
+                print(string.Format("{0} took damage from poison.", monster.monName));
+                break;
+        }
+    }
+
+    public bool ResolveMidTurnStatusEffect(MonBattleData monster)
+    {
+        switch (monster.hasStatus)
+        {
+            case (StatusEffect.sleep):
+                monster.remainingSleepTurns -= 1;
+                if(monster.remainingSleepTurns <= 0)
+                {
+                    monster.remainingSleepTurns = 0;
+                    monster.HealStatus();
+                    print(string.Format("{0} awoke from sleep!", monster.monName));
+                    return true;
+                }
+                print(string.Format("{0} is still asleep!", monster.monName));
+                return false;
+            case (StatusEffect.paralyzed):
+                if (CheckEffectHit(50))
+                {
+                    return true;
+                }
+                print(string.Format("{0} is fully paralyzed!", monster.monName));
+                return false;
+            case (StatusEffect.frozen):
+                if (CheckEffectHit(20))
+                {
+                    monster.HealStatus();
+                    print(string.Format("{0} thawed out!", monster.monName));
+                    return true;
+                }
+                print(string.Format("{0} is still frozen!", monster.monName));
+                return false;
+            case (StatusEffect.confused):
+                {
+                    if (CheckEffectHit(50))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        MoveData conf = new MoveData();
+                        conf.basePower = 40;
+                        conf.physSpec = PhysSpec.physical;
+
+                        monster.TakeDamage(CalculateDamage(conf, monster, monster, false));
+                        print(string.Format("{0} hit itself in confusion...", monster.monName));
+                        return false;
+                    }
+                }
+            default:
+                return true;
+        }
+    }
+
     #endregion
 }

@@ -50,6 +50,7 @@ public class MonBattleData : MonData
         maxHP = bm.maxHP;
         curHP = bm.curHP;
         hasStatus = bm.hasStatus;
+        remainingSleepTurns = bm.remainingSleepTurns;
 
         learnedMoves = bm.learnedMoves;
 
@@ -142,6 +143,10 @@ public class MonBattleData : MonData
         if(hasStatus == StatusEffect.none)
         {
             hasStatus = status;
+            if(status == StatusEffect.sleep)
+            {
+                remainingSleepTurns = (Random.Range(2, 6));
+            }
             return true;
         }
 

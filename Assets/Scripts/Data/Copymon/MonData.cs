@@ -70,6 +70,7 @@ public class MonData : ScriptableObject
     public int maxHP;
     public int curHP;
     public StatusEffect hasStatus = StatusEffect.none;
+    public int remainingSleepTurns = 0;
 
     [Header("Moves")]
     public MoveData[] learnedMoves = new MoveData[4];

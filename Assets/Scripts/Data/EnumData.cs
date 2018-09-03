@@ -15,6 +15,7 @@ public enum TurnState
     PlayerFaints,
     EnemyFaints,
     BothFaint,
+    TurnEnding,
     PlayerLose,
     PlayerWin
 }
