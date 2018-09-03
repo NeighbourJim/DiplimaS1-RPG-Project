@@ -651,18 +651,60 @@ public class BattleControl : MonoBehaviour
                     }
                     else
                     {
-                        MoveData conf = new MoveData();
-                        conf.basePower = 40;
-                        conf.physSpec = PhysSpec.physical;
-
-                        monster.TakeDamage(CalculateDamage(conf, monster, monster, false));
-                        print(string.Format("{0} hit itself in confusion...", monster.monName));
+                        int dmg = CalculateConfuseDamage(monster);
+                        monster.TakeDamage(dmg);
+                        print(string.Format("{0} hit itself in confusion for {1} damage...", monster.monName, dmg));
                         return false;
                     }
                 }
             default:
                 return true;
         }
+    }
+
+    int CalculateConfuseDamage(MonBattleData monster)
+    {
+        int dmg;
+        int L;
+        int P;
+        int A;
+        int D;
+        int M;
+
+        L = monster.level;
+        P = 40;
+        A = Mathf.FloorToInt(monster.curAtk * GetStatMultiplier(monster.buffStageAtk));
+        D = Mathf.FloorToInt(monster.curDef * GetStatMultiplier(monster.buffStageDef));
+        M = CalculateConfuseModifier(monster);
+
+        dmg = ((((2 * L / 5 + 2) * P * A / D) / 50 + 2) * M) / 100;
+
+        return dmg;
+    }
+
+    int CalculateConfuseModifier(MonBattleData monster)
+    {
+        float modifier;
+        int rand = 100;     // Random number that gives some variance in damage
+        float stab = 1f;    // Stands for Same Type Attack Bonus, applies a modifier if the move used is the same type as the user
+        float burn = 1f;    // Weakens physical moves if the user is burned
+        float effect = 1f;  // Type effectiveness
+        float critical = 1f;
+
+        rand = Random.Range(85, 101);
+
+        if (monster.hasStatus == StatusEffect.burned)
+        {
+            burn = 0.5f;
+        }
+        else
+        {
+            burn = 1.0f;
+        }
+
+        modifier = rand * stab * effect * burn * critical;
+
+        return Mathf.FloorToInt(modifier);
     }
 
     #endregion

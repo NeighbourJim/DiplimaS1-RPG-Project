@@ -61,7 +61,6 @@ public class BattleStateControl : MonoBehaviour {
                     uiTextControl.DisplayText(string.Format("{0} attacks with {1}!", firstToGo.monName, firstToGo.selectedMove.moveName));
                     battleControl.ResolveAttack(firstToGo.selectedMove, firstToGo, secondToGo);
                 }
-                print(firstToGo.remainingSleepTurns);
                 AdvanceState(TurnState.FaintCheck);
                 break;
 
