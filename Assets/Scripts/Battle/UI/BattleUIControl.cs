@@ -19,19 +19,20 @@ public class BattleUIControl : MonoBehaviour {
     public GameObject moveSelectPanel;
     public GameObject switchPanel;
     int[] tmpRGB;
-
+    BattleTextUIControl textUIControl;
 
     // Use this for initialization
     void Awake () {
         
         battleControlScript = battleController.GetComponent<BattleControl>();
         battleStateControlScript = battleController.GetComponent<BattleStateControl>();
+        textUIControl = GetComponent<BattleTextUIControl>();
     }
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        
+    }
 
     public void ChangeButtonColour(Button button, TypeData type)
     {
@@ -48,18 +49,25 @@ public class BattleUIControl : MonoBehaviour {
 
     public void ShowActionSelect()
     {
-        battleStateControlScript.AdvanceState(TurnState.SelectingAction);
         baseSelectPanel.SetActive(true);
         moveSelectPanel.SetActive(false);
         backButton.gameObject.SetActive(false);
+        battleStateControlScript.AdvanceState(TurnState.SelectingAction);
     }
 
     public void ShowMoveSelect()
     {
-        battleStateControlScript.AdvanceState(TurnState.SelectingMove);
         baseSelectPanel.SetActive(false);
         moveSelectPanel.SetActive(true);
         backButton.gameObject.SetActive(true);
+        battleStateControlScript.AdvanceState(TurnState.SelectingMove);
+    }
+
+    public void ToggleInputsOff()
+    {
+        baseSelectPanel.SetActive(false);
+        moveSelectPanel.SetActive(false);
+        backButton.gameObject.SetActive(false);
     }
 
     public string GetClickedButton()

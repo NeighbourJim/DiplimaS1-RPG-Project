@@ -14,9 +14,12 @@ public class BattleStateControl : MonoBehaviour {
     BattleTextUIControl uiTextControl;
     BattleHPControl uiHPControl;
     BattleCameraControl cameraControl;
+    BattleDialogue battleDialogue;
+    BattleUIEventHandler uIEventHandler;
 
     public MoveData playerSelectedMove;
     public MoveData enemySelectedMove;
+
 
     // Use this for initialization
     void Start () {
@@ -25,109 +28,201 @@ public class BattleStateControl : MonoBehaviour {
         uiButtonControl = battleUI.GetComponent<BattleUIControl>();
         uiTextControl = battleUI.GetComponent<BattleTextUIControl>();
         uiHPControl = battleUI.GetComponent<BattleHPControl>();
-
+        battleDialogue = battleUI.GetComponent<BattleDialogue>();
+        uIEventHandler = FindObjectOfType<BattleUIEventHandler>();
     }
 	
 	// Update is called once per frame
+    // State Machine Control
 	void Update ()
     {
+        print(uiTextControl.messagesFinished);
         switch (currentState)
         {
             case (TurnState.Intro):
-                uiTextControl.DisplayText(string.Format("A wild {0} appeared!", battleControl.enemyMon.monName));
-                uiHPControl.SetMonsters(battleControl.playerMon, battleControl.enemyMon);
-                uiTextControl.DisplayText(string.Format("Go, {0}!", battleControl.playerMon.monName));               
-                AdvanceState(TurnState.SelectingAction);
+                ResolveIntroState();
                 break;
 
             case (TurnState.SelectingAction):
-                uiButtonControl.ShowActionSelect();
+                if (uiTextControl.messagesFinished)
+                    ResolveSelectingState();
                 break;
 
             case (TurnState.EnemySelectAction):
-                battleControl.SelectEnemyMove();
-                AdvanceState(TurnState.DetermineOrder);
+                if (uiTextControl.messagesFinished)
+                    ResolveEnemySelectingState();
                 break;
 
             case (TurnState.DetermineOrder):
-                DetermineTurnOrder();
-                cameraControl.ResetCamera();
-                AdvanceState(TurnState.FirstAction);
+                if (uiTextControl.messagesFinished)
+                    ResolveOrderState();
                 break;
 
             case (TurnState.FirstAction):
-                if (battleControl.ResolveMidTurnStatusEffect(firstToGo))
-                {
-                    uiTextControl.DisplayText(string.Format("{0} attacks with {1}!", firstToGo.monName, firstToGo.selectedMove.moveName));
-                    battleControl.ResolveAttack(firstToGo.selectedMove, firstToGo, secondToGo);
-                }
-                AdvanceState(TurnState.FaintCheck);
+                if (uiTextControl.messagesFinished)
+                    ResolveFirstActionState();
                 break;
 
             case (TurnState.SecondAction):
-                //uiTextControl.DisplayText(string.Format("{0} attacks with {1}!", secondToGo.monName, secondToGo.selectedMove.moveName));
-                if (battleControl.ResolveMidTurnStatusEffect(secondToGo))
-                {
-                    battleControl.ResolveAttack(secondToGo.selectedMove, secondToGo, firstToGo);
-                }
-                AdvanceState(TurnState.TurnEnding);
-                print(secondToGo.remainingSleepTurns);
+                if (uiTextControl.messagesFinished)
+                    ResolveSecondActionState();
                 break;
 
             case (TurnState.TurnEnding):
-                if(firstToGo.hasStatus != StatusEffect.none)
-                    battleControl.ResolveEndTurnStatusEffect(firstToGo);
-                if (secondToGo.hasStatus != StatusEffect.none)
-                    battleControl.ResolveEndTurnStatusEffect(secondToGo);
-                AdvanceState(TurnState.SelectingAction);
+                if (uiTextControl.messagesFinished)
+                    ResolveTurnEndingState();
                 break;
 
             case (TurnState.FaintCheck):
-                if (CheckFainted(battleControl.playerMon))
-                {
-                    AdvanceState(TurnState.PlayerFaints);
-                }
-                else if (CheckFainted(battleControl.enemyMon))
-                {
-                    AdvanceState(TurnState.EnemyFaints);
-                }
-                else
-                {
-                    if(previousState == TurnState.FirstAction)
-                    {
-                        AdvanceState(TurnState.SecondAction);
-                    }
-                    if(previousState == TurnState.SecondAction)
-                    {
-                        AdvanceState(TurnState.TurnEnding);
-                    }
-                }
+                if (uiTextControl.messagesFinished)
+                    ResolveFaintCheckState();
                 break;
 
             case (TurnState.PlayerFaints):
-                uiTextControl.DisplayText(battleControl.playerMon.monName + " fainted!");
-                AdvanceState(TurnState.PlayerLose);
+                if (uiTextControl.messagesFinished)
+                    ResolvePlayerFaintState();
                 break;
             case (TurnState.EnemyFaints):
-                uiTextControl.DisplayText("The foe " + battleControl.enemyMon.monName + " fainted!");
-                AdvanceState(TurnState.PlayerWin);
+                if (uiTextControl.messagesFinished)
+                    ResolveEnemyFaintState();
                 break;
             case (TurnState.BothFaint):
-
+                if (uiTextControl.messagesFinished)
+                    ResolveBothFaintState();
                 break;
             case (TurnState.PlayerLose):
-                uiTextControl.DisplayText("You lose.");
+                if (uiTextControl.messagesFinished)
+                    ResolvePlayerLoseState();
                 break;
             case (TurnState.PlayerWin):
-                uiTextControl.DisplayText("You win!");
+                if (uiTextControl.messagesFinished)
+                    ResolvePlayerWinState();
                 break;
         }
 	}
+
+    #region State Resolution
+    void ResolveIntroState()
+    {
+        uiHPControl.SetMonsters(battleControl.playerMon, battleControl.enemyMon);
+        battleDialogue.AddToMessages(string.Format("A wild {0} appeared!", battleControl.enemyMon.monName));
+        battleDialogue.AddToMessages(string.Format("Go, {0}!", battleControl.playerMon.monName));
+        uIEventHandler.continueMessages.Invoke();
+        AdvanceState(TurnState.SelectingAction);
+    }
+
+    void ResolveSelectingState()
+    {
+        uiButtonControl.ShowActionSelect();
+    }
+
+    void ResolveEnemySelectingState()
+    {
+        battleControl.SelectEnemyMove();
+        AdvanceState(TurnState.DetermineOrder);
+    }
+
+    void ResolveOrderState()
+    {
+        DetermineTurnOrder();
+        cameraControl.ResetCamera();
+        AdvanceState(TurnState.FirstAction);
+    }
+
+    void ResolveFirstActionState()
+    {
+        uIEventHandler.continueMessages.Invoke();
+        if (battleControl.ResolveMidTurnStatusEffect(firstToGo))
+        {
+            battleDialogue.AddToMessages(string.Format("{0} attacks with {1}!", firstToGo.monName, firstToGo.selectedMove.moveName));
+            battleControl.ResolveAttack(firstToGo.selectedMove, firstToGo, secondToGo);
+            uIEventHandler.continueMessages.Invoke();
+        }
+        AdvanceState(TurnState.FaintCheck);
+    }
+
+    void ResolveSecondActionState()
+    {
+        if (battleControl.ResolveMidTurnStatusEffect(secondToGo))
+        {
+            battleDialogue.AddToMessages(string.Format("{0} attacks with {1}!", secondToGo.monName, secondToGo.selectedMove.moveName));
+            battleControl.ResolveAttack(secondToGo.selectedMove, secondToGo, firstToGo);
+            uIEventHandler.continueMessages.Invoke();
+        }
+        AdvanceState(TurnState.TurnEnding);
+    }
+
+    void ResolveTurnEndingState()
+    {
+        if (firstToGo.hasStatus != StatusEffect.none)
+            battleControl.ResolveEndTurnStatusEffect(firstToGo);
+        if (secondToGo.hasStatus != StatusEffect.none)
+            battleControl.ResolveEndTurnStatusEffect(secondToGo);
+        AdvanceState(TurnState.SelectingAction);
+    }
+
+    void ResolveFaintCheckState()
+    {
+        if (CheckFainted(battleControl.playerMon))
+        {
+            AdvanceState(TurnState.PlayerFaints);
+        }
+        else if (CheckFainted(battleControl.enemyMon))
+        {
+            AdvanceState(TurnState.EnemyFaints);
+        }
+        else
+        {
+            if (previousState == TurnState.FirstAction)
+            {
+                AdvanceState(TurnState.SecondAction);
+            }
+            if (previousState == TurnState.SecondAction)
+            {
+                AdvanceState(TurnState.TurnEnding);
+            }
+        }
+    }
+
+    void ResolvePlayerFaintState()
+    {
+        battleDialogue.AddToMessages(battleControl.playerMon.monName + " fainted!");
+        uIEventHandler.continueMessages.Invoke();
+        AdvanceState(TurnState.PlayerLose);
+    }
+
+    void ResolveEnemyFaintState()
+    {
+        battleDialogue.AddToMessages("The foe " + battleControl.enemyMon.monName + " fainted!");
+        uIEventHandler.continueMessages.Invoke();
+        AdvanceState(TurnState.PlayerWin);
+    }
+
+    void ResolveBothFaintState()
+    {
+
+    }
+
+    void ResolvePlayerWinState()
+    {
+        battleDialogue.AddToMessages("You win.");
+        AdvanceState(TurnState.BothFaint); // TODO: CHANGE THIS!!!!!!!
+    }
+
+    void ResolvePlayerLoseState()
+    {
+        battleDialogue.AddToMessages("You lose.");
+        AdvanceState(TurnState.BothFaint); // TODO: CHANGE THIS!!!!!!!
+    }
+    #endregion
+
+    
 
     public void AdvanceState(TurnState state)
     {
         previousState = currentState;
         currentState = state;
+        print(currentState);
     }
 
     void DetermineTurnOrder()

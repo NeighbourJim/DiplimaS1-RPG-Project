@@ -57,25 +57,25 @@ public enum PhysSpec
 public enum StatusEffect
 {
     none,
-    burned,
-    poisoned,
-    paralyzed,
-    sleep,
-    frozen,
-    confused,
+    Burn,
+    Poison,
+    Paralysis,
+    Sleep,
+    Frozen,
+    Confusion,
     fainted = 50
 }
 
 public enum MonStat
 {
     none,
-    atk,
-    def,
-    spatk,
-    spdef,
-    speed,
-    acc,
-    eva
+    Attack,
+    Defense,
+    SpecialAttack,
+    SpecialDefense,
+    Speed,
+    Accuracy,
+    Evasion
 }
 
 public enum Effectiveness

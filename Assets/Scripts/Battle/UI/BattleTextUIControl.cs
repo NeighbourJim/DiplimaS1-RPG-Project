@@ -8,11 +8,43 @@ public class BattleTextUIControl : MonoBehaviour {
     public Button continueButton;
     public Text textArea;
     public float characterDelay = 0.05f;
+    public BattleUIEventHandler eventHandler;
+    BattleDialogue battleDialogue;
 
     string toDisplay;
-    bool completed = false;
+
+    public bool messagesStarted = false;
+    public bool messagesFinished = true;
 
     Coroutine co;
+
+    private void Start()
+    {
+        eventHandler = GetComponent<BattleUIEventHandler>();
+        battleDialogue = GetComponent<BattleDialogue>();
+        continueButton.interactable = true;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            eventHandler.continueMessages.Invoke();
+        }
+    }
+
+    public void DisplayNextMessage()
+    {
+        string message = battleDialogue.GetNextMessage();
+        if(message != null)
+        {
+            DisplayText(message);
+        }
+        else
+        {
+            eventHandler.messagesEnded.Invoke();
+        }
+    }
 
     public void DisplayText(string txt)
     {
@@ -21,7 +53,6 @@ public class BattleTextUIControl : MonoBehaviour {
 
     IEnumerator AnimText(string txt)
     {
-        completed = false;
         int i = 0;
         textArea.text = "";
         while(i < txt.Length)
@@ -29,5 +60,24 @@ public class BattleTextUIControl : MonoBehaviour {
             textArea.text += txt[i++];
             yield return new WaitForSeconds(characterDelay);
         }
+    }
+
+
+    public void ContinueClick()
+    {
+        if (co != null) { StopCoroutine(co); }
+        DisplayNextMessage();
+    }
+
+    public void SetMessagesStarted()
+    {
+        messagesStarted = true;
+        messagesFinished = false;
+    }
+
+    public void SetMessagesFinished()
+    {
+        messagesFinished = true;
+        messagesStarted = false;
     }
 }

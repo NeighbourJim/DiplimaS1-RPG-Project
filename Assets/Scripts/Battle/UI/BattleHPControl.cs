@@ -110,22 +110,22 @@ public class BattleHPControl : MonoBehaviour {
                 case (StatusEffect.none):
                     statusDesc = "";
                     break;
-                case (StatusEffect.burned):
+                case (StatusEffect.Burn):
                     statusDesc = "Burned";
                     break;
-                case (StatusEffect.confused):
+                case (StatusEffect.Confusion):
                     statusDesc = "Confused";
                     break;
-                case (StatusEffect.frozen):
+                case (StatusEffect.Frozen):
                     statusDesc = "Frozen";
                     break;
-                case (StatusEffect.paralyzed):
+                case (StatusEffect.Paralysis):
                     statusDesc = "Paralyzed";
                     break;
-                case (StatusEffect.poisoned):
+                case (StatusEffect.Poison):
                     statusDesc = "Poisoned";
                     break;
-                case (StatusEffect.sleep):
+                case (StatusEffect.Sleep):
                     statusDesc = "Asleep";
                     break;
                 default:
@@ -141,22 +141,22 @@ public class BattleHPControl : MonoBehaviour {
                 case (StatusEffect.none):
                     statusDesc = "";
                     break;
-                case (StatusEffect.burned):
+                case (StatusEffect.Burn):
                     statusDesc = "Burned";
                     break;
-                case (StatusEffect.confused):
+                case (StatusEffect.Confusion):
                     statusDesc = "Confused";
                     break;
-                case (StatusEffect.frozen):
+                case (StatusEffect.Frozen):
                     statusDesc = "Frozen";
                     break;
-                case (StatusEffect.paralyzed):
+                case (StatusEffect.Paralysis):
                     statusDesc = "Paralyzed";
                     break;
-                case (StatusEffect.poisoned):
+                case (StatusEffect.Poison):
                     statusDesc = "Poisoned";
                     break;
-                case (StatusEffect.sleep):
+                case (StatusEffect.Sleep):
                     statusDesc = "Asleep";
                     break;
                 default:

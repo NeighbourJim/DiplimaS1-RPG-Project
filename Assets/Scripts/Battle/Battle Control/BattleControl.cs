@@ -19,7 +19,9 @@ public class BattleControl : MonoBehaviour
     public GameObject battleUIController;
     BattleUIControl uiButtonControl;
     BattleTextUIControl uiTextControl;
+    BattleDialogue battleDialogue;
     BattleHPControl uiHPControl;
+
 
     BattleStateControl stateControl;
 
@@ -38,6 +40,7 @@ public class BattleControl : MonoBehaviour
         stateControl = GetComponent<BattleStateControl>();
         uiButtonControl = battleUIController.GetComponent<BattleUIControl>();
         uiHPControl = battleUIController.GetComponent<BattleHPControl>();
+        battleDialogue = battleUIController.GetComponent<BattleDialogue>();
 
         Spawn();
         SetButtonColours();
@@ -226,22 +229,22 @@ public class BattleControl : MonoBehaviour
             damage = CalculateDamage(move, attacker, defender, crit);
             if (crit)
             {
-                print("A critical hit!");
+                battleDialogue.AddToMessages("A critical hit!");
             }
             if (effectiveness == Effectiveness.resist2x || effectiveness == Effectiveness.resist4x)
             {
-                print("It's not very effective...");
+                battleDialogue.AddToMessages("It's not very effective...");
             }
             else if (effectiveness == Effectiveness.weak2x || effectiveness == Effectiveness.weak4x)
             {
-                print("It's super effective!!!");
+                battleDialogue.AddToMessages("It's super effective!!!");
             }
             if (effectiveness == Effectiveness.immune)
             {
-                print("It had no effect...");
+                battleDialogue.AddToMessages("It had no effect...");
             }
+            battleDialogue.AddToMessages(string.Format("{0} dealt {1} damage.", attacker.monName, damage, defender.monName));
             defender.TakeDamage(damage);
-            print(string.Format("Dealt {0} damage. {1} has {2}/{3} health remaining.", damage, defender.monName, defender.curHP, defender.maxHP));
 
             if (move.causesStatus != StatusEffect.none)
             {
@@ -264,7 +267,7 @@ public class BattleControl : MonoBehaviour
         }
         else
         {
-            print("But it missed!");
+            battleDialogue.AddToMessages("But it missed!");
         }
     }
 
@@ -296,7 +299,7 @@ public class BattleControl : MonoBehaviour
         }
         else
         {
-            print("It had no effect...");
+            battleDialogue.AddToMessages("It had no effect...");
         }
     }
 
@@ -306,11 +309,11 @@ public class BattleControl : MonoBehaviour
         {
             if (monster.GainStatus(move.causesStatus))
             {
-                print(string.Format("{0} was afflicted with {1}!", monster.monName, move.causesStatus.ToString()));
+                battleDialogue.AddToMessages(string.Format("{0} was afflicted with {1}!", monster.monName, move.causesStatus.ToString()));
             }
             else
             {
-                print(string.Format("{0} was not affected...", monster.monName));
+                battleDialogue.AddToMessages(string.Format("{0} was not affected...", monster.monName));
             }
         }
     }
@@ -336,7 +339,7 @@ public class BattleControl : MonoBehaviour
                     changeDesc = " drastically";
                 }
 
-                print(string.Format("{0}'s {1} rose{2}!", monster.monName, move.statToChange.ToString(), changeDesc));
+                battleDialogue.AddToMessages(string.Format("{0}'s {1} rose{2}!", monster.monName, move.statToChange.ToString(), changeDesc));
             }
             else
             {
@@ -353,12 +356,12 @@ public class BattleControl : MonoBehaviour
                     changeDesc = " drastically";
                 }
 
-                print(string.Format("{0}'s {1} fell{2}!", monster.monName, move.statToChange.ToString(), changeDesc));
+                battleDialogue.AddToMessages(string.Format("{0}'s {1} fell{2}!", monster.monName, move.statToChange.ToString(), changeDesc));
             }
         }
         else
         {
-            print(string.Format("{0}'s {1} can't change any more!", monster.monName, move.statToChange));
+            battleDialogue.AddToMessages(string.Format("{0}'s {1} can't change any more!", monster.monName, move.statToChange));
         }
     }
 
@@ -469,7 +472,7 @@ public class BattleControl : MonoBehaviour
             }
         }
 
-        if(move.physSpec == PhysSpec.physical && attacker.hasStatus == StatusEffect.burned)
+        if(move.physSpec == PhysSpec.physical && attacker.hasStatus == StatusEffect.Burn)
         {
             burn = 0.5f;
         }
@@ -601,13 +604,13 @@ public class BattleControl : MonoBehaviour
     {
         switch (monster.hasStatus)
         {
-            case (StatusEffect.burned):
+            case (StatusEffect.Burn):
                 monster.TakeDamage(Mathf.FloorToInt(monster.maxHP * 0.06f));
-                print(string.Format("{0} took damage from it's burn.", monster.monName));
+                battleDialogue.AddToMessages(string.Format("{0} took damage from it's burn.", monster.monName));
                 break;
-            case (StatusEffect.poisoned):
+            case (StatusEffect.Poison):
                 monster.TakeDamage(Mathf.FloorToInt(monster.maxHP * 0.12f));
-                print(string.Format("{0} took damage from poison.", monster.monName));
+                battleDialogue.AddToMessages(string.Format("{0} took damage from poison.", monster.monName));
                 break;
         }
     }
@@ -616,34 +619,34 @@ public class BattleControl : MonoBehaviour
     {
         switch (monster.hasStatus)
         {
-            case (StatusEffect.sleep):
+            case (StatusEffect.Sleep):
                 monster.remainingSleepTurns -= 1;
                 if(monster.remainingSleepTurns <= 0)
                 {
                     monster.remainingSleepTurns = 0;
                     monster.HealStatus();
-                    print(string.Format("{0} awoke from sleep!", monster.monName));
+                    battleDialogue.AddToMessages(string.Format("{0} awoke from sleep!", monster.monName));
                     return true;
                 }
-                print(string.Format("{0} is still asleep!", monster.monName));
+                battleDialogue.AddToMessages(string.Format("{0} is still asleep!", monster.monName));
                 return false;
-            case (StatusEffect.paralyzed):
+            case (StatusEffect.Paralysis):
                 if (CheckEffectHit(50))
                 {
                     return true;
                 }
-                print(string.Format("{0} is fully paralyzed!", monster.monName));
+                battleDialogue.AddToMessages(string.Format("{0} is fully paralyzed!", monster.monName));
                 return false;
-            case (StatusEffect.frozen):
+            case (StatusEffect.Frozen):
                 if (CheckEffectHit(20))
                 {
                     monster.HealStatus();
-                    print(string.Format("{0} thawed out!", monster.monName));
+                    battleDialogue.AddToMessages(string.Format("{0} thawed out!", monster.monName));
                     return true;
                 }
-                print(string.Format("{0} is still frozen!", monster.monName));
+                battleDialogue.AddToMessages(string.Format("{0} is still frozen!", monster.monName));
                 return false;
-            case (StatusEffect.confused):
+            case (StatusEffect.Confusion):
                 {
                     if (CheckEffectHit(50))
                     {
@@ -653,7 +656,7 @@ public class BattleControl : MonoBehaviour
                     {
                         int dmg = CalculateConfuseDamage(monster);
                         monster.TakeDamage(dmg);
-                        print(string.Format("{0} hit itself in confusion for {1} damage...", monster.monName, dmg));
+                        battleDialogue.AddToMessages(string.Format("{0} hit itself in confusion for {1} damage...", monster.monName, dmg));
                         return false;
                     }
                 }
@@ -693,7 +696,7 @@ public class BattleControl : MonoBehaviour
 
         rand = Random.Range(85, 101);
 
-        if (monster.hasStatus == StatusEffect.burned)
+        if (monster.hasStatus == StatusEffect.Burn)
         {
             burn = 0.5f;
         }

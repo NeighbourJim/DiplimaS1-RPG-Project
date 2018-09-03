@@ -143,7 +143,7 @@ public class MonBattleData : MonData
         if(hasStatus == StatusEffect.none)
         {
             hasStatus = status;
-            if(status == StatusEffect.sleep)
+            if(status == StatusEffect.Sleep)
             {
                 remainingSleepTurns = (Random.Range(2, 6));
             }
@@ -167,19 +167,19 @@ public class MonBattleData : MonData
     {
         switch (stat)
         {
-            case MonStat.atk:
+            case MonStat.Attack:
                 return ModStat(ref buffStageAtk, stages);
-            case MonStat.def:
+            case MonStat.Defense:
                 return ModStat(ref buffStageDef, stages);
-            case MonStat.spatk:
+            case MonStat.SpecialAttack:
                 return ModStat(ref buffStageSpAtk, stages);
-            case MonStat.spdef:
+            case MonStat.SpecialDefense:
                 return ModStat(ref buffStageSpDef, stages);
-            case MonStat.speed:
+            case MonStat.Speed:
                 return ModStat(ref buffStageSpeed, stages);
-            case MonStat.acc:
+            case MonStat.Accuracy:
                 return ModStat(ref buffStageAcc, stages);
-            case MonStat.eva:
+            case MonStat.Evasion:
                 return ModStat(ref buffStageEva, stages);
             default:
                 return false;
