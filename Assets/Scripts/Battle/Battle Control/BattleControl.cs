@@ -30,18 +30,25 @@ public class BattleControl : MonoBehaviour
     void Start ()
     {
         mp = dataController.GetComponent<Monpedia>();
-
         playerMon = ScriptableObject.CreateInstance<MonBattleData>();
-        playerMon.SetData(mp.monpedia[1]);
-
         enemyMon = ScriptableObject.CreateInstance<MonBattleData>();
-        enemyMon.SetData(mp.monpedia[4]);
-
         stateControl = GetComponent<BattleStateControl>();
         uiButtonControl = battleUIController.GetComponent<BattleUIControl>();
         uiHPControl = battleUIController.GetComponent<BattleHPControl>();
         battleDialogue = battleUIController.GetComponent<BattleDialogue>();
+    }
 
+    public void InitiateWildBattle(MonData player, MonData enemy)
+    {
+        playerMon.SetData(player);
+        enemyMon.SetData(enemy);
+        Spawn();
+        SetButtonColours();
+        SetButtonNames();
+    }
+
+    public void InitiateTrainerBattle(MonData[] playerTeam, MonData[] enemyTeam)
+    {
         Spawn();
         SetButtonColours();
         SetButtonNames();
@@ -49,6 +56,7 @@ public class BattleControl : MonoBehaviour
 
     void Spawn()
     {
+
         player = Instantiate(playerMon.monsterPrefab);
         enemy = Instantiate(enemyMon.monsterPrefab);
 

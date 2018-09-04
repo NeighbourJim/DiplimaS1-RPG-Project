@@ -20,6 +20,8 @@ public class BattleStateControl : MonoBehaviour {
     public MoveData playerSelectedMove;
     public MoveData enemySelectedMove;
 
+    public GameObject dataCont;
+
 
     // Use this for initialization
     void Start () {
@@ -104,6 +106,8 @@ public class BattleStateControl : MonoBehaviour {
     #region State Resolution
     void ResolveIntroState()
     {
+        Monpedia mp = dataCont.GetComponent<Monpedia>();
+        battleControl.InitiateWildBattle(mp.monpedia[1], mp.monpedia[4]);
         uiHPControl.SetMonsters(battleControl.playerMon, battleControl.enemyMon);
         battleDialogue.AddToMessages(string.Format("A wild {0} appeared!", battleControl.enemyMon.monName));
         battleDialogue.AddToMessages(string.Format("Go, {0}!", battleControl.playerMon.monName));
