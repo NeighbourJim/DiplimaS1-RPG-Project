@@ -4,6 +4,7 @@ using UnityEngine;
 
 public enum TurnState
 {
+    BattleStarting,
     Intro,
     SelectingAction,
     EnemySelectAction,
@@ -17,7 +18,8 @@ public enum TurnState
     BothFaint,
     TurnEnding,
     PlayerLose,
-    PlayerWin
+    PlayerWin,
+    BattleEnding
 }
 
 public enum TypeNum

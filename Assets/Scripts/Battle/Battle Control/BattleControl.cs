@@ -66,8 +66,8 @@ public class BattleControl : MonoBehaviour
         playerMon.ownership = Ownership.player;
         enemyMon.ownership = Ownership.wild;
 
-        playerMon.GenerateWildStats(100);
-        enemyMon.GenerateWildStats(100);
+        playerMon.GenerateWildStats(playerMon.level);
+        enemyMon.GenerateWildStats(enemyMon.level);
 
         Face();
 

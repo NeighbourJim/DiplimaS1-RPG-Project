@@ -21,7 +21,7 @@ public class BattleStateControl : MonoBehaviour {
     public MoveData enemySelectedMove;
 
     public GameObject dataCont;
-
+    public PlayerDataHolder playerData;
 
     // Use this for initialization
     void Start () {
@@ -32,6 +32,7 @@ public class BattleStateControl : MonoBehaviour {
         uiHPControl = battleUI.GetComponent<BattleHPControl>();
         battleDialogue = battleUI.GetComponent<BattleDialogue>();
         uIEventHandler = FindObjectOfType<BattleUIEventHandler>();
+        playerData = dataCont.GetComponent<PlayerDataHolder>();
     }
 	
 	// Update is called once per frame
@@ -41,6 +42,9 @@ public class BattleStateControl : MonoBehaviour {
         print(uiTextControl.messagesFinished);
         switch (currentState)
         {
+            case (TurnState.BattleStarting):
+                ResolveStartingState();
+                break;
             case (TurnState.Intro):
                 ResolveIntroState();
                 break;
@@ -104,11 +108,14 @@ public class BattleStateControl : MonoBehaviour {
 	}
 
     #region State Resolution
-    void ResolveIntroState()
+    void ResolveStartingState()
     {
         Monpedia mp = dataCont.GetComponent<Monpedia>();
-        battleControl.InitiateWildBattle(mp.monpedia[1], mp.monpedia[4]);
+        battleControl.InitiateWildBattle(mp.FindByID(PlayerDataHolder.PlayerMonsterID), mp.monpedia[4]);
         uiHPControl.SetMonsters(battleControl.playerMon, battleControl.enemyMon);
+    }
+    void ResolveIntroState()
+    {
         battleDialogue.AddToMessages(string.Format("A wild {0} appeared!", battleControl.enemyMon.monName));
         battleDialogue.AddToMessages(string.Format("Go, {0}!", battleControl.playerMon.monName));
         uIEventHandler.continueMessages.Invoke();
