@@ -49,7 +49,7 @@ public class PlayerDataHolder : MonoBehaviour {
         PlayerMonsterStatus = StatusEffect.none;
 
         playerMonster.CreateFromBase(mp.FindByID(1));
-        playerMonster.level = 30;
+        playerMonster.level = 11;
         playerMonster.GenerateMoveset();
 
         SceneManager.LoadScene("BaseBattle");

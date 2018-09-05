@@ -153,7 +153,6 @@ public class MonData : ScriptableObject
             Debug.Log(lmp.moveToLearn.moveName + " " + i);
             if (lmp.levelToLearn >= level)
             {
-                i--;
                 break;
             }
             i++;
