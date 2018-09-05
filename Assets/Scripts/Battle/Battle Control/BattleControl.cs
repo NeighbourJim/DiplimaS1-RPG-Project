@@ -57,7 +57,7 @@ public class BattleControl : MonoBehaviour
     void Spawn()
     {
 
-        player = Instantiate(playerMon.monsterPrefab);
+        player = Instantiate(mp.FindByID(playerMon.monID).monsterPrefab);
         enemy = Instantiate(enemyMon.monsterPrefab);
 
         player.tag = "PlayerMonster";

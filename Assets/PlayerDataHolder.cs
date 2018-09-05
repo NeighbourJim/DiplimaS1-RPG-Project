@@ -21,8 +21,19 @@ public class PlayerDataHolder : MonoBehaviour {
     public static int PlayerMonsterIVSpeed { get; set; }
     public static StatusEffect PlayerMonsterStatus { get; set; }
 
+    public static MonData playerMonster;
+
+    Monpedia mp;
+    public GameObject dataController;
+
+    private void Start()
+    {
+        mp = dataController.GetComponent<Monpedia>();
+    }
+
     public void SetData()
     {
+        playerMonster = ScriptableObject.CreateInstance<MonData>();
         PlayerMonsterID = 10;
 
         PlayerMonsterLevel = 5;
@@ -37,7 +48,13 @@ public class PlayerDataHolder : MonoBehaviour {
 
         PlayerMonsterStatus = StatusEffect.none;
 
+        playerMonster.CreateFromBase(mp.FindByID(1));
+        playerMonster.level = 30;
+        playerMonster.GenerateMoveset();
+
         SceneManager.LoadScene("BaseBattle");
     }
+
+
 
 }

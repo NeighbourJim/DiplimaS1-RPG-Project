@@ -111,8 +111,9 @@ public class BattleStateControl : MonoBehaviour {
     void ResolveStartingState()
     {
         Monpedia mp = dataCont.GetComponent<Monpedia>();
-        battleControl.InitiateWildBattle(mp.FindByID(PlayerDataHolder.PlayerMonsterID), mp.monpedia[4]);
+        battleControl.InitiateWildBattle(PlayerDataHolder.playerMonster, mp.monpedia[4]);
         uiHPControl.SetMonsters(battleControl.playerMon, battleControl.enemyMon);
+        AdvanceState(TurnState.Intro);
     }
     void ResolveIntroState()
     {
