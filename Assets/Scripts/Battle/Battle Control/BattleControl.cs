@@ -29,6 +29,7 @@ public class BattleControl : MonoBehaviour
 
     void Start ()
     {
+        dataController = GameObject.Find("GameDataController");
         mp = dataController.GetComponent<Monpedia>();
         playerMon = ScriptableObject.CreateInstance<MonBattleData>();
         enemyMon = ScriptableObject.CreateInstance<MonBattleData>();

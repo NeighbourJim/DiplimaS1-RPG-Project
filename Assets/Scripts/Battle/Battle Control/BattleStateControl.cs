@@ -32,6 +32,8 @@ public class BattleStateControl : MonoBehaviour {
         uiHPControl = battleUI.GetComponent<BattleHPControl>();
         battleDialogue = battleUI.GetComponent<BattleDialogue>();
         uIEventHandler = FindObjectOfType<BattleUIEventHandler>();
+
+        dataCont = GameObject.Find("GameDataController");
         playerData = dataCont.GetComponent<PlayerDataHolder>();
     }
 	
@@ -39,7 +41,6 @@ public class BattleStateControl : MonoBehaviour {
     // State Machine Control
 	void Update ()
     {
-        print(uiTextControl.messagesFinished);
         switch (currentState)
         {
             case (TurnState.BattleStarting):
@@ -109,9 +110,9 @@ public class BattleStateControl : MonoBehaviour {
 
     #region State Resolution
     void ResolveStartingState()
-    {
+    {        
         Monpedia mp = dataCont.GetComponent<Monpedia>();
-        battleControl.InitiateWildBattle(PlayerDataHolder.playerMonster, mp.monpedia[4]);
+        battleControl.InitiateWildBattle(PlayerDataHolder.playerTeam[0], mp.monpedia[4]);
         uiHPControl.SetMonsters(battleControl.playerMon, battleControl.enemyMon);
         AdvanceState(TurnState.Intro);
     }
@@ -234,7 +235,6 @@ public class BattleStateControl : MonoBehaviour {
     {
         previousState = currentState;
         currentState = state;
-        print(currentState);
     }
 
     void DetermineTurnOrder()

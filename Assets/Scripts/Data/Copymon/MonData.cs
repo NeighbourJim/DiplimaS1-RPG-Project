@@ -108,7 +108,14 @@ public class MonData : ScriptableObject
             secondaryType = bm.secondaryType;
 
         level = bm.level;
-        curXP = bm.curXP;
+        if (bm.curXP == 0)
+        {
+            bm.CalculateXPToNextLevel(bm.level - 1); // set current xp to exactly the amount to level up to current level
+        }
+        else
+        {
+            curXP = bm.curXP;
+        }
         xpToNextLevel = bm.xpToNextLevel;
         xpYield = bm.xpYield;
 
@@ -150,14 +157,12 @@ public class MonData : ScriptableObject
         int i = 0;
         foreach (LevelMovePair lmp in learnset)
         {
-            Debug.Log(lmp.moveToLearn.moveName + " " + i);
             if (lmp.levelToLearn >= level)
             {
                 break;
             }
             i++;
         }
-        Debug.Log("FINAL I = " + i.ToString());
         for(int j = 0; j < 4; j++)
         {
             try
@@ -168,7 +173,6 @@ public class MonData : ScriptableObject
             catch(System.IndexOutOfRangeException e)
             {
                 learnedMoves[j] = null;
-                Debug.Log(e.Message);
             }
         }
     }
