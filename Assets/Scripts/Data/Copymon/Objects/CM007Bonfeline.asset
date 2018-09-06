@@ -45,22 +45,22 @@ MonoBehaviour:
   curSpAtk: 11
   curSpDef: 11
   curSpeed: 14
-  curAcc: 100
-  curEva: 100
   maxHP: 22
   curHP: 22
   hasStatus: 0
-  buffStageAtk: 0
-  buffStageDef: 0
-  buffStageSpAtk: 0
-  buffStageSpDef: 0
-  buffStageSpeed: 0
-  buffStageAcc: 0
-  buffStageEva: 0
+  remainingSleepTurns: 0
   learnedMoves:
-  - {fileID: 11400000, guid: cd6ec2a9eb254144385bbc5e151af33f, type: 2}
-  - {fileID: 11400000, guid: 8acb5e0ee6f48894a932585a0da9a7a6, type: 2}
-  - {fileID: 11400000, guid: 0f50b0bd05a32814599fe16219d549e3, type: 2}
   - {fileID: 0}
+  - {fileID: 11400000, guid: 8acb5e0ee6f48894a932585a0da9a7a6, type: 2}
+  - {fileID: 11400000, guid: cd6ec2a9eb254144385bbc5e151af33f, type: 2}
+  - {fileID: 11400000, guid: 9509e6fd2d654264ba5f2bd74d428f74, type: 2}
   selectedMove: {fileID: 11400000, guid: 8acb5e0ee6f48894a932585a0da9a7a6, type: 2}
-  learnset: []
+  learnset:
+  - levelToLearn: 1
+    moveToLearn: {fileID: 11400000, guid: 9509e6fd2d654264ba5f2bd74d428f74, type: 2}
+  - levelToLearn: 5
+    moveToLearn: {fileID: 11400000, guid: cd6ec2a9eb254144385bbc5e151af33f, type: 2}
+  - levelToLearn: 8
+    moveToLearn: {fileID: 11400000, guid: 8acb5e0ee6f48894a932585a0da9a7a6, type: 2}
+  - levelToLearn: 0
+    moveToLearn: {fileID: 0}

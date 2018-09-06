@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PlayerDataHolder : MonoBehaviour {
 
@@ -45,11 +44,9 @@ public class PlayerDataHolder : MonoBehaviour {
     public void SetData()
     {
         playerTeam[0] = ScriptableObject.CreateInstance<MonData>();
-        playerTeam[0].CreateFromBase(mp.FindByID(12));
+        playerTeam[0].CreateFromBase(mp.FindByID(1));
         playerTeam[0].level = 11;
         playerTeam[0].GenerateMoveset();
-
-        SceneManager.LoadScene("BaseBattle");
     }
 
 

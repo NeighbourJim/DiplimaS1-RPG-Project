@@ -22,7 +22,6 @@ public class BattleControl : MonoBehaviour
     BattleDialogue battleDialogue;
     BattleHPControl uiHPControl;
 
-
     BattleStateControl stateControl;
 
     Monpedia mp;
@@ -59,7 +58,7 @@ public class BattleControl : MonoBehaviour
     {
 
         player = Instantiate(mp.FindByID(playerMon.monID).monsterPrefab);
-        enemy = Instantiate(enemyMon.monsterPrefab);
+        enemy = Instantiate(mp.FindByID(enemyMon.monID).monsterPrefab);
 
         player.tag = "PlayerMonster";
         enemy.tag = "EnemyMonster";

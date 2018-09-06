@@ -91,7 +91,7 @@ public class MonData : ScriptableObject
 
     private void Start()
     {
-
+        
     }
     public void CreateFromBase(MonData bm)
     {

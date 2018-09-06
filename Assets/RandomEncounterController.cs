@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RandomEncounterController : MonoBehaviour {
 
     GameObject player;
     PlayerDataHolder playerData;
+    EnemyDataHolder enemyData;
+    RegionDataHolder regionData;
 
     public int noRecentBattleMinSecs;
     public int noRecentBattleMaxSecs;
@@ -19,10 +22,15 @@ public class RandomEncounterController : MonoBehaviour {
 
     public bool battledRecently = false;
 
+    Monpedia mp;
+
     private void Awake()
     {
         player = GameObject.FindWithTag("Player");
         playerData = GetComponent<PlayerDataHolder>();
+        enemyData = GetComponent<EnemyDataHolder>();
+        mp = GetComponent<Monpedia>();
+        regionData = GameObject.Find("RegionData").GetComponent<RegionDataHolder>();
 
         ResetBattleTimer();
     }
@@ -30,24 +38,27 @@ public class RandomEncounterController : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
-        if (player.GetComponent<SimpleCharacterControl>().moving && player.GetComponent<SimpleCharacterControl>().inEncounterZone)
+        if (player != null)
         {
-            timeUntilEncounter -= Time.deltaTime;
-            if(timeUntilEncounter < 0.2f)
+            if (player.GetComponent<SimpleCharacterControl>().moving && player.GetComponent<SimpleCharacterControl>().inEncounterZone)
             {
-                StartWildBattle();
-            }
-        }
-        if (battledRecently)
-        {
-            recentBattleCounter -= Time.deltaTime;
-            if(recentBattleCounter < 0.2f)
-            {
-                battledRecently = false;
-                int r = Random.Range(noRecentBattleMinSecs, noRecentBattleMaxSecs);
-                if (r < timeUntilEncounter)
+                timeUntilEncounter -= Time.deltaTime;
+                if (timeUntilEncounter < 0.2f)
                 {
-                    timeUntilEncounter = r;
+                    StartWildBattle();
+                }
+            }
+            if (battledRecently)
+            {
+                recentBattleCounter -= Time.deltaTime;
+                if (recentBattleCounter < 0.2f)
+                {
+                    battledRecently = false;
+                    int r = Random.Range(noRecentBattleMinSecs, noRecentBattleMaxSecs);
+                    if (r < timeUntilEncounter)
+                    {
+                        timeUntilEncounter = r;
+                    }
                 }
             }
         }
@@ -56,9 +67,11 @@ public class RandomEncounterController : MonoBehaviour {
     void StartWildBattle()
     {
         battledRecently = true;
-        Debug.Log("Random Battle!");
+        playerData.SetData();
+        enemyData.SetData(regionData.GetEncounterMon(), regionData.GetEncounterLevel());
         ResetBattleTimer();
         ResetRecentBattleTimer();
+        SceneManager.LoadScene("BaseBattle");
     }
 
     void ResetBattleTimer()
