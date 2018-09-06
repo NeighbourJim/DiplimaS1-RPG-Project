@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7da0d475b1a02564888f008c0850215f, type: 3}
+  m_Name: CM012Toxikitty
+  m_EditorClassIdentifier: 
+  monsterPrefab: {fileID: 1721742652896770, guid: b8ae7a09cf2a6384386ed40210e1699a,
+    type: 2}
+  cry: {fileID: 0}
+  monID: 12
+  monName: Toxikitty
+  monpediaEntry: ?ENTRY?
+  nickname: 
+  ownership: 0
+  primaryType: {fileID: 11400000, guid: 52385197a4c00e547ac0e75e8a307a0f, type: 2}
+  secondaryType: {fileID: 0}
+  level: 1
+  curXP: 0
+  xpToNextLevel: 0
+  xpYield: 64
+  evolves: 0
+  levelToEvolve: -1
+  evolvesInto: {fileID: 0}
+  baseHP: 30
+  baseAtk: 30
+  baseDef: 30
+  baseSpAtk: 30
+  baseSpDef: 30
+  baseSpeed: 30
+  ivHP: 0
+  ivAtk: 0
+  ivDef: 0
+  ivSpAtk: 0
+  ivSpDef: 0
+  ivSpeed: 0
+  curAtk: 0
+  curDef: 0
+  curSpAtk: 0
+  curSpDef: 0
+  curSpeed: 0
+  maxHP: 0
+  curHP: 0
+  hasStatus: 0
+  remainingSleepTurns: 0
+  learnedMoves:
+  - {fileID: 11400000, guid: bc162d97af182554dbd91483f05f3c84, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  selectedMove: {fileID: 0}
+  learnset: []

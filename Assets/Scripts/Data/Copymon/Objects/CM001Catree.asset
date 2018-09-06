@@ -16,7 +16,7 @@ MonoBehaviour:
   cry: {fileID: 8300000, guid: 26968f45315024ecbac760219d6911ed, type: 3}
   monID: 1
   monName: Catree
-  monpediaEntry: A cat that is a plant
+  monpediaEntry: A cat that is a tree
   nickname: Catree
   ownership: 1
   primaryType: {fileID: 11400000, guid: dceac4decc4624644b7ca3437ec9a013, type: 2}

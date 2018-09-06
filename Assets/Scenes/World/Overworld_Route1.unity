@@ -622,6 +622,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114207441419727558, guid: cc10d2351ed1816489e5c5f379b46e32,
+        type: 2}
+      propertyPath: monpedia.Array.size
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 4000517825539880, guid: cc10d2351ed1816489e5c5f379b46e32, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -654,6 +659,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114207441419727558, guid: cc10d2351ed1816489e5c5f379b46e32,
+        type: 2}
+      propertyPath: monpedia.Array.data[12]
+      value: 
+      objectReference: {fileID: 11400000, guid: 7fe9aa996f54f2847835c7ad16aa8dbf,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cc10d2351ed1816489e5c5f379b46e32, type: 2}
   m_IsPrefabParent: 0
