@@ -5,7 +5,33 @@ using UnityEngine.SceneManagement;
 
 public class PlayerDataHolder : MonoBehaviour {
 
-    public static Vector3 PlayerLocation { get; set; }   
+    public static Vector3 PlayerLocation { get; set; }
+
+    static bool inEncounterZone = false;
+    public static bool InEncounterZone
+    {
+        get
+        {
+            return inEncounterZone;
+        }
+        set
+        {
+            inEncounterZone = value;
+        }
+    }
+
+    static bool moving = false;
+    public static bool Moving
+    {
+        get
+        {
+            return moving;
+        }
+        set
+        {
+            moving = value;
+        }
+    }
 
     public static MonData[] playerTeam = new MonData[5];
 

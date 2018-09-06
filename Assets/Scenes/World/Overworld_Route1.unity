@@ -1120,7 +1120,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1435840993}
+      - m_Target: {fileID: 1812283947}
         m_MethodName: SetData
         m_Mode: 1
         m_Arguments:
@@ -1663,7 +1663,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1435840994}
-  - component: {fileID: 1435840993}
   m_Layer: 5
   m_Name: SceneManager
   m_TagString: Untagged
@@ -1671,18 +1670,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1435840993
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1435840992}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e34a9bd91098ccb479bfbe33f2fa4df3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dataController: {fileID: 1812283943}
 --- !u!224 &1435840994
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2524,6 +2511,47 @@ GameObject:
   m_PrefabParentObject: {fileID: 1974760727511222, guid: cc10d2351ed1816489e5c5f379b46e32,
     type: 2}
   m_PrefabInternal: {fileID: 737590406}
+--- !u!114 &1812283944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1812283943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f57131e07d7e20c42bf7b893fcf45511, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1812283945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1812283943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 766b5ee7c5a4a5441b33a1a62fa98511, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  noRecentBattleMinSecs: 3
+  noRecentBattleMaxSecs: 6
+  recentBattleMinSecs: 7
+  recentBattleMaxSecs: 13
+  recentBattleTime: 30
+  timeUntilEncounter: 0
+  recentBattleCounter: 0
+  battledRecently: 0
+--- !u!114 &1812283947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1812283943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e34a9bd91098ccb479bfbe33f2fa4df3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1823014741
 Prefab:
   m_ObjectHideFlags: 0

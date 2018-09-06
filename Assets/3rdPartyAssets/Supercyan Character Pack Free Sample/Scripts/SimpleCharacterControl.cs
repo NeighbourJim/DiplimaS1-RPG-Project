@@ -34,6 +34,9 @@ public class SimpleCharacterControl : MonoBehaviour {
     private bool m_isGrounded;
     private List<Collider> m_collisions = new List<Collider>();
 
+    public bool moving = false;
+    public bool inEncounterZone = false;
+
     private void OnCollisionEnter(Collision collision)
     {
         ContactPoint[] contactPoints = collision.contacts;
@@ -164,6 +167,11 @@ public class SimpleCharacterControl : MonoBehaviour {
             transform.position += m_currentDirection * m_moveSpeed * Time.deltaTime;
 
             m_animator.SetFloat("MoveSpeed", direction.magnitude);
+            moving = true;
+        }
+        else
+        {
+            moving = false;
         }
 
         JumpingAndLanding();
@@ -187,6 +195,30 @@ public class SimpleCharacterControl : MonoBehaviour {
         if (!m_isGrounded && m_wasGrounded)
         {
             m_animator.SetTrigger("Jump");
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Grass"))
+        {
+            inEncounterZone = true;
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Grass") && !inEncounterZone)
+        {
+            inEncounterZone = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Grass"))
+        {
+            inEncounterZone = false;
         }
     }
 }
