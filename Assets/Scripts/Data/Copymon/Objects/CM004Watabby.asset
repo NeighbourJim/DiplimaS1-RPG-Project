@@ -45,22 +45,16 @@ MonoBehaviour:
   curSpAtk: 11
   curSpDef: 14
   curSpeed: 10
-  curAcc: 100
-  curEva: 100
   maxHP: 21
   curHP: 21
   hasStatus: 0
-  buffStageAtk: 0
-  buffStageDef: 0
-  buffStageSpAtk: 0
-  buffStageSpDef: 0
-  buffStageSpeed: 0
-  buffStageAcc: 0
-  buffStageEva: 0
+  remainingSleepTurns: 0
   learnedMoves:
-  - {fileID: 11400000, guid: 53039d224f13edb4e8e4e9580edb48ba, type: 2}
-  - {fileID: 11400000, guid: 93f9dbcb4f63d944498e75941314359a, type: 2}
-  - {fileID: 11400000, guid: 6976a41fbe546dc4d8353215223731fe, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   selectedMove: {fileID: 11400000, guid: 6976a41fbe546dc4d8353215223731fe, type: 2}
-  learnset: []
+  learnset:
+  - levelToLearn: 1
+    moveToLearn: {fileID: 11400000, guid: 9509e6fd2d654264ba5f2bd74d428f74, type: 2}

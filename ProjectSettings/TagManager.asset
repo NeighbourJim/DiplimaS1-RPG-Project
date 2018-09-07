@@ -8,6 +8,7 @@ TagManager:
   - PlayerMonster
   - EnemyMonster
   - Grass
+  - BattleCamera
   layers:
   - Default
   - TransparentFX

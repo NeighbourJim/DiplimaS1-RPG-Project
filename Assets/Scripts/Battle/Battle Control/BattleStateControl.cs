@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BattleStateControl : MonoBehaviour {
     public TurnState currentState;
@@ -104,6 +105,10 @@ public class BattleStateControl : MonoBehaviour {
             case (TurnState.PlayerWin):
                 if (uiTextControl.messagesFinished)
                     ResolvePlayerWinState();
+                break;
+            case (TurnState.BattleEnding):
+                if (uiTextControl.messagesFinished)
+                    ResolveBattleEndState();
                 break;
         }
 	}
@@ -219,13 +224,18 @@ public class BattleStateControl : MonoBehaviour {
     void ResolvePlayerWinState()
     {
         battleDialogue.AddToMessages("You win.");
-        AdvanceState(TurnState.BothFaint); // TODO: CHANGE THIS!!!!!!!
+        AdvanceState(TurnState.BattleEnding); // TODO: CHANGE THIS!!!!!!!
     }
 
     void ResolvePlayerLoseState()
     {
         battleDialogue.AddToMessages("You lose.");
-        AdvanceState(TurnState.BothFaint); // TODO: CHANGE THIS!!!!!!!
+        AdvanceState(TurnState.BattleEnding); // TODO: CHANGE THIS!!!!!!!
+    }
+
+    void ResolveBattleEndState()
+    {
+        SceneManager.LoadScene("Overworld_Route1");
     }
     #endregion
 

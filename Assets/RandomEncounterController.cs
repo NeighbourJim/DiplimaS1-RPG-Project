@@ -20,7 +20,7 @@ public class RandomEncounterController : MonoBehaviour {
     [SerializeField] float timeUntilEncounter;
     [SerializeField] float recentBattleCounter;
 
-    public bool battledRecently = false;
+    public static bool battledRecently = false;
 
     Monpedia mp;
 
