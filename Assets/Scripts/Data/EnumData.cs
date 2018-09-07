@@ -122,3 +122,11 @@ public enum BattleEvent
     completedPlayerWin,
     completedPlayerLose,
 }
+
+public enum MonsterRarity
+{
+    Common,
+    Uncommon,
+    Rare,
+    VeryRare
+}

@@ -8,5 +8,5 @@ public class Encounter
     public MonData monster;
     public int minLevel;
     public int maxLevel;
-    public int rarityPercent;
+    public MonsterRarity rarity;
 }

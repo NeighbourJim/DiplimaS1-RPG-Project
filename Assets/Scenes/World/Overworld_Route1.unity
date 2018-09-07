@@ -3190,12 +3190,20 @@ MonoBehaviour:
   - monster: {fileID: 11400000, guid: 9575c208f4417ee4aa83bf3211bde7d5, type: 2}
     minLevel: 10
     maxLevel: 15
-    rarityPercent: 100
+    rarity: 0
+  - monster: {fileID: 11400000, guid: 313a915ada7e50e4199995396be1e3c5, type: 2}
+    minLevel: 10
+    maxLevel: 15
+    rarity: 0
+  - monster: {fileID: 11400000, guid: f2effaa8259fb2d4cbcf5df9786716f4, type: 2}
+    minLevel: 10
+    maxLevel: 15
+    rarity: 0
   region1:
   - monster: {fileID: 11400000, guid: 9575c208f4417ee4aa83bf3211bde7d5, type: 2}
     minLevel: 6
     maxLevel: 9
-    rarityPercent: 100
+    rarity: 0
   ActiveRegion: 0
 --- !u!4 &1962316453
 Transform:
