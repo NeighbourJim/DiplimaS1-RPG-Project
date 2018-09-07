@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class RandomEncounterController : MonoBehaviour {
 
@@ -17,10 +18,14 @@ public class RandomEncounterController : MonoBehaviour {
 
     public float recentBattleTime = 30f;
 
+    Image screenRect;
+
     [SerializeField] float timeUntilEncounter;
     [SerializeField] float recentBattleCounter;
 
     public static bool battledRecently = false;
+
+    public AudioClip encounterStart;
 
     Monpedia mp;
 
@@ -31,7 +36,7 @@ public class RandomEncounterController : MonoBehaviour {
         enemyData = GetComponent<EnemyDataHolder>();
         mp = GetComponent<Monpedia>();
         regionData = GameObject.Find("RegionData").GetComponent<RegionDataHolder>();
-
+        screenRect = GameObject.Find("BattleTransitionRect").GetComponent<Image>();
         ResetBattleTimer();
     }
 
@@ -70,7 +75,7 @@ public class RandomEncounterController : MonoBehaviour {
         enemyData.SetData(regionData.GetEncounterMon(), regionData.GetEncounterLevel());
         ResetBattleTimer();
         ResetRecentBattleTimer();
-        SceneManager.LoadScene("BaseBattle");
+        StartCoroutine(BattleTransition());
     }
 
     void ResetBattleTimer()
@@ -88,5 +93,26 @@ public class RandomEncounterController : MonoBehaviour {
     void ResetRecentBattleTimer()
     {
         recentBattleCounter = recentBattleTime;
+    }
+
+    IEnumerator BattleTransition()
+    {
+        GameObject.Find("MusicController").GetComponent<AudioSource>().clip = encounterStart;
+        GameObject.Find("MusicController").GetComponent<AudioSource>().loop = false;
+        GameObject.Find("MusicController").GetComponent<AudioSource>().Play();
+        for (float a = 0f; a <= 1f; a += Time.deltaTime * 8)
+        {
+            screenRect.color = new Color(screenRect.color.r, screenRect.color.g, screenRect.color.b, a);
+            if(a > 0.91f)
+            {
+                screenRect.color = new Color(screenRect.color.r, screenRect.color.g, screenRect.color.b, 1);
+            }
+            yield return null;
+        }
+        while (GameObject.Find("MusicController").GetComponent<AudioSource>().isPlaying)
+        {
+            yield return null;
+        }
+        SceneManager.LoadScene("BaseBattle");
     }
 }

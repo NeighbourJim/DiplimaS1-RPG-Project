@@ -37,7 +37,7 @@ public class PlayerDataHolder : MonoBehaviour {
 
     Monpedia mp;
     GameObject player;
-    GameObject camera;
+    GameObject mainCam;
 
     private void Start()
     {
@@ -61,15 +61,15 @@ public class PlayerDataHolder : MonoBehaviour {
     private void LateUpdate()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        camera = GameObject.FindGameObjectWithTag("MainCamera");
+        mainCam = GameObject.FindGameObjectWithTag("MainCamera");
 
         if (player != null)
         {
             PlayerLocation = player.transform.position;
         }
-        if (camera != null)
+        if (mainCam != null)
         {
-            CameraLocation = camera.transform.position;
+            CameraLocation = mainCam.transform.position;
         }
     }
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class BattleStateControl : MonoBehaviour {
     public TurnState currentState;
@@ -119,7 +120,7 @@ public class BattleStateControl : MonoBehaviour {
         Monpedia mp = dataCont.GetComponent<Monpedia>();
         battleControl.InitiateWildBattle(PlayerDataHolder.playerTeam[0], EnemyDataHolder.enemyMonster);
         uiHPControl.SetMonsters(battleControl.playerMon, battleControl.enemyMon);
-        AdvanceState(TurnState.Intro);
+        StartCoroutine(FadeIn());
     }
     void ResolveIntroState()
     {
@@ -278,5 +279,16 @@ public class BattleStateControl : MonoBehaviour {
     bool CheckFainted(MonBattleData mon)
     {
         return (mon.curHP == 0);
+    }
+
+    IEnumerator FadeIn()
+    {
+        Image screenRect = GameObject.Find("BattleTransitionRect").GetComponent<Image>();
+        for (float a = 1f; a > 0f; a -= Time.deltaTime * 8)
+        {
+            screenRect.color = new Color(screenRect.color.r, screenRect.color.g, screenRect.color.b, a);
+            yield return null;
+        }
+        AdvanceState(TurnState.Intro);
     }
 }
