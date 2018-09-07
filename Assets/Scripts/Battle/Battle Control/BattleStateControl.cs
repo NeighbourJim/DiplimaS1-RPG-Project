@@ -167,7 +167,7 @@ public class BattleStateControl : MonoBehaviour {
             battleControl.ResolveAttack(secondToGo.selectedMove, secondToGo, firstToGo);
             uIEventHandler.continueMessages.Invoke();
         }
-        AdvanceState(TurnState.TurnEnding);
+        AdvanceState(TurnState.FaintCheck);
     }
 
     void ResolveTurnEndingState()
@@ -224,17 +224,18 @@ public class BattleStateControl : MonoBehaviour {
     void ResolvePlayerWinState()
     {
         battleDialogue.AddToMessages("You win.");
-        AdvanceState(TurnState.BattleEnding); // TODO: CHANGE THIS!!!!!!!
+        AdvanceState(TurnState.BattleEnding); 
     }
 
     void ResolvePlayerLoseState()
     {
         battleDialogue.AddToMessages("You lose.");
-        AdvanceState(TurnState.BattleEnding); // TODO: CHANGE THIS!!!!!!!
+        AdvanceState(TurnState.BattleEnding); 
     }
 
     void ResolveBattleEndState()
     {
+        battleControl.playerMonBase.RetainBattleStatus(battleControl.playerMon);
         SceneManager.LoadScene("Overworld_Route1");
     }
     #endregion

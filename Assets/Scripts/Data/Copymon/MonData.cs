@@ -214,6 +214,16 @@ public class MonData : ScriptableObject
         curSpeed = CalculateStat(baseSpeed, ivSpeed, lvl);
     }
 
+    public void CalculateAllStatsNoHeal(int lvl)
+    {
+        maxHP = CalculateMaxHP(baseHP, ivHP, lvl);
+        curAtk = CalculateStat(baseAtk, ivAtk, lvl);
+        curDef = CalculateStat(baseDef, ivDef, lvl);
+        curSpAtk = CalculateStat(baseSpAtk, ivSpAtk, lvl);
+        curSpDef = CalculateStat(baseSpDef, ivSpDef, lvl);
+        curSpeed = CalculateStat(baseSpeed, ivSpeed, lvl);
+    }
+
     public void GenerateWildStats(int lvl)
     {
         GenerateIVs();
@@ -270,5 +280,10 @@ public class MonData : ScriptableObject
         return Mathf.FloorToInt(exp);
     }
 
-    
+    public void RetainBattleStatus(MonBattleData battleData)
+    {
+        curHP = battleData.curHP;
+        curXP = battleData.curXP;
+        hasStatus = battleData.hasStatus;
+    }
 }

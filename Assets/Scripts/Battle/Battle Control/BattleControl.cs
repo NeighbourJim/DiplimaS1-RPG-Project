@@ -10,9 +10,11 @@ public class BattleControl : MonoBehaviour
     public GameObject playerSpawn;
     public GameObject enemSpawn;
 
-    public GameObject player;
-    public GameObject enemy;
+    GameObject playerModel;
+    GameObject enemyModel;
 
+    public MonData playerMonBase;
+    public MonData enemyMonBase;
     public MonBattleData playerMon;
     public MonBattleData enemyMon;
 
@@ -40,6 +42,8 @@ public class BattleControl : MonoBehaviour
 
     public void InitiateWildBattle(MonData player, MonData enemy)
     {
+        playerMonBase = player;
+        enemyMonBase = enemy;
         playerMon.SetData(player);
         enemyMon.SetData(enemy);
         Spawn();
@@ -57,16 +61,16 @@ public class BattleControl : MonoBehaviour
     void Spawn()
     {
 
-        player = Instantiate(mp.FindByID(playerMon.monID).monsterPrefab);
-        enemy = Instantiate(mp.FindByID(enemyMon.monID).monsterPrefab);
+        playerModel = Instantiate(mp.FindByID(playerMon.monID).monsterPrefab);
+        enemyModel = Instantiate(mp.FindByID(enemyMon.monID).monsterPrefab);
 
-        player.tag = "PlayerMonster";
-        enemy.tag = "EnemyMonster";
+        playerModel.tag = "PlayerMonster";
+        enemyModel.tag = "EnemyMonster";
 
         playerMon.ownership = Ownership.player;
         enemyMon.ownership = Ownership.wild;
 
-        playerMon.GenerateWildStats(playerMon.level);
+        playerMon.CalculateAllStatsNoHeal(playerMon.level);
         enemyMon.GenerateWildStats(enemyMon.level);
 
         Face();
@@ -75,11 +79,11 @@ public class BattleControl : MonoBehaviour
 
     void Face()
     {
-        player.transform.position = playerSpawn.transform.position;
-        enemy.transform.position = enemSpawn.transform.position;
+        playerModel.transform.position = playerSpawn.transform.position;
+        enemyModel.transform.position = enemSpawn.transform.position;
 
-        player.transform.LookAt(new Vector3(enemy.transform.position.x - 5, enemy.transform.position.y, enemy.transform.position.z));
-        enemy.transform.LookAt(player.transform);
+        playerModel.transform.LookAt(new Vector3(enemyModel.transform.position.x - 5, enemyModel.transform.position.y, enemyModel.transform.position.z));
+        enemyModel.transform.LookAt(playerModel.transform);
     }
 
     #region User Interface

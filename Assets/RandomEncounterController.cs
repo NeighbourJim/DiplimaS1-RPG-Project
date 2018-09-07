@@ -67,7 +67,6 @@ public class RandomEncounterController : MonoBehaviour {
     void StartWildBattle()
     {
         battledRecently = true;
-        playerData.SetData();
         enemyData.SetData(regionData.GetEncounterMon(), regionData.GetEncounterLevel());
         ResetBattleTimer();
         ResetRecentBattleTimer();
