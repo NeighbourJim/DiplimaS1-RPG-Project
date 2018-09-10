@@ -121,6 +121,7 @@ public class BattleStateControl : MonoBehaviour {
         battleControl.InitiateWildBattle(PlayerDataHolder.playerTeam[0], EnemyDataHolder.enemyMonster);
         uiHPControl.SetMonsters(battleControl.playerMon, battleControl.enemyMon);
         StartCoroutine(FadeIn());
+        AdvanceState(TurnState.Intro);
     }
     void ResolveIntroState()
     {
@@ -289,6 +290,5 @@ public class BattleStateControl : MonoBehaviour {
             screenRect.color = new Color(screenRect.color.r, screenRect.color.g, screenRect.color.b, a);
             yield return null;
         }
-        AdvanceState(TurnState.Intro);
     }
 }

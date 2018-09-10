@@ -9,7 +9,6 @@ public class BattleUIControl : MonoBehaviour {
     public GameObject battleController;
     BattleControl battleControlScript;
     BattleStateControl battleStateControlScript;
-    Copymon mon;
     public Button m1;
     public Button m2;
     public Button m3;
