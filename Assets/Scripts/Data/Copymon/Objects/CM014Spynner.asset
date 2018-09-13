@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7da0d475b1a02564888f008c0850215f, type: 3}
+  m_Name: CM014Spynner
+  m_EditorClassIdentifier: 
+  monsterPrefab: {fileID: 1950623223293144, guid: 13a3b16c821f48e4ab7a525d29ded3e1,
+    type: 2}
+  cry: {fileID: 0}
+  monID: 14
+  monName: Spynner
+  monpediaEntry: A large spider with specialised organs on its abdomen that generate
+    electricity.
+  nickname: 
+  ownership: 0
+  primaryType: {fileID: 11400000, guid: 7734e818bef8f0c4d96db1008fc44388, type: 2}
+  secondaryType: {fileID: 11400000, guid: 58b2dd05e06394741adaa3746bf5700c, type: 2}
+  level: 1
+  curXP: 0
+  xpToNextLevel: 0
+  xpYield: 140
+  evolves: 0
+  levelToEvolve: -1
+  evolvesInto: {fileID: 0}
+  baseHP: 70
+  baseAtk: 90
+  baseDef: 70
+  baseSpAtk: 60
+  baseSpDef: 60
+  baseSpeed: 40
+  ivHP: 0
+  ivAtk: 0
+  ivDef: 0
+  ivSpAtk: 0
+  ivSpDef: 0
+  ivSpeed: 0
+  curAtk: 0
+  curDef: 0
+  curSpAtk: 0
+  curSpDef: 0
+  curSpeed: 0
+  maxHP: 0
+  curHP: 0
+  hasStatus: 0
+  remainingSleepTurns: 0
+  learnedMoves:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  selectedMove: {fileID: 0}
+  learnset:
+  - levelToLearn: 3
+    moveToLearn: {fileID: 11400000, guid: 906fe41e38222954583ccdc2739dd098, type: 2}
+  - levelToLearn: 8
+    moveToLearn: {fileID: 11400000, guid: 8e526182e948efe409c84a969cd3f680, type: 2}
+  - levelToLearn: 13
+    moveToLearn: {fileID: 11400000, guid: 2868baeb838e5d9488b4b468396d5ee6, type: 2}
+  - levelToLearn: 18
+    moveToLearn: {fileID: 11400000, guid: 1d209c64126c6084483f95b34908e02e, type: 2}
+  - levelToLearn: 0
+    moveToLearn: {fileID: 0}
+  - levelToLearn: 0
+    moveToLearn: {fileID: 0}
+  - levelToLearn: 0
+    moveToLearn: {fileID: 0}
+  - levelToLearn: 0
+    moveToLearn: {fileID: 0}
+  - levelToLearn: 0
+    moveToLearn: {fileID: 0}
+  - levelToLearn: 0
+    moveToLearn: {fileID: 0}
