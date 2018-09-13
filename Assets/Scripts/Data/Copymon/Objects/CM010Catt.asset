@@ -48,10 +48,19 @@ MonoBehaviour:
   maxHP: 0
   curHP: 0
   hasStatus: 0
+  remainingSleepTurns: 0
   learnedMoves:
-  - {fileID: 11400000, guid: 9509e6fd2d654264ba5f2bd74d428f74, type: 2}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   selectedMove: {fileID: 0}
-  learnset: []
+  learnset:
+  - levelToLearn: 1
+    moveToLearn: {fileID: 11400000, guid: 9509e6fd2d654264ba5f2bd74d428f74, type: 2}
+  - levelToLearn: 5
+    moveToLearn: {fileID: 11400000, guid: 93f9dbcb4f63d944498e75941314359a, type: 2}
+  - levelToLearn: 8
+    moveToLearn: {fileID: 11400000, guid: 6976a41fbe546dc4d8353215223731fe, type: 2}
+  - levelToLearn: 12
+    moveToLearn: {fileID: 11400000, guid: 0f50b0bd05a32814599fe16219d549e3, type: 2}

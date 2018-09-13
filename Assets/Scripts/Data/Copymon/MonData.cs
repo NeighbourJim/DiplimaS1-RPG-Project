@@ -157,7 +157,7 @@ public class MonData : ScriptableObject
         int i = 0;
         foreach (LevelMovePair lmp in learnset)
         {
-            if (lmp.levelToLearn >= level)
+            if (lmp.levelToLearn > level)
             {
                 break;
             }
