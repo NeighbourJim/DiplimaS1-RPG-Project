@@ -28,15 +28,22 @@ public class RandomEncounterController : MonoBehaviour {
     public AudioClip encounterStart;
 
     Monpedia mp;
-
+    
     private void Awake()
+    {
+        InitializeData();
+    }
+
+    public void InitializeData()
     {
         player = GameObject.FindWithTag("Player");
         playerData = GetComponent<PlayerDataHolder>();
         enemyData = GetComponent<EnemyDataHolder>();
         mp = GetComponent<Monpedia>();
-        regionData = GameObject.Find("RegionData").GetComponent<RegionDataHolder>();
-        screenRect = GameObject.Find("BattleTransitionRect").GetComponent<Image>();
+        if (GameObject.Find("RegionData"))
+            regionData = GameObject.Find("RegionData").GetComponent<RegionDataHolder>();
+        if (GameObject.Find("BattleTransitionRect"))
+            screenRect = GameObject.Find("BattleTransitionRect").GetComponent<Image>();
         ResetBattleTimer();
     }
 
@@ -111,5 +118,20 @@ public class RandomEncounterController : MonoBehaviour {
             yield return null;
         }
         SceneManager.LoadScene("BaseBattle");
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += LevelLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= LevelLoaded;
+    }
+
+    void LevelLoaded(Scene scene, LoadSceneMode mode)
+    {
+        InitializeData();
     }
 }

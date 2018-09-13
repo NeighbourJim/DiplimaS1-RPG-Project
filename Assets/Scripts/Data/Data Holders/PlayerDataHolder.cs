@@ -46,13 +46,13 @@ public class PlayerDataHolder : MonoBehaviour {
         if (playerTeam[0] == null)
         {
             playerTeam[0] = ScriptableObject.CreateInstance<MonData>();
-            SetData();
+            SetData(1);
         }
     }
 
-    public void SetData()
+    public void SetData(int id)
     {
-        playerTeam[0].CreateFromBase(mp.FindByID(1));
+        playerTeam[0].CreateFromBase(mp.FindByID(id));
         playerTeam[0].level = 20;
         playerTeam[0].GenerateWildStats(playerTeam[0].level);
         playerTeam[0].GenerateMoveset();

@@ -16,7 +16,7 @@ MonoBehaviour:
   cry: {fileID: 0}
   monID: 7
   monName: Bonfeline
-  monpediaEntry: ?ENTRY?
+  monpediaEntry: A red cat with flaming claws
   nickname: Bonfeline
   ownership: 0
   primaryType: {fileID: 11400000, guid: 5478089db321b704a9aa4c1242f3c5cd, type: 2}
@@ -62,5 +62,5 @@ MonoBehaviour:
     moveToLearn: {fileID: 11400000, guid: cd6ec2a9eb254144385bbc5e151af33f, type: 2}
   - levelToLearn: 8
     moveToLearn: {fileID: 11400000, guid: 8acb5e0ee6f48894a932585a0da9a7a6, type: 2}
-  - levelToLearn: 0
-    moveToLearn: {fileID: 0}
+  - levelToLearn: 12
+    moveToLearn: {fileID: 11400000, guid: 0f50b0bd05a32814599fe16219d549e3, type: 2}

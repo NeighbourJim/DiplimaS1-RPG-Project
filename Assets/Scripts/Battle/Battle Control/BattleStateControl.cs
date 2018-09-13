@@ -125,6 +125,7 @@ public class BattleStateControl : MonoBehaviour {
     }
     void ResolveIntroState()
     {
+        StartCoroutine(FadeIn());
         battleDialogue.AddToMessages(string.Format("A wild {0} appeared!", battleControl.enemyMon.monName));
         battleDialogue.AddToMessages(string.Format("Go, {0}!", battleControl.playerMon.monName));
         uIEventHandler.continueMessages.Invoke();

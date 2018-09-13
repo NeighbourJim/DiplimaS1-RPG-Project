@@ -16,7 +16,7 @@ MonoBehaviour:
   cry: {fileID: 0}
   monID: 4
   monName: Watabby
-  monpediaEntry: ?ENTRY?
+  monpediaEntry: A blue cat covered in water
   nickname: Watabby
   ownership: 0
   primaryType: {fileID: 11400000, guid: b263572aa250ee043922a1bd995c9457, type: 2}
@@ -50,11 +50,19 @@ MonoBehaviour:
   hasStatus: 0
   remainingSleepTurns: 0
   learnedMoves:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 9509e6fd2d654264ba5f2bd74d428f74, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   selectedMove: {fileID: 11400000, guid: 6976a41fbe546dc4d8353215223731fe, type: 2}
   learnset:
+  - levelToLearn: 1
+    moveToLearn: {fileID: 11400000, guid: 9509e6fd2d654264ba5f2bd74d428f74, type: 2}
+  - levelToLearn: 8
+    moveToLearn: {fileID: 11400000, guid: 53039d224f13edb4e8e4e9580edb48ba, type: 2}
+  - levelToLearn: 12
+    moveToLearn: {fileID: 11400000, guid: 93f9dbcb4f63d944498e75941314359a, type: 2}
+  - levelToLearn: 15
+    moveToLearn: {fileID: 11400000, guid: 03f659c88e6559a45a52fd558a89265c, type: 2}
   - levelToLearn: 1
     moveToLearn: {fileID: 11400000, guid: 9509e6fd2d654264ba5f2bd74d428f74, type: 2}

@@ -8,15 +8,20 @@ public class BecomeTransparent : MonoBehaviour, IFadable
 
     public void FadeIn()
     {
-
+        Material mat = gameObject.GetComponent<Renderer>().material;
+        while (mat.color.a < 1f)
+        {
+            mat.color = new Color(mat.color.r, mat.color.g, mat.color.b, mat.color.a + 0.1f);
+            Debug.Log(mat.color.a);
+        }
+        ChangeRenderMode(mat, BlendMode.Opaque);
     }
     
     public void FadeOut()
     {
         Material mat = gameObject.GetComponent<Renderer>().material;
         ChangeRenderMode(mat, BlendMode.Transparent);
-        Debug.Log("Hi");
-        while(mat.color.a > 0.3f)
+        while (mat.color.a > 0.3f)
         {
             mat.color = new Color(mat.color.r, mat.color.g, mat.color.b, mat.color.a - 0.1f);
             Debug.Log(mat.color.a);

@@ -255,7 +255,6 @@ public class BattleControl : MonoBehaviour
             {
                 battleDialogue.AddToMessages("It had no effect...");
             }
-            battleDialogue.AddToMessages(string.Format("{0} dealt {1} damage.", attacker.monName, damage, defender.monName));
             defender.TakeDamage(damage);
 
             if (move.causesStatus != StatusEffect.none)
@@ -617,12 +616,12 @@ public class BattleControl : MonoBehaviour
         switch (monster.hasStatus)
         {
             case (StatusEffect.Burn):
-                monster.TakeDamage(Mathf.FloorToInt(monster.maxHP * 0.06f));
                 battleDialogue.AddToMessages(string.Format("{0} took damage from it's burn.", monster.monName));
+                monster.TakeDamage(Mathf.FloorToInt(monster.maxHP * 0.06f));
                 break;
             case (StatusEffect.Poison):
-                monster.TakeDamage(Mathf.FloorToInt(monster.maxHP * 0.12f));
                 battleDialogue.AddToMessages(string.Format("{0} took damage from poison.", monster.monName));
+                monster.TakeDamage(Mathf.FloorToInt(monster.maxHP * 0.12f));
                 break;
         }
     }
