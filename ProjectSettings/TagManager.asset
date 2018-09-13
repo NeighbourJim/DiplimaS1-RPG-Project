@@ -9,6 +9,7 @@ TagManager:
   - EnemyMonster
   - Grass
   - BattleCamera
+  - TransBehind
   layers:
   - Default
   - TransparentFX

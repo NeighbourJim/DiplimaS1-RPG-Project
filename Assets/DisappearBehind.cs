@@ -6,27 +6,32 @@ public class DisappearBehind : MonoBehaviour {
 
     GameObject p;
     GameObject c;
-    MeshRenderer mr;
     float offset = 5f;
+    RaycastHit hit;
+    GameObject prevHit;
 
     private void Start()
     {
         p = GameObject.FindGameObjectWithTag("Player");
-        c = GameObject.FindGameObjectWithTag("MainCamera");
-        mr = GetComponent<MeshRenderer>();
+        c = gameObject;
     }
 
     // Update is called once per frame
     void Update () {
-		if(p.transform.position.z > transform.position.z + offset && c.transform.position.z < transform.position.z + offset)
+        if (Physics.Linecast(c.transform.position, p.transform.position, out hit))
         {
-            if(mr.enabled)
-                mr.enabled = false;
-        }
-        else
-        {
-            if(!mr.enabled)
-                mr.enabled = true;
+            if (hit.collider.gameObject.CompareTag("TransBehind"))
+            {
+                hit.collider.gameObject.GetComponent<Renderer>().enabled = false;                
+            }
+            if (prevHit != null)
+            {
+                if (hit.collider.gameObject != prevHit && prevHit.CompareTag("TransBehind"))
+                {
+                    prevHit.GetComponent<Renderer>().enabled = true;
+                }
+            }
+            prevHit = hit.collider.gameObject;
         }
 	}
 }
