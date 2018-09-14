@@ -22,15 +22,15 @@ public class DisappearBehind : MonoBehaviour {
         {
             if (hit.collider.gameObject.CompareTag("TransBehind"))
             {
-                hit.collider.gameObject.GetComponent<Renderer>().enabled = false;  
-                //hit.collider.gameObject.GetComponent<BecomeTransparent>().FadeOut();
+                //hit.collider.gameObject.GetComponent<Renderer>().enabled = false;  
+                hit.collider.gameObject.GetComponent<BecomeTransparent>().FadeOut();
             }
             if (prevHit != null)
             {
                 if (hit.collider.gameObject != prevHit && prevHit.CompareTag("TransBehind"))
                 {
-                    prevHit.GetComponent<Renderer>().enabled = true;
-                    //prevHit.GetComponent<BecomeTransparent>().FadeIn();
+                    //prevHit.GetComponent<Renderer>().enabled = true;
+                    prevHit.GetComponent<BecomeTransparent>().FadeIn();
                 }
             }
             prevHit = hit.collider.gameObject;

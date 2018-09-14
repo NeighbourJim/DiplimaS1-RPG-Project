@@ -26,7 +26,7 @@ public class SetPositionsOnReload : MonoBehaviour {
     }
     void SetCameraLocation()
     {
-        player.transform.position = PlayerDataHolder.PlayerLocation;
+        camera.transform.position = PlayerDataHolder.CameraLocation;
     }
 
     // Update is called once per frame
