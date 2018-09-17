@@ -51,9 +51,9 @@ public enum Ownership
 
 public enum PhysSpec
 {
-    physical,
-    special,
-    status
+    Physical,
+    Special,
+    Status
 }
 
 public enum StatusEffect

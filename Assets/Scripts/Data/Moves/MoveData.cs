@@ -15,7 +15,7 @@ public class MoveData : ScriptableObject {
     [Header("Move Type & Physical/Special")]
     public TypeData moveType;
     [Tooltip("This determines which attacking and defending stats are used in damage calculations, or if the move is a non-damaging move.")]
-    public PhysSpec physSpec = PhysSpec.status;
+    public PhysSpec physSpec = PhysSpec.Status;
 
     [Header("Move Number Values")]
     [Tooltip("Base Power used in damage calculation.")]

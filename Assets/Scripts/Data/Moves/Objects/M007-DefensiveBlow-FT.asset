@@ -13,8 +13,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveID: 7
   moveName: Defensive Blow
-  moveDescription: The user performs a quick jab while protecting themselves. Deals
-    low damage, but increases the user's defense.
+  moveDescription: The user performs a low-power jab while protecting themselves to
+    increase their Defense.
   moveType: {fileID: 11400000, guid: fde76722823e33a4d9ee30701823f145, type: 2}
   physSpec: 0
   basePower: 15

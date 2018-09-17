@@ -113,41 +113,49 @@ public class BattleControl : MonoBehaviour
         {
             uiButtonControl.ChangeButtonText(uiButtonControl.m1, playerMon.learnedMoves[0].moveName);
             uiButtonControl.m1.enabled = true;
+            uiButtonControl.m1.interactable = true;
         }
         else
         {
             uiButtonControl.ChangeButtonText(uiButtonControl.m1, "---");
             uiButtonControl.m1.enabled = false;
+            uiButtonControl.m1.interactable = false;
         }
         if (playerMon.learnedMoves[1] != null)
         {
             uiButtonControl.ChangeButtonText(uiButtonControl.m2, playerMon.learnedMoves[1].moveName);
             uiButtonControl.m2.enabled = true;
+            uiButtonControl.m2.interactable = true;
         }
         else
         {
             uiButtonControl.ChangeButtonText(uiButtonControl.m2, "---");
             uiButtonControl.m2.enabled = false;
+            uiButtonControl.m2.interactable = false;
         }
         if (playerMon.learnedMoves[2] != null)
         {
             uiButtonControl.ChangeButtonText(uiButtonControl.m3, playerMon.learnedMoves[2].moveName);
             uiButtonControl.m3.enabled = true;
+            uiButtonControl.m3.interactable = true;
         }
         else
         {
             uiButtonControl.ChangeButtonText(uiButtonControl.m3, "---");
             uiButtonControl.m3.enabled = false;
+            uiButtonControl.m3.interactable = false;
         }
         if (playerMon.learnedMoves[3] != null)
         {
             uiButtonControl.ChangeButtonText(uiButtonControl.m4, playerMon.learnedMoves[3].moveName);
             uiButtonControl.m4.enabled = true;
+            uiButtonControl.m4.interactable = true;
         }
         else
         {
             uiButtonControl.ChangeButtonText(uiButtonControl.m4, "---");
             uiButtonControl.m4.enabled = false;
+            uiButtonControl.m4.interactable = false;
         }
     }
 
@@ -218,7 +226,7 @@ public class BattleControl : MonoBehaviour
     #region Attack Resolution
     public void ResolveAttack(MoveData move, MonBattleData attacker, MonBattleData defender)
     {
-        if(move.physSpec == PhysSpec.physical || move.physSpec == PhysSpec.special)
+        if(move.physSpec == PhysSpec.Physical || move.physSpec == PhysSpec.Special)
         {
             ResolveDamagingAttack(move, attacker, defender);
         }
@@ -441,7 +449,7 @@ public class BattleControl : MonoBehaviour
 
         L = attacker.level;
         P = move.basePower;
-        if(move.physSpec == PhysSpec.physical)
+        if(move.physSpec == PhysSpec.Physical)
         {
             A = Mathf.FloorToInt(attacker.curAtk * GetStatMultiplier(attacker.buffStageAtk));
             D = Mathf.FloorToInt(defender.curDef * GetStatMultiplier(defender.buffStageDef));
@@ -483,7 +491,7 @@ public class BattleControl : MonoBehaviour
             }
         }
 
-        if(move.physSpec == PhysSpec.physical && attacker.hasStatus == StatusEffect.Burn)
+        if(move.physSpec == PhysSpec.Physical && attacker.hasStatus == StatusEffect.Burn)
         {
             burn = 0.5f;
         }
