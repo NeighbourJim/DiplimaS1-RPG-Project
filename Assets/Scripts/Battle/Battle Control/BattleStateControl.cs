@@ -77,6 +77,11 @@ public class BattleStateControl : MonoBehaviour {
                     ResolveSecondActionState();
                 break;
 
+            case (TurnState.FleeAttempt):
+                if (uiTextControl.messagesFinished)
+                    ResolveFleeState();
+                break;
+
             case (TurnState.TurnEnding):
                 if (uiTextControl.messagesFinished)
                     ResolveTurnEndingState();
@@ -193,7 +198,7 @@ public class BattleStateControl : MonoBehaviour {
         }
         else
         {
-            if (previousState == TurnState.FirstAction)
+            if (previousState == TurnState.FirstAction || previousState == TurnState.FleeAttempt)
             {
                 AdvanceState(TurnState.SecondAction);
             }
@@ -220,7 +225,8 @@ public class BattleStateControl : MonoBehaviour {
 
     void ResolveBothFaintState()
     {
-
+        battleDialogue.AddToMessages("You win..?");
+        AdvanceState(TurnState.BattleEnding);
     }
 
     void ResolvePlayerWinState()
@@ -233,6 +239,37 @@ public class BattleStateControl : MonoBehaviour {
     {
         battleDialogue.AddToMessages("You lose.");
         AdvanceState(TurnState.BattleEnding); 
+    }
+
+    void ResolveFleeState()
+    {
+        if (battleControl.battleType == BattleType.WildFleeable)
+        {
+            secondToGo = battleControl.enemyMon;
+            battleDialogue.AddToMessages("You tried to flee...");
+            if (battleControl.TryToFlee())
+            {
+                battleDialogue.AddToMessages("You fled from battle!");
+                AdvanceState(TurnState.BattleEnding);
+            }
+            else
+            {
+                battleDialogue.AddToMessages("Couldn't get away!");
+                AdvanceState(TurnState.FaintCheck);
+            }
+        }
+        else
+        {
+            if (battleControl.battleType == BattleType.Trainer)
+            {
+                battleDialogue.AddToMessages("Can't flee from a trainer battle!");
+            }
+            else
+            {
+                battleDialogue.AddToMessages("Can't flee from this battle!");
+            }
+            AdvanceState(TurnState.SecondAction);
+        }
     }
 
     void ResolveBattleEndState()

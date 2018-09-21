@@ -13,6 +13,7 @@ public enum TurnState
     FirstAction,
     SecondAction,
     FaintCheck,
+    FleeAttempt,
     PlayerFaints,
     EnemyFaints,
     BothFaint,
@@ -47,6 +48,13 @@ public enum Ownership
     wild,
     player,
     trainer
+}
+
+public enum BattleType
+{
+    WildFleeable,
+    WildUnfleeable,
+    Trainer
 }
 
 public enum PhysSpec

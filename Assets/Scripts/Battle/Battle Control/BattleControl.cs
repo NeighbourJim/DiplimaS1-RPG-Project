@@ -13,6 +13,7 @@ public class BattleControl : MonoBehaviour
     GameObject playerModel;
     GameObject enemyModel;
 
+    public BattleType battleType;
     public MonData playerMonBase;
     public MonData enemyMonBase;
     public MonBattleData playerMon;
@@ -28,6 +29,8 @@ public class BattleControl : MonoBehaviour
 
     Monpedia mp;
 
+    int fleeAttempts;
+
     void Start ()
     {
         dataController = GameObject.Find("GameDataController");
@@ -38,6 +41,7 @@ public class BattleControl : MonoBehaviour
         uiButtonControl = battleUIController.GetComponent<BattleUIControl>();
         uiHPControl = battleUIController.GetComponent<BattleHPControl>();
         battleDialogue = battleUIController.GetComponent<BattleDialogue>();
+        fleeAttempts = 0;
     }
 
     public void InitiateWildBattle(MonData player, MonData enemy)
@@ -49,6 +53,7 @@ public class BattleControl : MonoBehaviour
         Spawn();
         SetButtonColours();
         SetButtonNames();
+        battleType = BattleType.WildFleeable;
     }
 
     public void InitiateTrainerBattle(MonData[] playerTeam, MonData[] enemyTeam)
@@ -730,4 +735,33 @@ public class BattleControl : MonoBehaviour
     }
 
     #endregion
+
+# region Flee Resolution
+
+    public void Flee()
+    {
+        stateControl.AdvanceState(TurnState.FleeAttempt);
+    }
+
+    public bool TryToFlee()
+    {
+        // Formula for seeing if an escape attempt is as follows:
+        // F = ( (A * 128 / B) + 30 * C ) % 256
+        // Where:
+        // A = Unmodified Speed of the player's active monster
+        // B = Unmodified Speed of the opponent monster (minimum 1)
+        // C = Number of times escape has been attempted during the battle (including the current attempt)
+        // A random number between 0 and 255 is then generated, and if it is less than F, the flee attempt is successful
+
+        float F;
+        float A = playerMon.curSpeed;
+        float B = (enemyMon.curSpeed > 1) ? enemyMon.curSpeed : 1f; // If the opposing monster has a speed > 1, use that. Otherwise make it 1.
+        float C = ++fleeAttempts;
+
+        F = ((A * 128 / B) + 30 * C) % 256;
+
+        return Random.Range(0, 256) < F;
+    }
+
+# endregion
 }
