@@ -9,21 +9,21 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1261137860903100}
+  m_RootGameObject: {fileID: 1465016900077036}
   m_IsPrefabParent: 1
---- !u!1 &1261137860903100
+--- !u!1 &1465016900077036
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4773208059809142}
-  - component: {fileID: 114428474653808006}
-  - component: {fileID: 114889476453972874}
-  - component: {fileID: 114133169735683044}
-  - component: {fileID: 114532960714525784}
-  - component: {fileID: 114654322753307764}
+  - component: {fileID: 4755652547657916}
+  - component: {fileID: 114145512097592394}
+  - component: {fileID: 114092703108883556}
+  - component: {fileID: 114893897149284986}
+  - component: {fileID: 114072961128724308}
+  - component: {fileID: 114664663488762736}
   m_Layer: 0
   m_Name: GameDataController
   m_TagString: Untagged
@@ -31,12 +31,12 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4773208059809142
+--- !u!4 &4755652547657916
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1261137860903100}
+  m_GameObject: {fileID: 1465016900077036}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -44,31 +44,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114133169735683044
+--- !u!114 &114072961128724308
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1261137860903100}
+  m_GameObject: {fileID: 1465016900077036}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 766b5ee7c5a4a5441b33a1a62fa98511, type: 3}
+  m_Script: {fileID: 11500000, guid: 2df5ff292be8c6046935268f6d4b9dd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noRecentBattleMinSecs: 3
-  noRecentBattleMaxSecs: 6
-  recentBattleMinSecs: 7
-  recentBattleMaxSecs: 13
-  recentBattleTime: 30
-  timeUntilEncounter: 0
-  recentBattleCounter: 0
-  encounterStart: {fileID: 8300000, guid: 4e1ff8faed12a475eba9be0e46072269, type: 3}
---- !u!114 &114428474653808006
+--- !u!114 &114092703108883556
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1261137860903100}
+  m_GameObject: {fileID: 1465016900077036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f57131e07d7e20c42bf7b893fcf45511, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114145512097592394
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1465016900077036}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac54129ec35d9bc43b2a456b44b1009e, type: 3}
@@ -88,36 +91,35 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6396187b37003ad49b8b80f061173dab, type: 2}
   - {fileID: 0}
   - {fileID: 11400000, guid: 7fe9aa996f54f2847835c7ad16aa8dbf, type: 2}
---- !u!114 &114532960714525784
+  - {fileID: 0}
+  - {fileID: 11400000, guid: 237d2f07f7b89254aa9e88502f4fd8fc, type: 2}
+--- !u!114 &114664663488762736
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1261137860903100}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2df5ff292be8c6046935268f6d4b9dd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114654322753307764
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1261137860903100}
+  m_GameObject: {fileID: 1465016900077036}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e34a9bd91098ccb479bfbe33f2fa4df3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114889476453972874
+--- !u!114 &114893897149284986
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1261137860903100}
+  m_GameObject: {fileID: 1465016900077036}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f57131e07d7e20c42bf7b893fcf45511, type: 3}
+  m_Script: {fileID: 11500000, guid: 766b5ee7c5a4a5441b33a1a62fa98511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  noRecentBattleMinSecs: 3
+  noRecentBattleMaxSecs: 6
+  recentBattleMinSecs: 7
+  recentBattleMaxSecs: 13
+  recentBattleTime: 30
+  timeUntilEncounter: 0
+  recentBattleCounter: 0
+  encounterStart: {fileID: 8300000, guid: 4e1ff8faed12a475eba9be0e46072269, type: 3}
