@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerDataHolder : MonoBehaviour {
 
+    public static string PlayerPrevMap { get; set; }
+    public static string PlayerCurrMap { get; set; }
     public static Vector3 PlayerLocation { get; set; }
     public static Vector3 CameraLocation { get; set; }
 
@@ -46,14 +49,14 @@ public class PlayerDataHolder : MonoBehaviour {
         if (playerTeam[0] == null)
         {
             playerTeam[0] = ScriptableObject.CreateInstance<MonData>();
-            SetData(1);
+            SetData(1,1);
         }
     }
 
-    public void SetData(int id)
+    public void SetData(int id, int level)
     {
         playerTeam[0].CreateFromBase(mp.FindByID(id));
-        playerTeam[0].level = 20;
+        playerTeam[0].level = level;
         playerTeam[0].GenerateWildStats(playerTeam[0].level);
         playerTeam[0].GenerateMoveset();
     }
@@ -73,4 +76,9 @@ public class PlayerDataHolder : MonoBehaviour {
         }
     }
 
+    private void OnEnable()
+    {
+        PlayerPrevMap = PlayerCurrMap;
+        PlayerCurrMap = SceneManager.GetActiveScene().name;
+    }
 }

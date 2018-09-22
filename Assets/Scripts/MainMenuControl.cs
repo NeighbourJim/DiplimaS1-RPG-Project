@@ -41,7 +41,7 @@ public class MainMenuControl : MonoBehaviour {
     {
         PlayerDataHolder playerData = GameObject.Find("GameDataController").GetComponent<PlayerDataHolder>();
 
-        playerData.SetData(monID);
+        playerData.SetData(monID, 20);
         LoadOverworld();
     }
 }

@@ -275,7 +275,7 @@ public class BattleStateControl : MonoBehaviour {
     void ResolveBattleEndState()
     {
         battleControl.playerMonBase.RetainBattleStatus(battleControl.playerMon);
-        SceneManager.LoadScene("Overworld_Route1");
+        SceneManager.LoadScene(PlayerDataHolder.PlayerPrevMap);
     }
     #endregion
 
