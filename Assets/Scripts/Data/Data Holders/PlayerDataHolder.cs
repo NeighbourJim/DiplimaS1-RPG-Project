@@ -56,7 +56,7 @@ public class PlayerDataHolder : MonoBehaviour {
     public void SetData(int id, int level)
     {
         playerTeam[0].CreateFromBase(mp.FindByID(id));
-        playerTeam[0].level = level;
+        playerTeam[0].SetLevel(level);
         playerTeam[0].GenerateWildStats(playerTeam[0].level);
         playerTeam[0].GenerateMoveset();
     }

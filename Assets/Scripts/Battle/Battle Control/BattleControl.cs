@@ -53,6 +53,7 @@ public class BattleControl : MonoBehaviour
         Spawn();
         SetButtonColours();
         SetButtonNames();
+        battleUIController.GetComponent<BattleXPBarControl>().SetXPBarSize(playerMon);
         battleType = BattleType.WildFleeable;
     }
 
@@ -736,7 +737,7 @@ public class BattleControl : MonoBehaviour
 
     #endregion
 
-# region Flee Resolution
+    #region Flee Resolution
 
     public void Flee()
     {
@@ -763,5 +764,17 @@ public class BattleControl : MonoBehaviour
         return Random.Range(0, 256) < F;
     }
 
-# endregion
+    #endregion
+
+    #region XP Distribution
+
+    public void DistributeXP()
+    {
+        int xpToDist = enemyMon.GetXPValue();
+        playerMon.IncrementExp(xpToDist);
+        battleUIController.GetComponent<BattleXPBarControl>().SetXPBarSize(playerMon);
+    }
+
+
+    #endregion
 }

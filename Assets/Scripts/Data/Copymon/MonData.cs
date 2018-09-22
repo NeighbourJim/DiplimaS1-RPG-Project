@@ -28,8 +28,8 @@ public class MonData : ScriptableObject
 
     [Header("Level / XP")]
     public int level = 1;
-    public int curXP;
-    public int xpToNextLevel;
+    public int curXP = 0;
+    public int xpToNextLevel = 0;
     public int xpYield = 64; 
 
     [Header("Evolution")]
@@ -108,15 +108,8 @@ public class MonData : ScriptableObject
             secondaryType = bm.secondaryType;
 
         level = bm.level;
-        if (bm.curXP == 0)
-        {
-            bm.CalculateXPToNextLevel(bm.level - 1); // set current xp to exactly the amount to level up to current level
-        }
-        else
-        {
-            curXP = bm.curXP;
-        }
-        xpToNextLevel = bm.xpToNextLevel;
+        curXP = CalculateXPToCurrentLevel(bm.level);
+        CalculateXPToNextLevel(bm.level);
         xpYield = bm.xpYield;
 
         evolves = bm.evolves;
@@ -177,9 +170,21 @@ public class MonData : ScriptableObject
         }
     }
 
+    public void SetLevel(int lvl)
+    {
+        level = lvl;
+        curXP = CalculateXPToCurrentLevel(level);
+        CalculateXPToNextLevel(level);
+    }
+
     private void CalculateXPToNextLevel(int lvl)
     {
-        xpToNextLevel = (int)Mathf.Pow(lvl, 3);
+        xpToNextLevel = (int)Mathf.Pow(lvl+1, 3);
+    }
+
+    private int CalculateXPToCurrentLevel(int lvl)
+    {
+        return (int)Mathf.Pow(lvl, 3);
     }
 
     public int CalculateStat(int statBase, int statIV, int level)
@@ -234,9 +239,9 @@ public class MonData : ScriptableObject
         CalculateXPToNextLevel(lvl);
     }
 
-    public void IncrementExp(int expToAdd)
+    public void IncrementExp(int xpToAdd)
     {
-        curXP += expToAdd;
+        curXP += xpToAdd;
         if (curXP >= xpToNextLevel)
         {
             LevelUp();

@@ -17,7 +17,7 @@ public class EnemyDataHolder : MonoBehaviour {
     {
         enemyMonster = ScriptableObject.CreateInstance<MonData>();
         enemyMonster.CreateFromBase(mp.FindByID(id));
-        enemyMonster.level = level;
+        enemyMonster.SetLevel(level);
         enemyMonster.GenerateMoveset();
     }
 }

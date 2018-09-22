@@ -220,6 +220,7 @@ public class BattleStateControl : MonoBehaviour {
     {
         battleDialogue.AddToMessages("The foe " + battleControl.enemyMon.monName + " fainted!");
         uIEventHandler.continueMessages.Invoke();
+        battleControl.DistributeXP();
         AdvanceState(TurnState.PlayerWin);
     }
 
