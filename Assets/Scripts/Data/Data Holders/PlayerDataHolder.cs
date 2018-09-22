@@ -78,6 +78,16 @@ public class PlayerDataHolder : MonoBehaviour {
 
     private void OnEnable()
     {
+        SceneManager.sceneLoaded += LevelLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= LevelLoaded;
+    }
+
+    void LevelLoaded(Scene scene, LoadSceneMode mode)
+    {
         PlayerPrevMap = PlayerCurrMap;
         PlayerCurrMap = SceneManager.GetActiveScene().name;
     }
