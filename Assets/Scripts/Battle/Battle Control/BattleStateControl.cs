@@ -314,6 +314,17 @@ public class BattleStateControl : MonoBehaviour {
                 secondToGo = battleControl.playerMon;
             }                
         }
+
+        if (battleControl.playerMon.selectedMove.priority > battleControl.enemyMon.selectedMove.priority)
+        {
+            firstToGo = battleControl.playerMon;
+            secondToGo = battleControl.enemyMon;
+        }
+        else if (battleControl.playerMon.selectedMove.priority < battleControl.enemyMon.selectedMove.priority)
+        {
+            firstToGo = battleControl.enemyMon;
+            secondToGo = battleControl.playerMon;
+        }
     }
 
     bool CheckFainted(MonBattleData mon)
