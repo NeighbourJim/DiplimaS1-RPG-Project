@@ -33,6 +33,8 @@ public class BattleXPBarControl : MonoBehaviour {
 
         float xpPer = GetPer(haveXp, reqXP);
         float realBarSize = Mathf.Floor(barMax * xpPer);
+        if (realBarSize < 1f)
+            realBarSize = 1f;
         xpBarRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, realBarSize);
     }
 

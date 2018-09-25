@@ -288,7 +288,10 @@ public class MonData : ScriptableObject
     public void RetainBattleStatus(MonBattleData battleData)
     {
         curHP = battleData.curHP;
+        level = battleData.level;
         curXP = battleData.curXP;
+        xpToNextLevel = battleData.xpToNextLevel;
         hasStatus = battleData.hasStatus;
+
     }
 }

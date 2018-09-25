@@ -73,6 +73,7 @@ public class BattleHPControl : MonoBehaviour {
     {
         if(monster == player)
         {
+            playerMonLevel.text = string.Format("Lv: {0}", monster.level);
             SetHPBarSize(playerHPBarRect, playerHPDamageRect, monster.curHP, monster.maxHP);
             playerMonHPCount.text = string.Format("{0}/{1}", monster.curHP, monster.maxHP);
             if (GetPer(monster.curHP, monster.maxHP) < 0.30)

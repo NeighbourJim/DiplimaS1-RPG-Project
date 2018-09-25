@@ -29,7 +29,6 @@ public class BattleTextUIControl : MonoBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            //if(battleDialogue.PeekNextMessage() != null)
                 eventHandler.continueMessages.Invoke();
         }
     }

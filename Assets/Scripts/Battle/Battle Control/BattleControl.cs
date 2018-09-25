@@ -821,9 +821,16 @@ public class BattleControl : MonoBehaviour
 
     public void DistributeXP()
     {
+        int lvlB = playerMon.level;
         int xpToDist = enemyMon.GetXPValue();
         playerMon.IncrementExp(xpToDist);
         battleUIController.GetComponent<BattleXPBarControl>().SetXPBarSize(playerMon);
+        battleDialogue.AddToMessages(string.Format("Gained {0} experience!", xpToDist));
+        if(lvlB < playerMon.level)
+        {
+            battleDialogue.AddToMessages(string.Format("{0} advanced to level {1}!", playerMon.monName, playerMon.level));
+        }
+        UpdateHPBar(playerMon);
     }
 
 
