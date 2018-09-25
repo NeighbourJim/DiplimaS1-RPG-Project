@@ -55,4 +55,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   selectedMove: {fileID: 0}
-  learnset: []
+  learnset:
+  - levelToLearn: 1
+    moveToLearn: {fileID: 11400000, guid: bc162d97af182554dbd91483f05f3c84, type: 2}

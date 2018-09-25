@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7da0d475b1a02564888f008c0850215f, type: 3}
+  m_Name: CM020Minerhyno
+  m_EditorClassIdentifier: 
+  monsterPrefab: {fileID: 1790210092891566, guid: 39d2f927db52b4a4485e426055381496,
+    type: 2}
+  cry: {fileID: 0}
+  monID: 20
+  monName: Minerhyno
+  monpediaEntry: A powerful drake monster born deep underground. The intense pressure
+    of its home made extremely hardy.
+  nickname: 
+  ownership: 0
+  primaryType: {fileID: 11400000, guid: 3fc95d769d4b2364ba2e93259868b0e2, type: 2}
+  secondaryType: {fileID: 11400000, guid: 3cc3a70a088909745a082312ba4b2713, type: 2}
+  level: 1
+  curXP: 0
+  xpToNextLevel: 0
+  xpYield: 175
+  evolves: 0
+  levelToEvolve: -1
+  evolvesInto: {fileID: 0}
+  baseHP: 105
+  baseAtk: 95
+  baseDef: 90
+  baseSpAtk: 40
+  baseSpDef: 90
+  baseSpeed: 55
+  ivHP: 0
+  ivAtk: 0
+  ivDef: 0
+  ivSpAtk: 0
+  ivSpDef: 0
+  ivSpeed: 0
+  curAtk: 0
+  curDef: 0
+  curSpAtk: 0
+  curSpDef: 0
+  curSpeed: 0
+  maxHP: 0
+  curHP: 0
+  hasStatus: 0
+  remainingSleepTurns: 0
+  learnedMoves:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  selectedMove: {fileID: 0}
+  learnset:
+  - levelToLearn: 1
+    moveToLearn: {fileID: 11400000, guid: 906fe41e38222954583ccdc2739dd098, type: 2}
+  - levelToLearn: 5
+    moveToLearn: {fileID: 11400000, guid: c408b62ce71235043b0ab3632e7e0559, type: 2}
+  - levelToLearn: 10
+    moveToLearn: {fileID: 11400000, guid: 46a1897c682a0a04d8fd3c4532e8638c, type: 2}
+  - levelToLearn: 16
+    moveToLearn: {fileID: 11400000, guid: 3bab9eac1faee84478159b7262b7ad63, type: 2}
+  - levelToLearn: 23
+    moveToLearn: {fileID: 11400000, guid: 89032b44cce635f4399820a1da4a4f97, type: 2}
