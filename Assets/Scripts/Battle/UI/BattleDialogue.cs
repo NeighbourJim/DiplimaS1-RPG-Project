@@ -25,6 +25,18 @@ public class BattleDialogue : MonoBehaviour
         }
     }
 
+    public string PeekNextMessage()
+    {
+        if (battleMessages.Count != 0)
+        {
+            return battleMessages.Peek();
+        }
+        else
+        {
+            return null;
+        }
+    }
+
     public void AddToMessages(string toAdd)
     {
         eventHandler.messagesStarted.Invoke();

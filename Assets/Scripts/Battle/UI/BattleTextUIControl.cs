@@ -29,7 +29,8 @@ public class BattleTextUIControl : MonoBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            eventHandler.continueMessages.Invoke();
+            //if(battleDialogue.PeekNextMessage() != null)
+                eventHandler.continueMessages.Invoke();
         }
     }
 
@@ -65,7 +66,10 @@ public class BattleTextUIControl : MonoBehaviour {
 
     public void ContinueClick()
     {
-        if (co != null) { StopCoroutine(co); }
+        if (battleDialogue.PeekNextMessage() != null)
+        {
+            if (co != null) { StopCoroutine(co); }
+        }
         DisplayNextMessage();
     }
 
