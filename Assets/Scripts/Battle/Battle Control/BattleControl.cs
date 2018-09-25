@@ -248,6 +248,15 @@ public class BattleControl : MonoBehaviour
         Effectiveness effectiveness;
         int damage;
 
+        if(attacker == playerMon)
+        {
+            playerModel.GetComponent<Animator>().SetTrigger("Attack");
+        }
+        else
+        {
+            enemyModel.GetComponent<Animator>().SetTrigger("Attack");
+        }
+
         if (CheckIfHit(move, attacker, defender))
         {
             crit = CheckIfCrit(move);
@@ -270,6 +279,14 @@ public class BattleControl : MonoBehaviour
                 battleDialogue.AddToMessages("It had no effect...");
             }
             defender.TakeDamage(damage);
+            if(defender == playerMon)
+            {
+                playerModel.GetComponent<Animator>().SetTrigger("Damage");
+            }
+            else
+            {
+                enemyModel.GetComponent<Animator>().SetTrigger("Damage");
+            }
 
             if (move.causesStatus != StatusEffect.none)
             {
@@ -300,6 +317,15 @@ public class BattleControl : MonoBehaviour
     {
         Effectiveness effectiveness;
 
+        if (attacker == playerMon)
+        {
+            playerModel.GetComponent<Animator>().SetTrigger("Attack");
+        }
+        else
+        {
+            enemyModel.GetComponent<Animator>().SetTrigger("Attack");
+        }
+
         effectiveness = defender.GetEffectiveness(move.moveType);
         if (effectiveness != Effectiveness.immune && CheckIfHit(move, attacker, defender))
         {
@@ -317,6 +343,15 @@ public class BattleControl : MonoBehaviour
                 {
                     ResolveStatChange(move, defender);
                 }
+            }
+
+            if (defender == playerMon)
+            {
+                playerModel.GetComponent<Animator>().SetTrigger("Damage");
+            }
+            else
+            {
+                enemyModel.GetComponent<Animator>().SetTrigger("Damage");
             }
 
             UpdateHPBar(defender);
@@ -632,10 +667,26 @@ public class BattleControl : MonoBehaviour
             case (StatusEffect.Burn):
                 battleDialogue.AddToMessages(string.Format("{0} took damage from it's burn.", monster.monName));
                 monster.TakeDamage(Mathf.FloorToInt(monster.maxHP * 0.06f));
+                if (monster == playerMon)
+                {
+                    playerModel.GetComponent<Animator>().SetTrigger("Attack");
+                }
+                else
+                {
+                    enemyModel.GetComponent<Animator>().SetTrigger("Attack");
+                }
                 break;
             case (StatusEffect.Poison):
                 battleDialogue.AddToMessages(string.Format("{0} took damage from poison.", monster.monName));
                 monster.TakeDamage(Mathf.FloorToInt(monster.maxHP * 0.12f));
+                if (monster == playerMon)
+                {
+                    playerModel.GetComponent<Animator>().SetTrigger("Attack");
+                }
+                else
+                {
+                    enemyModel.GetComponent<Animator>().SetTrigger("Attack");
+                }
                 break;
         }
     }

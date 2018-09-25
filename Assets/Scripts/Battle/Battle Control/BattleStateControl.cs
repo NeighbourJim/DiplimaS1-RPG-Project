@@ -25,6 +25,7 @@ public class BattleStateControl : MonoBehaviour {
     public GameObject dataCont;
     public PlayerDataHolder playerData;
 
+
     // Use this for initialization
     void Start () {
         battleControl = GetComponent<BattleControl>();

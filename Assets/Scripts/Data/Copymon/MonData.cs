@@ -108,7 +108,7 @@ public class MonData : ScriptableObject
             secondaryType = bm.secondaryType;
 
         level = bm.level;
-        curXP = CalculateXPToCurrentLevel(bm.level);
+        curXP = CalculateXPToCurrentLevel();
         CalculateXPToNextLevel(bm.level);
         xpYield = bm.xpYield;
 
@@ -173,7 +173,7 @@ public class MonData : ScriptableObject
     public void SetLevel(int lvl)
     {
         level = lvl;
-        curXP = CalculateXPToCurrentLevel(level);
+        curXP = CalculateXPToCurrentLevel();
         CalculateXPToNextLevel(level);
     }
 
@@ -182,9 +182,9 @@ public class MonData : ScriptableObject
         xpToNextLevel = (int)Mathf.Pow(lvl+1, 3);
     }
 
-    private int CalculateXPToCurrentLevel(int lvl)
+    public int CalculateXPToCurrentLevel()
     {
-        return (int)Mathf.Pow(lvl, 3);
+        return (int)Mathf.Pow(level, 3);
     }
 
     public int CalculateStat(int statBase, int statIV, int level)
