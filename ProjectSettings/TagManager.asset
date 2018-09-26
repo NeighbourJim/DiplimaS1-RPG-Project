@@ -10,6 +10,7 @@ TagManager:
   - Grass
   - BattleCamera
   - TransBehind
+  - DialogZone
   layers:
   - Default
   - TransparentFX
