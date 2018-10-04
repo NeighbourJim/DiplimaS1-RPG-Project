@@ -27,11 +27,21 @@ public class Sound
         source.loop = loop;
     }
 
+    public AudioSource GetSource()
+    {
+        return source;
+    }
+
     public void Play()
     {
         source.volume = volume * (1 + Random.Range(-randomVolume/2f, randomVolume/2f));
         source.pitch = pitch * (1 + Random.Range(-randomPitch / 2f, randomPitch / 2f));
         source.Play();
+    }
+
+    public void Stop()
+    {
+        source.Stop();
     }
 }
 
@@ -45,6 +55,8 @@ public class SoundManager : MonoBehaviour
     Sound[] monsterCries;
     [SerializeField]
     Sound[] musicTracks;
+
+    Sound currentMusic;
 
     private void Awake()
     {
@@ -83,11 +95,11 @@ public class SoundManager : MonoBehaviour
             musicTracks[i].SetSource(_go.AddComponent<AudioSource>());
         }
 
-        for (int i = 0; i < musicTracks.Length; i++)
+        for (int i = 0; i < monsterCries.Length; i++)
         {
-            GameObject _go = new GameObject("music_" + i + "_" + musicTracks[i].name);
+            GameObject _go = new GameObject("cry_" + i + "_" + monsterCries[i].name);
             _go.transform.SetParent(cryRoot.transform);
-            musicTracks[i].SetSource(_go.AddComponent<AudioSource>());
+            monsterCries[i].SetSource(_go.AddComponent<AudioSource>());
         }
     }
 
@@ -103,6 +115,19 @@ public class SoundManager : MonoBehaviour
         }
 
         Debug.LogWarning("SoundManager: Sound not found with name " + _name);
+    }
+
+    public Sound FindSound(string _find)
+    {
+        for (int i = 0; i < sounds.Length; i++)
+        {
+            if(sounds[i].name == _find)
+            {
+                return sounds[i];
+            }
+        }
+
+        return null;
     }
 
     public void PlayCry(string _name)
@@ -125,7 +150,12 @@ public class SoundManager : MonoBehaviour
         {
             if (musicTracks[i].name == _name)
             {
+                if (currentMusic != null)
+                {
+                    currentMusic.Stop();
+                }
                 musicTracks[i].Play();
+                currentMusic = musicTracks[i];
                 return;
             }
         }

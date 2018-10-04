@@ -25,6 +25,7 @@ public class BattleStateControl : MonoBehaviour {
     public GameObject dataCont;
     public PlayerDataHolder playerData;
 
+    SoundManager soundManager;
 
     // Use this for initialization
     void Start () {
@@ -35,6 +36,7 @@ public class BattleStateControl : MonoBehaviour {
         uiHPControl = battleUI.GetComponent<BattleHPControl>();
         battleDialogue = battleUI.GetComponent<BattleDialogue>();
         uIEventHandler = FindObjectOfType<BattleUIEventHandler>();
+        soundManager = FindObjectOfType<SoundManager>();
 
         dataCont = GameObject.Find("GameDataController");
         playerData = dataCont.GetComponent<PlayerDataHolder>();
@@ -49,8 +51,13 @@ public class BattleStateControl : MonoBehaviour {
             case (TurnState.BattleStarting):
                 ResolveStartingState();
                 break;
-            case (TurnState.Intro):
-                ResolveIntroState();
+            case (TurnState.EnemyIntro):
+                //if (uiTextControl.messagesFinished)
+                    ResolveEnemyIntroState();
+                break;
+            case (TurnState.PlayerIntro):
+                if (uiTextControl.messagesFinished)
+                    ResolvePlayerIntroState();
                 break;
 
             case (TurnState.SelectingAction):
@@ -126,13 +133,22 @@ public class BattleStateControl : MonoBehaviour {
         Monpedia mp = dataCont.GetComponent<Monpedia>();
         battleControl.InitiateWildBattle(PlayerDataHolder.playerTeam[0], EnemyDataHolder.enemyMonster);
         uiHPControl.SetMonsters(battleControl.playerMon, battleControl.enemyMon);
-        AdvanceState(TurnState.Intro);
+        AdvanceState(TurnState.EnemyIntro);
     }
-    void ResolveIntroState()
+    void ResolveEnemyIntroState()
     {
-        StartCoroutine(FadeIn());
         battleDialogue.AddToMessages(string.Format("A wild {0} appeared!", battleControl.enemyMon.monName));
-        battleDialogue.AddToMessages(string.Format("Go, {0}!", battleControl.playerMon.monName));
+        battleControl.SetEnemyVisibility(true);
+        soundManager.PlayCry(battleControl.enemyMon.monName);
+        uIEventHandler.continueMessages.Invoke();
+        AdvanceState(TurnState.PlayerIntro);
+    }
+
+    void ResolvePlayerIntroState()
+    {
+        battleDialogue.AddToMessages(string.Format("Go, {0}!", battleControl.playerMon.nickname));
+        battleControl.SetPlayerVisibility(true);
+        soundManager.PlayCry(battleControl.playerMon.monName);
         uIEventHandler.continueMessages.Invoke();
         AdvanceState(TurnState.SelectingAction);
     }
@@ -330,15 +346,5 @@ public class BattleStateControl : MonoBehaviour {
     bool CheckFainted(MonBattleData mon)
     {
         return (mon.curHP == 0);
-    }
-
-    IEnumerator FadeIn()
-    {
-        Image screenRect = GameObject.Find("BattleTransitionRect").GetComponent<Image>();
-        for (float a = 1f; a >= 0f; a -= Time.deltaTime * 8)
-        {
-            screenRect.color = new Color(screenRect.color.r, screenRect.color.g, screenRect.color.b, a);
-            yield return null;
-        }
     }
 }

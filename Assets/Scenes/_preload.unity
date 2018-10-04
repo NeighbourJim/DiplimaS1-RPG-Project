@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -158,26 +158,82 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f487ac8ddce23140983a575d45966da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds: []
-  monsterCries: []
+  sounds:
+  - name: EncounterStart
+    clip: {fileID: 8300000, guid: 4e1ff8faed12a475eba9be0e46072269, type: 3}
+    volume: 0.7
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
+    loop: 0
+  monsterCries:
+  - name: Catree
+    clip: {fileID: 8300000, guid: 6679d6e020e831f4890e2989651cd2e1, type: 3}
+    volume: 1
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
+    loop: 0
+  - name: Watabby
+    clip: {fileID: 8300000, guid: 6679d6e020e831f4890e2989651cd2e1, type: 3}
+    volume: 1
+    pitch: 0.7
+    randomVolume: 0
+    randomPitch: 0
+    loop: 0
+  - name: Bonfeline
+    clip: {fileID: 8300000, guid: 6679d6e020e831f4890e2989651cd2e1, type: 3}
+    volume: 1
+    pitch: 1.15
+    randomVolume: 0
+    randomPitch: 0
+    loop: 0
+  - name: Minerhyno
+    clip: {fileID: 8300000, guid: 4bcadf0f78711bc4f83b8383a9b2a66a, type: 3}
+    volume: 1
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
+    loop: 0
+  - name: Spynner
+    clip: {fileID: 8300000, guid: cd7fe67bbbf07104994e8e32344993c9, type: 3}
+    volume: 1
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
+    loop: 0
+  - name: Catt
+    clip: {fileID: 8300000, guid: 6679d6e020e831f4890e2989651cd2e1, type: 3}
+    volume: 1
+    pitch: 0.5
+    randomVolume: 0
+    randomPitch: 0
+    loop: 0
+  - name: Toxikitty
+    clip: {fileID: 8300000, guid: 6679d6e020e831f4890e2989651cd2e1, type: 3}
+    volume: 1
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
+    loop: 0
   musicTracks:
   - name: MainMenu
     clip: {fileID: 8300000, guid: 18b9b236c56c77a499f95a130e8d4871, type: 3}
-    volume: 0.7
+    volume: 0.3
     pitch: 1
     randomVolume: 0
     randomPitch: 0
     loop: 1
   - name: Battle
     clip: {fileID: 8300000, guid: f22c7df422ca6854aa49616e6124bc94, type: 3}
-    volume: 0.7
+    volume: 0.3
     pitch: 1
     randomVolume: 0
     randomPitch: 0
     loop: 1
   - name: Overworld_1
     clip: {fileID: 8300000, guid: 690ce7070f5c2c94c81a7a5101a6b0e7, type: 3}
-    volume: 0.7
+    volume: 0.3
     pitch: 1
     randomVolume: 0
     randomPitch: 0

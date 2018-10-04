@@ -5,7 +5,8 @@ using UnityEngine;
 public enum TurnState
 {
     BattleStarting,
-    Intro,
+    EnemyIntro,
+    PlayerIntro,
     SelectingAction,
     EnemySelectAction,
     SelectingMove,

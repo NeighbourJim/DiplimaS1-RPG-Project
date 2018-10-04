@@ -25,7 +25,7 @@ public class RandomEncounterController : MonoBehaviour {
 
     public static bool battledRecently = false;
 
-    public AudioClip encounterStart;
+    SoundManager soundManager;
 
     Monpedia mp;
     
@@ -34,17 +34,20 @@ public class RandomEncounterController : MonoBehaviour {
         InitializeData();
     }
 
+
     public void InitializeData()
     {
         player = GameObject.FindWithTag("Player");
         playerData = GetComponent<PlayerDataHolder>();
         enemyData = GetComponent<EnemyDataHolder>();
+        soundManager = FindObjectOfType<SoundManager>();
         mp = GetComponent<Monpedia>();
         if (GameObject.Find("RegionData"))
             regionData = GameObject.Find("RegionData").GetComponent<RegionDataHolder>();
         if (GameObject.Find("BattleTransitionRect"))
             screenRect = GameObject.Find("BattleTransitionRect").GetComponent<Image>();
         ResetBattleTimer();
+
     }
 
     // Update is called once per frame
@@ -104,16 +107,14 @@ public class RandomEncounterController : MonoBehaviour {
 
     IEnumerator BattleTransition()
     {
-        GameObject.Find("MusicController").GetComponent<AudioSource>().clip = encounterStart;
-        GameObject.Find("MusicController").GetComponent<AudioSource>().loop = false;
-        GameObject.Find("MusicController").GetComponent<AudioSource>().Play();
+        soundManager.PlaySound("EncounterStart");
         for (float a = 0f; a <= 1f; a += Time.deltaTime * 8)
         {
             screenRect.color = new Color(screenRect.color.r, screenRect.color.g, screenRect.color.b, a);
             yield return null;
         }
         screenRect.color = new Color(screenRect.color.r, screenRect.color.g, screenRect.color.b, 1);
-        while (GameObject.Find("MusicController").GetComponent<AudioSource>().isPlaying)
+        while (soundManager.FindSound("EncounterStart").GetSource().isPlaying)
         {
             yield return null;
         }

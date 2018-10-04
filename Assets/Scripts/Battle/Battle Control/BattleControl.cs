@@ -6,6 +6,7 @@ using UnityEngine;
 public class BattleControl : MonoBehaviour
 {
     public GameObject dataController;
+    SoundManager soundManager;
 
     public GameObject playerSpawn;
     public GameObject enemSpawn;
@@ -25,6 +26,7 @@ public class BattleControl : MonoBehaviour
     BattleDialogue battleDialogue;
     BattleHPControl uiHPControl;
 
+
     BattleStateControl stateControl;
 
     Monpedia mp;
@@ -34,6 +36,7 @@ public class BattleControl : MonoBehaviour
     void Start ()
     {
         dataController = GameObject.Find("GameDataController");
+        soundManager = FindObjectOfType<SoundManager>();
         mp = dataController.GetComponent<Monpedia>();
         playerMon = ScriptableObject.CreateInstance<MonBattleData>();
         enemyMon = ScriptableObject.CreateInstance<MonBattleData>();
@@ -42,6 +45,8 @@ public class BattleControl : MonoBehaviour
         uiHPControl = battleUIController.GetComponent<BattleHPControl>();
         battleDialogue = battleUIController.GetComponent<BattleDialogue>();
         fleeAttempts = 0;
+
+        soundManager.PlayMusic("Battle");
     }
 
     public void InitiateWildBattle(MonData player, MonData enemy)
@@ -64,6 +69,16 @@ public class BattleControl : MonoBehaviour
         SetButtonNames();
     }
 
+    public void SetPlayerVisibility(bool val)
+    {
+        playerModel.SetActive(val);
+    }
+
+    public void SetEnemyVisibility(bool val)
+    {
+        enemyModel.SetActive(val);
+    }
+
     void Spawn()
     {
 
@@ -80,7 +95,8 @@ public class BattleControl : MonoBehaviour
         enemyMon.GenerateWildStats(enemyMon.level);
 
         Face();
-
+        SetPlayerVisibility(false);
+        SetEnemyVisibility(false);
     }
 
     void Face()
