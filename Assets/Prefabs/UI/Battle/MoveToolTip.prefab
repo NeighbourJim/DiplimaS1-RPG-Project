@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 114516110269775134}
   m_Layer: 5
   m_Name: MoveToolTip
-  m_TagString: Untagged
+  m_TagString: UITooltip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -241,6 +241,8 @@ MonoBehaviour:
   accuracyText: {fileID: 114650306738861796}
   descriptionText: {fileID: 114189268411633876}
   physSpecText: {fileID: 114630896716558014}
+  xOffset: 0
+  yOffset: 0
 --- !u!114 &114630896716558014
 MonoBehaviour:
   m_ObjectHideFlags: 1

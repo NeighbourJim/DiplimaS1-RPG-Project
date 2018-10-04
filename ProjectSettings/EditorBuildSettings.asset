@@ -6,8 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/_preload.unity
+    guid: da4b88fa840267b499f37809190f2f70
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: a291808139625c44fae0f37059f8cfa8
+  - enabled: 1
+    path: Assets/Scenes/DebugMenu.unity
+    guid: 644383a51b4cbba49bb8377ddc53b9b7
+  - enabled: 1
     path: Assets/Scenes/World/Overworld_Route1.unity
     guid: 8ca1d6f93b29fa74f9bbaeae7a8260d8
   - enabled: 1
     path: Assets/Scenes/Battle/BaseBattle.unity
     guid: 28c7f4a413a989a41b96179b18a3952b
+  m_configObjects: {}

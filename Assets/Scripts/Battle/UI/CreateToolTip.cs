@@ -21,6 +21,12 @@ public class CreateToolTip : MonoBehaviour {
     {
         if (gameObject.GetComponent<Button>().IsInteractable())
         {
+            tooltip = GameObject.FindGameObjectWithTag("UITooltip");
+            if (tooltip != null)
+            {
+                Debug.Log("Destroying old tooltip");
+                RemoveToolTip();
+            }
             tooltip = Instantiate(Tooltip);
             tooltip.transform.SetParent(gameObject.transform, false);
             ttCont = tooltip.GetComponent<MoveToolTipControl>();

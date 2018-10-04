@@ -10,8 +10,12 @@ public class MainMenuControl : MonoBehaviour {
     public GameObject monPanel;
     public GameObject settingsPanel;
 
+    SoundManager _sm;
+
     private void Awake()
     {
+        _sm = GameObject.Find("AudioController").GetComponent<SoundManager>();
+        _sm.PlayMusic("MainMenu");
         ShowMain();
     }
 
