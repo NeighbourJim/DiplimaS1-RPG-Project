@@ -25,7 +25,7 @@ MonoBehaviour:
   level: 1
   curXP: 0
   xpToNextLevel: 0
-  xpYield: 140
+  xpYield: 380
   evolves: 0
   levelToEvolve: -1
   evolvesInto: {fileID: 0}

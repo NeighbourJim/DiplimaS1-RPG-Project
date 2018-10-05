@@ -835,7 +835,7 @@ public class BattleControl : MonoBehaviour
 
     #region XP Distribution
 
-    public void DistributeXP()
+    public bool DistributeXP()
     {
         int lvlB = playerMon.level;
         int xpToDist = enemyMon.GetXPValue();
@@ -845,8 +845,24 @@ public class BattleControl : MonoBehaviour
         if(lvlB < playerMon.level)
         {
             battleDialogue.AddToMessages(string.Format("{0} advanced to level {1}!", playerMon.monName, playerMon.level));
+            if(playerMon.CheckLevelMove() != null)
+            {
+                if (playerMon.LearnMove(playerMon.CheckLevelMove()))
+                {
+                    battleDialogue.AddToMessages(string.Format("{0} learned {1}!", playerMon.monName, playerMon.CheckLevelMove().moveName));
+                }
+                else
+                {
+                    battleDialogue.AddToMessages(string.Format("{0} is trying to learn {1}, but cannot learn more than 4 moves.", playerMon.monName, playerMon.CheckLevelMove().moveName));
+                    battleDialogue.AddToMessages(string.Format("Select which move, if any, to replace with the new move."));
+                    stateControl.AdvanceState(TurnState.MonsterLearningNewMove);
+                    UpdateHPBar(playerMon);
+                    return true;
+                }
+            }
         }
         UpdateHPBar(playerMon);
+        return false;
     }
 
 

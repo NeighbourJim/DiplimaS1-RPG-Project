@@ -292,6 +292,50 @@ public class MonData : ScriptableObject
         curXP = battleData.curXP;
         xpToNextLevel = battleData.xpToNextLevel;
         hasStatus = battleData.hasStatus;
+        learnedMoves = battleData.learnedMoves;
+    }
 
+    public MoveData CheckLevelMove()
+    {
+        for (int i = 0; i < learnset.Length; i++)
+        {
+            if(learnset[i].levelToLearn == level)
+            {
+                return learnset[i].moveToLearn;
+            }
+        }
+
+        return null;
+    }
+
+    public int CheckForFreeMoveSlot()
+    {
+        for (int i = 0; i < learnedMoves.Length; i++)
+        {
+            if(learnedMoves[i] == null)
+            {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    public bool LearnMove(MoveData move)
+    {
+        if(CheckForFreeMoveSlot() != -1)
+        {
+            learnedMoves[CheckForFreeMoveSlot()] = move;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public void ReplaceMove(int moveToReplace, MoveData move)
+    {
+        learnedMoves[moveToReplace] = move;
     }
 }

@@ -12,12 +12,12 @@ public class BattleStateControl : MonoBehaviour {
 
     BattleControl battleControl;
     public GameObject battleUI;
-    BattleUIControl uiButtonControl;
+    BattleUIControl uiController;
     BattleTextUIControl uiTextControl;
     BattleHPControl uiHPControl;
     BattleCameraControl cameraControl;
     BattleDialogue battleDialogue;
-    BattleUIEventHandler uIEventHandler;
+    public BattleUIEventHandler uIEventHandler;
 
     public MoveData playerSelectedMove;
     public MoveData enemySelectedMove;
@@ -31,7 +31,7 @@ public class BattleStateControl : MonoBehaviour {
     void Start () {
         battleControl = GetComponent<BattleControl>();
         cameraControl = FindObjectOfType<BattleCameraControl>();
-        uiButtonControl = battleUI.GetComponent<BattleUIControl>();
+        uiController = battleUI.GetComponent<BattleUIControl>();
         uiTextControl = battleUI.GetComponent<BattleTextUIControl>();
         uiHPControl = battleUI.GetComponent<BattleHPControl>();
         battleDialogue = battleUI.GetComponent<BattleDialogue>();
@@ -121,8 +121,12 @@ public class BattleStateControl : MonoBehaviour {
                     ResolvePlayerWinState();
                 break;
             case (TurnState.BattleEnding):
-                if (uiTextControl.messagesFinished)
+                if (uiTextControl.messagesFinished && !uiController.newMovePanel.activeInHierarchy)
                     ResolveBattleEndState();
+                break;
+            case (TurnState.MonsterLearningNewMove):
+                if (uiTextControl.messagesFinished)
+                    ResolveMonsterLearnMoveState();
                 break;
         }
 	}
@@ -155,7 +159,7 @@ public class BattleStateControl : MonoBehaviour {
 
     void ResolveSelectingState()
     {
-        uiButtonControl.ShowActionSelect();
+        uiController.ShowActionSelect();
     }
 
     void ResolveEnemySelectingState()
@@ -187,6 +191,7 @@ public class BattleStateControl : MonoBehaviour {
     {
         if (battleControl.ResolveMidTurnStatusEffect(secondToGo))
         {
+            
             battleDialogue.AddToMessages(string.Format("{0} attacks with {1}!", secondToGo.monName, secondToGo.selectedMove.moveName));
             battleControl.ResolveAttack(secondToGo.selectedMove, secondToGo, firstToGo);
             uIEventHandler.continueMessages.Invoke();
@@ -205,6 +210,7 @@ public class BattleStateControl : MonoBehaviour {
 
     void ResolveFaintCheckState()
     {
+        
         if (CheckFainted(battleControl.playerMon))
         {
             AdvanceState(TurnState.PlayerFaints);
@@ -239,8 +245,8 @@ public class BattleStateControl : MonoBehaviour {
         battleDialogue.AddToMessages("The foe " + battleControl.enemyMon.monName + " fainted!");
         soundManager.PlayFaintCry(battleControl.enemyMon.monName);
         uIEventHandler.continueMessages.Invoke();
-        battleControl.DistributeXP();
-        AdvanceState(TurnState.PlayerWin);
+        if(!battleControl.DistributeXP())
+            AdvanceState(TurnState.PlayerWin);
     }
 
     void ResolveBothFaintState()
@@ -265,7 +271,6 @@ public class BattleStateControl : MonoBehaviour {
     {
         if (battleControl.battleType == BattleType.WildFleeable)
         {
-            secondToGo = battleControl.enemyMon;
             battleDialogue.AddToMessages("You tried to flee...");
             if (battleControl.TryToFlee())
             {
@@ -274,7 +279,10 @@ public class BattleStateControl : MonoBehaviour {
             }
             else
             {
+                firstToGo = battleControl.playerMon;
+                secondToGo = battleControl.enemyMon;
                 battleDialogue.AddToMessages("Couldn't get away!");
+                battleControl.SelectEnemyMove();
                 AdvanceState(TurnState.FaintCheck);
             }
         }
@@ -288,6 +296,7 @@ public class BattleStateControl : MonoBehaviour {
             {
                 battleDialogue.AddToMessages("Can't flee from this battle!");
             }
+            battleControl.SelectEnemyMove();
             AdvanceState(TurnState.SecondAction);
         }
     }
@@ -304,6 +313,12 @@ public class BattleStateControl : MonoBehaviour {
             SceneManager.LoadScene(PlayerDataHolder.PlayerPrevMap);
         }
     }
+
+    void ResolveMonsterLearnMoveState()
+    {
+        uiController.ShowMoveLearn(battleControl.playerMon.CheckLevelMove());
+    }
+
     #endregion
 
     

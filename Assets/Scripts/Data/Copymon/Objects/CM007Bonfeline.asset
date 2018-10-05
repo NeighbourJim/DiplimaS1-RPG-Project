@@ -64,3 +64,5 @@ MonoBehaviour:
     moveToLearn: {fileID: 11400000, guid: 8acb5e0ee6f48894a932585a0da9a7a6, type: 2}
   - levelToLearn: 12
     moveToLearn: {fileID: 11400000, guid: 0f50b0bd05a32814599fe16219d549e3, type: 2}
+  - levelToLearn: 21
+    moveToLearn: {fileID: 11400000, guid: 46a1897c682a0a04d8fd3c4532e8638c, type: 2}
