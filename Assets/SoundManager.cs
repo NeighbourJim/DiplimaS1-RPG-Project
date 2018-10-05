@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 [System.Serializable]
 public class Sound
@@ -144,6 +145,23 @@ public class SoundManager : MonoBehaviour
         Debug.LogWarning("SoundManager: Cry not found with name " + _name);
     }
 
+    public void PlayFaintCry(string _name)
+    {
+        for (int i = 0; i < monsterCries.Length; i++)
+        {
+            if (monsterCries[i].name == _name)
+            {
+                float originalPitch = monsterCries[i].pitch;
+                monsterCries[i].pitch = monsterCries[i].pitch * 0.75f;
+                monsterCries[i].Play();
+                StartCoroutine(resetPitch(monsterCries[i], originalPitch));
+                return;
+            }
+        }
+
+        Debug.LogWarning("SoundManager: Cry not found with name " + _name);
+    }
+
     public void PlayMusic(string _name)
     {
         for (int i = 0; i < musicTracks.Length; i++)
@@ -161,5 +179,20 @@ public class SoundManager : MonoBehaviour
         }
 
         Debug.LogWarning("SoundManager: Music track not found with name " + _name);
+    }
+
+    public void StopMusic()
+    {
+        currentMusic.Stop();
+    }
+
+    IEnumerator resetPitch(Sound sound, float originalPitch)
+    {
+        while (sound.GetSource().isPlaying)
+        {
+            yield return null;
+        }
+
+        sound.pitch = originalPitch;
     }
 }

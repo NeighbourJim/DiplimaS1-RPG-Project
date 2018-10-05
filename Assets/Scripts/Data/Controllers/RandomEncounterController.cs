@@ -107,6 +107,7 @@ public class RandomEncounterController : MonoBehaviour {
 
     IEnumerator BattleTransition()
     {
+        soundManager.StopMusic();
         soundManager.PlaySound("EncounterStart");
         for (float a = 0f; a <= 1f; a += Time.deltaTime * 8)
         {

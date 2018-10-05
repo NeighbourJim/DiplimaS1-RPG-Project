@@ -229,6 +229,7 @@ public class BattleStateControl : MonoBehaviour {
     void ResolvePlayerFaintState()
     {
         battleDialogue.AddToMessages(battleControl.playerMon.monName + " fainted!");
+        soundManager.PlayFaintCry(battleControl.playerMon.monName);
         uIEventHandler.continueMessages.Invoke();
         AdvanceState(TurnState.PlayerLose);
     }
@@ -236,6 +237,7 @@ public class BattleStateControl : MonoBehaviour {
     void ResolveEnemyFaintState()
     {
         battleDialogue.AddToMessages("The foe " + battleControl.enemyMon.monName + " fainted!");
+        soundManager.PlayFaintCry(battleControl.enemyMon.monName);
         uIEventHandler.continueMessages.Invoke();
         battleControl.DistributeXP();
         AdvanceState(TurnState.PlayerWin);
@@ -292,8 +294,15 @@ public class BattleStateControl : MonoBehaviour {
 
     void ResolveBattleEndState()
     {
-        battleControl.playerMonBase.RetainBattleStatus(battleControl.playerMon);
-        SceneManager.LoadScene(PlayerDataHolder.PlayerPrevMap);
+        if (previousState == TurnState.PlayerLose)
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
+        else
+        {
+            battleControl.playerMonBase.RetainBattleStatus(battleControl.playerMon);
+            SceneManager.LoadScene(PlayerDataHolder.PlayerPrevMap);
+        }
     }
     #endregion
 

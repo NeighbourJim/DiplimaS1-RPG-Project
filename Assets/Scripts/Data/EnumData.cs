@@ -21,6 +21,7 @@ public enum TurnState
     TurnEnding,
     PlayerLose,
     PlayerWin,
+    MonsterLearningNewMove,
     BattleEnding
 }
 

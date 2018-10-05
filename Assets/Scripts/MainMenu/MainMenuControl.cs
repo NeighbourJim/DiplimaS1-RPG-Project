@@ -41,6 +41,11 @@ public class MainMenuControl : MonoBehaviour {
         SceneManager.LoadScene("Overworld_Route1");
     }
 
+    public void LoadDebug()
+    {
+        SceneManager.LoadScene("DebugMenu");
+    }
+
     public void SelectMonster(int monID)
     {
         PlayerDataHolder playerData = GameObject.Find("GameDataController").GetComponent<PlayerDataHolder>();

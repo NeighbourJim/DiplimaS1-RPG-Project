@@ -65,6 +65,7 @@ public class DebugControl : MonoBehaviour {
 
     void AssignObjects()
     {
+        gameData = GameObject.Find("GameDataController");
         mp = gameData.GetComponent<Monpedia>();
         pMonSelect = playerMonsterDropDown.GetComponent<Dropdown>();
         eMonSelect = enemyMonsterDropDown.GetComponent<Dropdown>();
