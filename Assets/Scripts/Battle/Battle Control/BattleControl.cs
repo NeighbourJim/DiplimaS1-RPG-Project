@@ -683,25 +683,27 @@ public class BattleControl : MonoBehaviour
             case (StatusEffect.Burn):
                 battleDialogue.AddToMessages(string.Format("{0} took damage from it's burn.", monster.monName));
                 monster.TakeDamage(Mathf.FloorToInt(monster.maxHP * 0.06f));
+                UpdateHPBar(monster);
                 if (monster == playerMon)
                 {
-                    playerModel.GetComponent<Animator>().SetTrigger("Attack");
+                    playerModel.GetComponent<Animator>().SetTrigger("Damage");
                 }
                 else
                 {
-                    enemyModel.GetComponent<Animator>().SetTrigger("Attack");
+                    enemyModel.GetComponent<Animator>().SetTrigger("Damage");
                 }
                 break;
             case (StatusEffect.Poison):
                 battleDialogue.AddToMessages(string.Format("{0} took damage from poison.", monster.monName));
                 monster.TakeDamage(Mathf.FloorToInt(monster.maxHP * 0.12f));
+                UpdateHPBar(monster);
                 if (monster == playerMon)
                 {
-                    playerModel.GetComponent<Animator>().SetTrigger("Attack");
+                    playerModel.GetComponent<Animator>().SetTrigger("Damage");
                 }
                 else
                 {
-                    enemyModel.GetComponent<Animator>().SetTrigger("Attack");
+                    enemyModel.GetComponent<Animator>().SetTrigger("Damage");
                 }
                 break;
         }
@@ -717,6 +719,7 @@ public class BattleControl : MonoBehaviour
                 {
                     monster.remainingSleepTurns = 0;
                     monster.HealStatus();
+                    UpdateHPBar(monster);
                     battleDialogue.AddToMessages(string.Format("{0} awoke from sleep!", monster.monName));
                     return true;
                 }
@@ -733,6 +736,7 @@ public class BattleControl : MonoBehaviour
                 if (CheckEffectHit(20))
                 {
                     monster.HealStatus();
+                    UpdateHPBar(monster);
                     battleDialogue.AddToMessages(string.Format("{0} thawed out!", monster.monName));
                     return true;
                 }
@@ -748,6 +752,7 @@ public class BattleControl : MonoBehaviour
                     {
                         int dmg = CalculateConfuseDamage(monster);
                         monster.TakeDamage(dmg);
+                        UpdateHPBar(monster);
                         battleDialogue.AddToMessages(string.Format("{0} hit itself in confusion for {1} damage...", monster.monName, dmg));
                         return false;
                     }

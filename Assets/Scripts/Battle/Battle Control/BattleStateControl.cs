@@ -205,7 +205,7 @@ public class BattleStateControl : MonoBehaviour {
             battleControl.ResolveEndTurnStatusEffect(firstToGo);
         if (secondToGo.hasStatus != StatusEffect.none)
             battleControl.ResolveEndTurnStatusEffect(secondToGo);
-        AdvanceState(TurnState.SelectingAction);
+        AdvanceState(TurnState.FaintCheck);
     }
 
     void ResolveFaintCheckState()
@@ -213,10 +213,12 @@ public class BattleStateControl : MonoBehaviour {
         
         if (CheckFainted(battleControl.playerMon))
         {
+            Debug.Log("Player faint");
             AdvanceState(TurnState.PlayerFaints);
         }
         else if (CheckFainted(battleControl.enemyMon))
         {
+            Debug.Log("Enemy faint");
             AdvanceState(TurnState.EnemyFaints);
         }
         else
@@ -228,6 +230,10 @@ public class BattleStateControl : MonoBehaviour {
             if (previousState == TurnState.SecondAction)
             {
                 AdvanceState(TurnState.TurnEnding);
+            }
+            if (previousState == TurnState.TurnEnding)
+            {
+                AdvanceState(TurnState.SelectingAction);
             }
         }
     }
@@ -325,6 +331,7 @@ public class BattleStateControl : MonoBehaviour {
 
     public void AdvanceState(TurnState state)
     {
+        Debug.Log("State Changing To: " + state.ToString());
         previousState = currentState;
         currentState = state;
     }
