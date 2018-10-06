@@ -65,6 +65,12 @@ public class BattleUIControl : MonoBehaviour {
         baseSelectPanel.SetActive(true);
         moveSelectPanel.SetActive(false);
         backButton.gameObject.SetActive(false);
+        GameObject tooltip = GameObject.FindGameObjectWithTag("UITooltip");
+        if (tooltip != null)
+        {
+            Debug.Log("Destroying old tooltip");
+            Destroy(tooltip);
+        }
         battleStateControlScript.AdvanceState(TurnState.SelectingAction);
     }
 
@@ -125,6 +131,12 @@ public class BattleUIControl : MonoBehaviour {
         baseSelectPanel.SetActive(false);
         moveSelectPanel.SetActive(false);
         backButton.gameObject.SetActive(false);
+        GameObject tooltip = GameObject.FindGameObjectWithTag("UITooltip");
+        if (tooltip != null)
+        {
+            Debug.Log("Destroying old tooltip");
+            Destroy(tooltip);
+        }
     }
 
     public string GetClickedButton()
