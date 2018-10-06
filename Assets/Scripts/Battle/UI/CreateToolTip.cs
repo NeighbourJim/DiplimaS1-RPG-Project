@@ -45,6 +45,22 @@ public class CreateToolTip : MonoBehaviour {
                 case "Move4Button":
                     ttCont.SetText(playerMonster.learnedMoves[3]);
                     break;
+                case "NewMove1Button":
+                    ttCont.SetText(playerMonster.learnedMoves[0]);
+                    break;
+                case "NewMove2Button":
+                    ttCont.SetText(playerMonster.learnedMoves[1]);
+                    break;
+                case "NewMove3Button":
+                    ttCont.SetText(playerMonster.learnedMoves[2]);
+                    break;
+                case "NewMove4Button":
+                    ttCont.SetText(playerMonster.learnedMoves[3]);
+                    break;
+                case "NewMoveButton":
+                    ttCont.SetText(playerMonster.CheckLevelMove());
+                    break;
+
             }
         }
     }

@@ -18,7 +18,7 @@ MonoBehaviour:
   physSpec: 2
   basePower: 0
   accuracy: 100
-  causesStatus: 4
+  causesStatus: 2
   statusChance: 100
   statToChange: 0
   affectSelf: 0

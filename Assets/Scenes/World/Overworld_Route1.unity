@@ -6657,7 +6657,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 694549908}
   m_OnClick:
     m_PersistentCalls:
@@ -6972,6 +6972,7 @@ GameObject:
   - component: {fileID: 732089745}
   - component: {fileID: 732089744}
   - component: {fileID: 732089743}
+  - component: {fileID: 732089746}
   m_Layer: 5
   m_Name: MainMenuButton
   m_TagString: Untagged
@@ -7036,7 +7037,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 732089744}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 732089746}
+        m_MethodName: GoToMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &732089744
@@ -7072,6 +7084,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 732089741}
+--- !u!114 &732089746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 732089741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41bb5a5a09fe1184780a1d9669b4b9bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &732700446
 Prefab:
   m_ObjectHideFlags: 0
@@ -11745,7 +11768,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1187613858}
   m_OnClick:
     m_PersistentCalls:
@@ -12306,7 +12329,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1227137665}
   m_OnClick:
     m_PersistentCalls:
@@ -14793,7 +14816,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1540303024}
   m_OnClick:
     m_PersistentCalls:
@@ -17676,7 +17699,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1873930438}
   m_OnClick:
     m_PersistentCalls:
@@ -18785,20 +18808,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   region0:
   - monster: {fileID: 11400000, guid: 237d2f07f7b89254aa9e88502f4fd8fc, type: 2}
-    minLevel: 8
-    maxLevel: 12
+    minLevel: 2
+    maxLevel: 4
     rarity: 1
   - monster: {fileID: 11400000, guid: 237d2f07f7b89254aa9e88502f4fd8fc, type: 2}
-    minLevel: 13
-    maxLevel: 15
+    minLevel: 5
+    maxLevel: 6
     rarity: 2
   - monster: {fileID: 11400000, guid: 7fe9aa996f54f2847835c7ad16aa8dbf, type: 2}
-    minLevel: 10
-    maxLevel: 15
+    minLevel: 5
+    maxLevel: 6
     rarity: 3
   - monster: {fileID: 11400000, guid: 6396187b37003ad49b8b80f061173dab, type: 2}
-    minLevel: 10
-    maxLevel: 15
+    minLevel: 3
+    maxLevel: 4
     rarity: 0
   region1:
   - monster: {fileID: 11400000, guid: 9575c208f4417ee4aa83bf3211bde7d5, type: 2}

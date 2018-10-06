@@ -85,6 +85,7 @@ public class DisplayDialogueText : MonoBehaviour {
 
     void DisplayText(string input)
     {
+        if (co != null) { StopCoroutine(co); }
         co = StartCoroutine(AnimText(input));
     }
 

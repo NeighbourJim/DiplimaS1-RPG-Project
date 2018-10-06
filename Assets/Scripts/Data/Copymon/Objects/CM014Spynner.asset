@@ -25,7 +25,7 @@ MonoBehaviour:
   level: 1
   curXP: 0
   xpToNextLevel: 0
-  xpYield: 380
+  xpYield: 256
   evolves: 0
   levelToEvolve: -1
   evolvesInto: {fileID: 0}
@@ -51,15 +51,15 @@ MonoBehaviour:
   hasStatus: 0
   remainingSleepTurns: 0
   learnedMoves:
-  - {fileID: 11400000, guid: 2868baeb838e5d9488b4b468396d5ee6, type: 2}
-  - {fileID: 11400000, guid: 8e526182e948efe409c84a969cd3f680, type: 2}
   - {fileID: 11400000, guid: 906fe41e38222954583ccdc2739dd098, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   selectedMove: {fileID: 0}
   learnset:
-  - levelToLearn: 3
+  - levelToLearn: 1
     moveToLearn: {fileID: 11400000, guid: 906fe41e38222954583ccdc2739dd098, type: 2}
-  - levelToLearn: 8
+  - levelToLearn: 5
     moveToLearn: {fileID: 11400000, guid: 8e526182e948efe409c84a969cd3f680, type: 2}
   - levelToLearn: 13
     moveToLearn: {fileID: 11400000, guid: 2868baeb838e5d9488b4b468396d5ee6, type: 2}
