@@ -79,10 +79,20 @@ public class RandomEncounterController : MonoBehaviour {
         }
 	}
 
-    void StartWildBattle()
+    public void StartWildBattle()
     {
         battledRecently = true;
         enemyData.SetWildData(regionData.GetEncounterMon(), regionData.GetEncounterLevel(), true);
+        ResetBattleTimer();
+        ResetRecentBattleTimer();
+        StartCoroutine(BattleTransition());
+    }
+
+    public void StartTrainerBattle(Trainer t)
+    {
+        Debug.Log(t.TrainerName + "imgay");
+        battledRecently = true;
+        enemyData.SetTrainerData(t);
         ResetBattleTimer();
         ResetRecentBattleTimer();
         StartCoroutine(BattleTransition());

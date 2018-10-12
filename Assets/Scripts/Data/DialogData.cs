@@ -8,4 +8,5 @@ public class DialogData : MonoBehaviour {
     public List<string> Dialog;
 
     public bool Healer;
+    public bool Trainer;
 }

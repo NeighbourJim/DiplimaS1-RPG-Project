@@ -7,13 +7,13 @@ public class EnemyDataHolder : MonoBehaviour {
     public static BattleType BattleType { get; set; }
 
     #region Trainer Battle
-    public static Trainer enemyTrainer;
-    public static MonData[] enemyTeam;
+    public static Trainer EnemyTrainer = new Trainer();
+    public static MonData[] EnemyTeam { get; set; }
 
     #endregion
 
     #region Wild Battle
-    public static MonData enemyMonster;
+    public static MonData EnemyMonster { get; set; }
 
     #endregion
 
@@ -26,7 +26,7 @@ public class EnemyDataHolder : MonoBehaviour {
 
     public void SetWildData(int id, int level, bool fleeable)
     {
-        enemyTrainer = null;
+        EnemyTrainer = null;
         if (fleeable)
         {
             BattleType = BattleType.WildFleeable;
@@ -36,28 +36,30 @@ public class EnemyDataHolder : MonoBehaviour {
             BattleType = BattleType.WildUnfleeable;
         }
 
-        enemyMonster = ScriptableObject.CreateInstance<MonData>();
-        enemyMonster.CreateFromBase(mp.FindByID(id));
-        enemyMonster.SetLevel(level);
-        enemyMonster.GenerateMoveset();
+        EnemyMonster = ScriptableObject.CreateInstance<MonData>();
+        EnemyMonster.CreateFromBase(mp.FindByID(id));
+        EnemyMonster.SetLevel(level);
+        EnemyMonster.GenerateMoveset();
     }
 
     public void SetTrainerData(Trainer t)
     {
-        Debug.Log("Setting Battle Info for Trainer " + t.trainerType.ToString() + " " + t.TrainerName);
-        enemyTrainer = t;
+        EnemyMonster = null;
 
-        enemyTeam = new MonData[enemyTrainer.trainerTeam.Length];
+        BattleType = BattleType.Trainer;
+        EnemyTrainer.CreateFromBase(t);
+        EnemyTeam = new MonData[EnemyTrainer.trainerTeam.Length];
 
-        for (int i = 0; i < enemyTeam.Length; i++)
+        for (int i = 0; i < EnemyTeam.Length; i++)
         {
-            enemyTeam[i] = ScriptableObject.CreateInstance<MonData>();
-            enemyTeam[i].CreateFromBase(mp.FindByID(t.trainerTeam[i].BaseMonster.monID));
-            enemyTeam[i].SetLevel(t.trainerTeam[i].MonsterLevel);
-            enemyTeam[i].GenerateMoveset();
-            enemyTeam[i].GenerateWildStats(enemyTeam[i].level);
+            EnemyTeam[i] = ScriptableObject.CreateInstance<MonData>();
+            EnemyTeam[i].CreateFromBase(mp.FindByID(t.trainerTeam[i].BaseMonster.monID));
+            EnemyTeam[i].SetLevel(t.trainerTeam[i].MonsterLevel);
+            EnemyTeam[i].GenerateMoveset();
+            EnemyTeam[i].GenerateWildStats(EnemyTeam[i].level);
+            EnemyTeam[i].ownership = Ownership.trainer;
 
-            Debug.Log(string.Format("Monster {0} set to Level {1} {2}", i + 1, enemyTeam[i].level, enemyTeam[i].monName));
+            Debug.Log(string.Format("Monster {0} set to Level {1} {2}", i, EnemyTeam[i].level, EnemyTeam[i].monName));
         }
     }
 }

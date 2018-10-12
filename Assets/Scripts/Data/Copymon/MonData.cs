@@ -100,7 +100,14 @@ public class MonData : ScriptableObject
 
         monID = bm.monID;
         monName = bm.monName;
-        nickname = bm.nickname;
+        if (bm.nickname != bm.monName)
+        {
+            nickname = bm.nickname;
+        }
+        else
+        {
+            nickname = bm.monName;
+        }
         ownership = bm.ownership;
 
         primaryType = bm.primaryType;

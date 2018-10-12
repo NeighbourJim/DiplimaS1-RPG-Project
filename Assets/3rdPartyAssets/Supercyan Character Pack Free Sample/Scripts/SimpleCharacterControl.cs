@@ -92,20 +92,23 @@ public class SimpleCharacterControl : MonoBehaviour {
 
 	void Update () {
         m_animator.SetBool("Grounded", m_isGrounded);
-
-        switch(m_controlMode)
+        if (!FindObjectOfType<DisplayDialogueText>().dialogActive)
         {
-            case ControlMode.Direct:
-                DirectUpdate();
-                break;
+            switch (m_controlMode)
+            {
+                case ControlMode.Direct:
 
-            case ControlMode.Tank:
-                TankUpdate();
-                break;
+                    DirectUpdate();
+                    break;
 
-            default:
-                Debug.LogError("Unsupported state");
-                break;
+                case ControlMode.Tank:
+                    TankUpdate();
+                    break;
+
+                default:
+                    Debug.LogError("Unsupported state");
+                    break;
+            }
         }
 
         m_wasGrounded = m_isGrounded;

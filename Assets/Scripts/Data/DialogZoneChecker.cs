@@ -5,7 +5,7 @@ using UnityEngine;
 public class DialogZoneChecker : MonoBehaviour {
 
     public bool inDialogZone;
-    GameObject dialogObject;
+    GameObject dialogObject = null;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -27,6 +27,9 @@ public class DialogZoneChecker : MonoBehaviour {
 
     public DialogData GetDialogObject()
     {
-        return dialogObject.GetComponent<DialogData>();
+        if (dialogObject.GetComponent<DialogData>() != null)
+            return dialogObject.GetComponent<DialogData>();
+        else
+            return null;
     }
 }

@@ -16,10 +16,12 @@ public class DisplayDialogueText : MonoBehaviour {
     Coroutine co;
 
     DialogZoneChecker playerDialogChecker;
+    DialogData dialog;
 
     private void Start()
     {
         playerDialogChecker = GameObject.FindGameObjectWithTag("Player").GetComponent<DialogZoneChecker>();
+        
     }
 
     private void Update()
@@ -29,11 +31,7 @@ public class DisplayDialogueText : MonoBehaviour {
             {
                 if (playerDialogChecker.inDialogZone)
                 {
-                    DialogData dialog = playerDialogChecker.GetDialogObject();
-                    if (dialog.Healer)
-                    {
-                        FindObjectOfType<PlayerDataHolder>().FullyHealTeam();
-                    }
+                    dialog = playerDialogChecker.GetDialogObject();
                     StartDialogue(dialog.Name, dialog.Dialog);
                 }
             }
@@ -53,6 +51,7 @@ public class DisplayDialogueText : MonoBehaviour {
         else
         {
             HideBox();
+            CheckDialogEffect();
         }
     }
 
@@ -93,6 +92,18 @@ public class DisplayDialogueText : MonoBehaviour {
         co = StartCoroutine(AnimText(input));
     }
 
+    void CheckDialogEffect()
+    {
+        if (dialog.Healer)
+        {
+            FindObjectOfType<PlayerDataHolder>().FullyHealTeam();
+        }
+        else if (dialog.Trainer)
+        {
+            FindObjectOfType<RandomEncounterController>().StartTrainerBattle(dialog.gameObject.GetComponent<Trainer>());
+        }
+    }
+
     IEnumerator AnimText(string input)
     {
         int i = 0;
@@ -103,4 +114,6 @@ public class DisplayDialogueText : MonoBehaviour {
             yield return new WaitForSeconds(characterDelay);
         }
     }
+
+
 }

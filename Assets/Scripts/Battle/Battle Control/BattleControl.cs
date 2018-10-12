@@ -49,12 +49,10 @@ public class BattleControl : MonoBehaviour
         soundManager.PlayMusic("Battle");
     }
 
-    public void InitiateWildBattle(MonData player, MonData enemy)
+    public void InitiateWildBattle()
     {
-        playerMonBase = player;
-        enemyMonBase = enemy;
-        playerMon.SetData(player);
-        enemyMon.SetData(enemy);
+        playerMon.SetData(PlayerDataHolder.playerTeam[0]);
+        enemyMon.SetData(EnemyDataHolder.EnemyMonster);
         Spawn();
         SetButtonColours();
         SetButtonNames();
@@ -62,11 +60,15 @@ public class BattleControl : MonoBehaviour
         battleType = BattleType.WildFleeable;
     }
 
-    public void InitiateTrainerBattle(MonData[] playerTeam, MonData[] enemyTeam)
+    public void InitiateTrainerBattle()
     {
+        playerMon.SetData(PlayerDataHolder.playerTeam[0]);
+        enemyMon.SetData(EnemyDataHolder.EnemyTeam[0]);
         Spawn();
         SetButtonColours();
         SetButtonNames();
+        battleUIController.GetComponent<BattleXPBarControl>().SetXPBarSize(playerMon);
+        battleType = BattleType.Trainer;
     }
 
     public void SetPlayerVisibility(bool val)

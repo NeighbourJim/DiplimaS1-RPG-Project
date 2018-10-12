@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerDataHolder : MonoBehaviour {
 
+    
     public static string PlayerPrevMap { get; set; }
     public static string PlayerCurrMap { get; set; }
     public static Vector3 PlayerLocation { get; set; }

@@ -135,13 +135,27 @@ public class BattleStateControl : MonoBehaviour {
     void ResolveStartingState()
     {        
         Monpedia mp = dataCont.GetComponent<Monpedia>();
-        battleControl.InitiateWildBattle(PlayerDataHolder.playerTeam[0], EnemyDataHolder.enemyMonster);
+        if (EnemyDataHolder.BattleType == BattleType.Trainer)
+        {
+            battleControl.InitiateTrainerBattle();
+        }
+        else
+        {
+            battleControl.InitiateWildBattle();
+        }
         uiHPControl.SetMonsters(battleControl.playerMon, battleControl.enemyMon);
         AdvanceState(TurnState.EnemyIntro);
     }
     void ResolveEnemyIntroState()
     {
-        battleDialogue.AddToMessages(string.Format("A wild {0} appeared!", battleControl.enemyMon.monName));
+        if (battleControl.battleType == BattleType.Trainer)
+        {
+            battleDialogue.AddToMessages(string.Format("{0} {1} wants to fight!", EnemyDataHolder.EnemyTrainer.trainerType.ToString().Replace('_',' '), EnemyDataHolder.EnemyTrainer.TrainerName));
+        }
+        else
+        {
+            battleDialogue.AddToMessages(string.Format("A wild {0} appeared!", battleControl.enemyMon.monName));
+        }
         battleControl.SetEnemyVisibility(true);
         soundManager.PlayCry(battleControl.enemyMon.monName);
         uIEventHandler.continueMessages.Invoke();

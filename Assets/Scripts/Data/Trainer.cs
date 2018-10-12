@@ -18,6 +18,17 @@ public class Trainer : MonoBehaviour {
     public string DefeatQuote = "?DEFEATQUOTE?";
     int PrizeMoney = 0;
 
+
+    public void CreateFromBase(Trainer t)
+    {
+        trainerType = t.trainerType;
+        TrainerName = t.TrainerName;
+        trainerTeam = t.trainerTeam;
+        DefeatQuote = t.DefeatQuote;
+        PrizeMoney = t.PrizeMoney;
+
+    }
+
     private void OnValidate()
     {
         if(trainerTeam.Length > 6)
