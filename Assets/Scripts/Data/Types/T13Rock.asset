@@ -18,10 +18,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: dceac4decc4624644b7ca3437ec9a013, type: 2}
   - {fileID: 11400000, guid: fde76722823e33a4d9ee30701823f145, type: 2}
   - {fileID: 11400000, guid: 370c4fdd1bfedf246a02dc92749b2fae, type: 2}
+  - {fileID: 11400000, guid: 6e3f361f53050894aa22a52e0c47e2ca, type: 2}
   resistances:
   - {fileID: 11400000, guid: 04060546dafaa5a419a5dcc8b9dded1d, type: 2}
   - {fileID: 11400000, guid: 5478089db321b704a9aa4c1242f3c5cd, type: 2}
   - {fileID: 11400000, guid: 52385197a4c00e547ac0e75e8a307a0f, type: 2}
   - {fileID: 11400000, guid: 08d5e9f6bc614044ab8ef85830966b45, type: 2}
   immunities: []
-  buttonColour: {r: 0.5661765, g: 0.42468977, b: 0.24562067, a: 1}
+  buttonColour: {r: 0.4716981, g: 0.39159843, b: 0.29147384, a: 1}

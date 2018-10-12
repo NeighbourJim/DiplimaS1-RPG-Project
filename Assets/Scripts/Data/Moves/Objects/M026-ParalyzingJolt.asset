@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 366284312d2880646b9ced82846cc5d0, type: 3}
+  m_Name: M026-ParalyzingJolt
+  m_EditorClassIdentifier: 
+  moveID: 26
+  moveName: Paralyzing Jolt
+  moveDescription: Zap the target with a weak electric charge, causing Paralysis.
+  moveType: {fileID: 11400000, guid: 58b2dd05e06394741adaa3746bf5700c, type: 2}
+  physSpec: 2
+  basePower: 0
+  accuracy: 100
+  causesStatus: 3
+  statusChance: 100
+  statToChange: 0
+  affectSelf: 0
+  buffAmount: 0
+  priority: 0
+  increasedCritRatio: 0
+  causesFlinch: 0

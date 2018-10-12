@@ -16,8 +16,9 @@ MonoBehaviour:
   weaknesses:
   - {fileID: 11400000, guid: 7896f025da81cdc4e87d645747f43f44, type: 2}
   - {fileID: 11400000, guid: 7734e818bef8f0c4d96db1008fc44388, type: 2}
+  - {fileID: 11400000, guid: 78edd135a58ff8049bc8bbfeaea41e18, type: 2}
   resistances:
   - {fileID: 11400000}
   - {fileID: 11400000, guid: fde76722823e33a4d9ee30701823f145, type: 2}
   immunities: []
-  buttonColour: {r: 0.8455882, g: 0.27357265, b: 0.73512983, a: 1}
+  buttonColour: {r: 0.76015425, g: 0.27450988, b: 0.84705883, a: 1}

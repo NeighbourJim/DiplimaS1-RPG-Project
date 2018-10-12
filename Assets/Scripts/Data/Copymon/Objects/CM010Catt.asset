@@ -58,9 +58,13 @@ MonoBehaviour:
   learnset:
   - levelToLearn: 1
     moveToLearn: {fileID: 11400000, guid: 9509e6fd2d654264ba5f2bd74d428f74, type: 2}
-  - levelToLearn: 5
-    moveToLearn: {fileID: 11400000, guid: 93f9dbcb4f63d944498e75941314359a, type: 2}
+  - levelToLearn: 2
+    moveToLearn: {fileID: 11400000, guid: e95c07c64f764fc4da823362f4aefddd, type: 2}
   - levelToLearn: 8
-    moveToLearn: {fileID: 11400000, guid: 6976a41fbe546dc4d8353215223731fe, type: 2}
-  - levelToLearn: 12
-    moveToLearn: {fileID: 11400000, guid: 0f50b0bd05a32814599fe16219d549e3, type: 2}
+    moveToLearn: {fileID: 11400000, guid: 4eb055ba95ee11444a835d9942df8cf6, type: 2}
+  - levelToLearn: 16
+    moveToLearn: {fileID: 11400000, guid: 3006f1b0fe8824d458b53d6ee80fc4e1, type: 2}
+  - levelToLearn: 23
+    moveToLearn: {fileID: 11400000, guid: e429d4ee995700c4cbf7e4e9966cf294, type: 2}
+  - levelToLearn: 30
+    moveToLearn: {fileID: 11400000, guid: 5c39c24349e4df24a95868b79c9be33b, type: 2}

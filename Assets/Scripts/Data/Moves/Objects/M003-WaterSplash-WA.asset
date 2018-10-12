@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveID: 3
   moveName: WaterSplash
-  moveDescription: The user splashes the target with water.
+  moveDescription: Splash the target with water.
   moveType: {fileID: 11400000, guid: b263572aa250ee043922a1bd995c9457, type: 2}
   physSpec: 1
   basePower: 40

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 366284312d2880646b9ced82846cc5d0, type: 3}
+  m_Name: M019-PocketSand
+  m_EditorClassIdentifier: 
+  moveID: 19
+  moveName: Pocket Sand
+  moveDescription: Throw sand in the target's eyes to reduce their accuracy.
+  moveType: {fileID: 11400000, guid: 370c4fdd1bfedf246a02dc92749b2fae, type: 2}
+  physSpec: 2
+  basePower: 0
+  accuracy: 100
+  causesStatus: 0
+  statusChance: 0
+  statToChange: 6
+  affectSelf: 0
+  buffAmount: -1
+  priority: 0
+  increasedCritRatio: 0
+  causesFlinch: 0

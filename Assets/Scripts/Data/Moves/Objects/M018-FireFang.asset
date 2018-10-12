@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 366284312d2880646b9ced82846cc5d0, type: 3}
+  m_Name: M018-FireFang
+  m_EditorClassIdentifier: 
+  moveID: 18
+  moveName: Fire Fang
+  moveDescription: Bite the target with superheated fangs. May cause a burn. May cause
+    the opponent to flinch.
+  moveType: {fileID: 11400000, guid: 5478089db321b704a9aa4c1242f3c5cd, type: 2}
+  physSpec: 0
+  basePower: 65
+  accuracy: 95
+  causesStatus: 1
+  statusChance: 10
+  statToChange: 0
+  affectSelf: 0
+  buffAmount: 0
+  priority: 0
+  increasedCritRatio: 0
+  causesFlinch: 1

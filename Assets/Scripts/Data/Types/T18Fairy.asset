@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4503a970237cf384dabc25ab4cc53fb1, type: 3}
+  m_Name: T18Fairy
+  m_EditorClassIdentifier: 
+  typeID: 18
+  typeName: Fairy
+  weaknesses:
+  - {fileID: 11400000, guid: 52385197a4c00e547ac0e75e8a307a0f, type: 2}
+  - {fileID: 11400000, guid: 6e3f361f53050894aa22a52e0c47e2ca, type: 2}
+  resistances:
+  - {fileID: 11400000, guid: fde76722823e33a4d9ee30701823f145, type: 2}
+  - {fileID: 11400000, guid: 7734e818bef8f0c4d96db1008fc44388, type: 2}
+  - {fileID: 11400000, guid: 78edd135a58ff8049bc8bbfeaea41e18, type: 2}
+  immunities:
+  - {fileID: 11400000, guid: 3fc95d769d4b2364ba2e93259868b0e2, type: 2}
+  buttonColour: {r: 0.8207547, g: 0.623309, b: 0.80448955, a: 0}

@@ -35,7 +35,7 @@ public class Trainer : MonoBehaviour {
         {
             if(trainerTeam[i].BaseMonster == null)
             {
-                Debug.LogWarning("A trainer monster slot cannot be empty.\nReduce the array size for less monsters, or set one for slot " + i.ToString() + ".");
+                Debug.LogError("No monster set for slot " + i.ToString() + ".");
             }
             if(trainerTeam[i].MonsterLevel < 1)
             {

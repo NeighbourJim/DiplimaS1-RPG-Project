@@ -408,11 +408,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trainerType: 0
-  TrainerName: ?TRAINERNAME?
+  TrainerName: Test Lad
   trainerTeam:
-  - BaseMonster: {fileID: 11400000, guid: f2effaa8259fb2d4cbcf5df9786716f4, type: 2}
+  - BaseMonster: {fileID: 11400000, guid: 6396187b37003ad49b8b80f061173dab, type: 2}
     MonsterLevel: 25
-  DefeatQuote: ?DEFEATQUOTE?
+  DefeatQuote: Ah, you beat me!
 --- !u!4 &26386525 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4631326298391974, guid: f97a46ce6b7f6104b93f965382f9fa05,

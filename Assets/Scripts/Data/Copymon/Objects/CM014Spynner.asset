@@ -29,12 +29,12 @@ MonoBehaviour:
   evolves: 0
   levelToEvolve: -1
   evolvesInto: {fileID: 0}
-  baseHP: 70
-  baseAtk: 90
-  baseDef: 70
-  baseSpAtk: 60
-  baseSpDef: 60
-  baseSpeed: 40
+  baseHP: 50
+  baseAtk: 47
+  baseDef: 50
+  baseSpAtk: 57
+  baseSpDef: 50
+  baseSpeed: 65
   ivHP: 0
   ivAtk: 0
   ivDef: 0
@@ -51,17 +51,21 @@ MonoBehaviour:
   hasStatus: 0
   remainingSleepTurns: 0
   learnedMoves:
-  - {fileID: 11400000, guid: 906fe41e38222954583ccdc2739dd098, type: 2}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   selectedMove: {fileID: 0}
   learnset:
   - levelToLearn: 1
-    moveToLearn: {fileID: 11400000, guid: 906fe41e38222954583ccdc2739dd098, type: 2}
-  - levelToLearn: 5
-    moveToLearn: {fileID: 11400000, guid: 8e526182e948efe409c84a969cd3f680, type: 2}
+    moveToLearn: {fileID: 11400000, guid: 7de1c37017c65e14488588d339ac0d1b, type: 2}
+  - levelToLearn: 2
+    moveToLearn: {fileID: 11400000, guid: 66e2be3ac38b7a34dbdb3e0fbc66a71d, type: 2}
+  - levelToLearn: 4
+    moveToLearn: {fileID: 11400000, guid: 8d01eff66e953734997f585be9a256e1, type: 2}
+  - levelToLearn: 7
+    moveToLearn: {fileID: 11400000, guid: de7a5417c20892b478510e0bd1850bbc, type: 2}
   - levelToLearn: 13
-    moveToLearn: {fileID: 11400000, guid: 2868baeb838e5d9488b4b468396d5ee6, type: 2}
+    moveToLearn: {fileID: 11400000, guid: e898afef874f30f489f47da1ae6120cb, type: 2}
   - levelToLearn: 18
-    moveToLearn: {fileID: 11400000, guid: 1d209c64126c6084483f95b34908e02e, type: 2}
+    moveToLearn: {fileID: 11400000, guid: 1796c2fa563b97d4d979ef297d24db9f, type: 2}
