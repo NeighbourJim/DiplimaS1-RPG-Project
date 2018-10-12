@@ -115,7 +115,7 @@ public class DebugControl : MonoBehaviour {
         enemyData = gameData.GetComponent<EnemyDataHolder>();
 
         playerData.SetData(monIDs[pMonSelect.value], Mathf.FloorToInt(pLevel.value));
-        enemyData.SetData(monIDs[eMonSelect.value], Mathf.FloorToInt(eLevel.value));
+        enemyData.SetWildData(monIDs[eMonSelect.value], Mathf.FloorToInt(eLevel.value), true);
 
         SceneManager.LoadScene("BaseBattle");
     }

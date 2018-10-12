@@ -391,6 +391,28 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1e8e1924bb442334c9125455634bb567, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &25177137 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1144978573833690, guid: 1e8e1924bb442334c9125455634bb567,
+    type: 2}
+  m_PrefabInternal: {fileID: 25177136}
+--- !u!114 &25177138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 25177137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 795444b6fc5725843a0ece5989a5f16d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trainerType: 0
+  TrainerName: ?TRAINERNAME?
+  trainerTeam:
+  - BaseMonster: {fileID: 11400000, guid: f2effaa8259fb2d4cbcf5df9786716f4, type: 2}
+    MonsterLevel: 25
+  DefeatQuote: ?DEFEATQUOTE?
 --- !u!4 &26386525 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4631326298391974, guid: f97a46ce6b7f6104b93f965382f9fa05,

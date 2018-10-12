@@ -59,6 +59,21 @@ public enum BattleType
     Trainer
 }
 
+public enum TrainerType
+{
+    Monster_Trainer,
+    Youngster,
+    Lass,
+    Rival,
+    Leader,
+    Fisherman,
+    Junior_Trainer,
+    Pro_Trainer,
+    Burglar,
+    Bird_Lover,
+    Cat_Lady
+}
+
 public enum PhysSpec
 {
     Physical,
