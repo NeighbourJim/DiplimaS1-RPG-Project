@@ -339,4 +339,11 @@ public class MonData : ScriptableObject
     {
         learnedMoves[moveToReplace] = move;
     }
+
+    public void HealToFull()
+    {
+        hasStatus = StatusEffect.none;
+        curHP = maxHP;
+        Debug.Log(curHP.ToString() + "/" + maxHP.ToString());
+    }
 }

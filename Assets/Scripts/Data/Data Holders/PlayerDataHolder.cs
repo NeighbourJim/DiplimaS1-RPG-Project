@@ -53,11 +53,6 @@ public class PlayerDataHolder : MonoBehaviour {
         }
     }
 
-    private void Update()
-    {
-        Debug.Log(playerTeam[0].level.ToString() + " - " + playerTeam[0].curHP.ToString() + "/" + playerTeam[0].maxHP.ToString());
-    }
-
     public void SetData(int id, int level)
     {
         playerTeam[0].CreateFromBase(mp.FindByID(id));
@@ -103,10 +98,8 @@ public class PlayerDataHolder : MonoBehaviour {
         {
             if (playerTeam[i] != null)
             {
-                
-                playerTeam[i].hasStatus = StatusEffect.none;
-                playerTeam[i].CalculateAllStats(playerTeam[i].level);
-                Debug.Log(string.Format("Healing {0} - {1}/{2}", playerTeam[i].monName, playerTeam[i].curHP, playerTeam[i].maxHP));
+
+                playerTeam[i].HealToFull();
             }
         }
     }
