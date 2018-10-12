@@ -6,4 +6,6 @@ public class DialogData : MonoBehaviour {
 
     public string Name;
     public List<string> Dialog;
+
+    public bool Healer;
 }

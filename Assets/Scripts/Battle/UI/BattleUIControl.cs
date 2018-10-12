@@ -139,14 +139,9 @@ public class BattleUIControl : MonoBehaviour {
         }
     }
 
-    public string GetClickedButton()
+    public void SelectMove(int buttonID)
     {
-        return(EventSystem.current.currentSelectedGameObject.name);
-    }
-
-    public void SelectMove()
-    {
-        battleControlScript.SetSelectedMove(GetClickedButton());
+        battleControlScript.SetSelectedMove(buttonID);
     }
 
 }

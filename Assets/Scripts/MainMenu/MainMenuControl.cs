@@ -15,7 +15,10 @@ public class MainMenuControl : MonoBehaviour {
     private void Awake()
     {
         _sm = GameObject.Find("AudioController").GetComponent<SoundManager>();
-        _sm.PlayMusic("MainMenu");
+        if (!_sm.FindMusic("MainMenu").GetSource().isPlaying)
+        {
+            _sm.PlayMusic("MainMenu");
+        }
         ShowMain();
     }
 

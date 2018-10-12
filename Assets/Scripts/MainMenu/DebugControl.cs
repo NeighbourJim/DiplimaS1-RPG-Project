@@ -120,6 +120,11 @@ public class DebugControl : MonoBehaviour {
         SceneManager.LoadScene("BaseBattle");
     }
 
+    public void ReturnToMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
 	// Update is called once per frame
 	void Update () {
 		

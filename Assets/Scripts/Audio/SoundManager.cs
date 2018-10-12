@@ -131,6 +131,32 @@ public class SoundManager : MonoBehaviour
         return null;
     }
 
+    public Sound FindMusic(string _find)
+    {
+        for (int i = 0; i<sounds.Length; i++)
+        {
+            if(musicTracks[i].name == _find)
+            {
+                return musicTracks[i];
+            }
+        }
+
+        return null;
+    }
+
+    public Sound FindCry(string _find)
+    {
+        for (int i = 0; i < sounds.Length; i++)
+        {
+            if (monsterCries[i].name == _find)
+            {
+                return monsterCries[i];
+            }
+        }
+
+        return null;
+    }
+
     public void PlayCry(string _name)
     {
         for (int i = 0; i < monsterCries.Length; i++)

@@ -19,6 +19,8 @@ MonoBehaviour:
   physSpec: 0
   basePower: 70
   accuracy: 100
+  baseHealing: 0
+  healsStatus: 0
   causesStatus: 0
   statusChance: 0
   statToChange: 0

@@ -23,6 +23,13 @@ public class MoveData : ScriptableObject {
     [Tooltip("Chance to hit % ( 100 = 100% )")]
     public int accuracy = 100;
 
+    [Header("Healing")]    
+    [Tooltip("The base self healing value, in %")]
+    [Range(0,100)]
+    public int baseHealing = 0;
+    [Tooltip("Whether or not the move heals abnormal status.")]
+    public bool healsStatus = false;
+
     [Header("Status Effects")]
     [Tooltip("Which status effect this move causes, if any.")]
     public StatusEffect causesStatus = StatusEffect.none;

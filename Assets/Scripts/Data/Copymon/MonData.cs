@@ -293,6 +293,7 @@ public class MonData : ScriptableObject
         xpToNextLevel = battleData.xpToNextLevel;
         hasStatus = battleData.hasStatus;
         learnedMoves = battleData.learnedMoves;
+        CalculateAllStatsNoHeal(level);
     }
 
     public MoveData CheckLevelMove()

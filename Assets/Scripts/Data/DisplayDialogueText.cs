@@ -30,6 +30,10 @@ public class DisplayDialogueText : MonoBehaviour {
                 if (playerDialogChecker.inDialogZone)
                 {
                     DialogData dialog = playerDialogChecker.GetDialogObject();
+                    if (dialog.Healer)
+                    {
+                        FindObjectOfType<PlayerDataHolder>().FullyHealTeam();
+                    }
                     StartDialogue(dialog.Name, dialog.Dialog);
                 }
             }

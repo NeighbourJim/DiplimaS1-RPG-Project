@@ -187,26 +187,27 @@ public class BattleControl : MonoBehaviour
     }
     #endregion
 
-    public void SetSelectedMove(string buttonName)
+    public void SetSelectedMove(int buttonID)
     {
-        switch (buttonName)
-        {
-            case("Move1Button"):
-                playerMon.selectedMove = playerMon.learnedMoves[0];
-                break;
-            case("Move2Button"):
-                playerMon.selectedMove = playerMon.learnedMoves[1];
-                break;
-            case("Move3Button"):
-                playerMon.selectedMove = playerMon.learnedMoves[2];
-                break;
-            case("Move4Button"):
-                playerMon.selectedMove = playerMon.learnedMoves[3];
-                break;
-            default:
-                playerMon.selectedMove = null;
-                break;
-        }
+        playerMon.selectedMove = playerMon.learnedMoves[buttonID];
+        //switch (buttonName)
+        //{
+        //    case("Move1Button"):
+        //        playerMon.selectedMove = playerMon.learnedMoves[0];
+        //        break;
+        //    case("Move2Button"):
+        //        playerMon.selectedMove = playerMon.learnedMoves[1];
+        //        break;
+        //    case("Move3Button"):
+        //        playerMon.selectedMove = playerMon.learnedMoves[2];
+        //        break;
+        //    case("Move4Button"):
+        //        playerMon.selectedMove = playerMon.learnedMoves[3];
+        //        break;
+        //    default:
+        //        playerMon.selectedMove = null;
+        //        break;
+        //}
         stateControl.AdvanceState(TurnState.EnemySelectAction);
     }
 

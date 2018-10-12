@@ -36,7 +36,7 @@ public class PlayerDataHolder : MonoBehaviour {
         }
     }
 
-    public static MonData[] playerTeam = new MonData[5];
+    public static MonData[] playerTeam = new MonData[6];
 
     Monpedia mp;
     GameObject player;
@@ -51,6 +51,11 @@ public class PlayerDataHolder : MonoBehaviour {
             playerTeam[0] = ScriptableObject.CreateInstance<MonData>();
             SetData(1,1);
         }
+    }
+
+    private void Update()
+    {
+        Debug.Log(playerTeam[0].level.ToString() + " - " + playerTeam[0].curHP.ToString() + "/" + playerTeam[0].maxHP.ToString());
     }
 
     public void SetData(int id, int level)
@@ -90,5 +95,19 @@ public class PlayerDataHolder : MonoBehaviour {
     {
         PlayerPrevMap = PlayerCurrMap;
         PlayerCurrMap = SceneManager.GetActiveScene().name;
+    }
+
+    public void FullyHealTeam()
+    {
+        for (int i = 0; i < playerTeam.Length; i++)
+        {
+            if (playerTeam[i] != null)
+            {
+                
+                playerTeam[i].hasStatus = StatusEffect.none;
+                playerTeam[i].CalculateAllStats(playerTeam[i].level);
+                Debug.Log(string.Format("Healing {0} - {1}/{2}", playerTeam[i].monName, playerTeam[i].curHP, playerTeam[i].maxHP));
+            }
+        }
     }
 }

@@ -13183,7 +13183,7 @@ Prefab:
     - target: {fileID: 114761929456688548, guid: 8a3558464b986dc40bc0f463e956135d,
         type: 2}
       propertyPath: Name
-      value: Test NPC
+      value: Healing Lad
       objectReference: {fileID: 0}
     - target: {fileID: 114761929456688548, guid: 8a3558464b986dc40bc0f463e956135d,
         type: 2}
@@ -13193,12 +13193,17 @@ Prefab:
     - target: {fileID: 114761929456688548, guid: 8a3558464b986dc40bc0f463e956135d,
         type: 2}
       propertyPath: Dialog.Array.data[1]
-      value: This is a test NPC.
+      value: I'll heal your team for you.
       objectReference: {fileID: 0}
     - target: {fileID: 114761929456688548, guid: 8a3558464b986dc40bc0f463e956135d,
         type: 2}
       propertyPath: Dialog.Array.data[2]
-      value: Goodbye!
+      value: All done. See ya!
+      objectReference: {fileID: 0}
+    - target: {fileID: 114761929456688548, guid: 8a3558464b986dc40bc0f463e956135d,
+        type: 2}
+      propertyPath: Healer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8a3558464b986dc40bc0f463e956135d, type: 2}

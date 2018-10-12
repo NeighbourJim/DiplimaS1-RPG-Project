@@ -12,6 +12,7 @@ TagManager:
   - TransBehind
   - DialogZone
   - UITooltip
+  - HealZone
   layers:
   - Default
   - TransparentFX
