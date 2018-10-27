@@ -316,8 +316,10 @@ public class BattleStateControl : MonoBehaviour {
             {
                 battleDialogue.AddToMessages("Can't flee from this battle!");
             }
+            firstToGo = battleControl.playerMon;
+            secondToGo = battleControl.enemyMon;
             battleControl.SelectEnemyMove();
-            AdvanceState(TurnState.SecondAction);
+            AdvanceState(TurnState.FaintCheck);
         }
     }
 
@@ -329,7 +331,7 @@ public class BattleStateControl : MonoBehaviour {
         }
         else
         {
-            battleControl.playerMonBase.RetainBattleStatus(battleControl.playerMon);
+            PlayerDataHolder.playerTeam[0].RetainBattleStatus(battleControl.playerMon);
             SceneManager.LoadScene(PlayerDataHolder.PlayerPrevMap);
         }
     }

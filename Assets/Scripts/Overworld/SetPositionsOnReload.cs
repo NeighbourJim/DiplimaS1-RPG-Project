@@ -16,6 +16,10 @@ public class SetPositionsOnReload : MonoBehaviour {
         player = GameObject.FindGameObjectWithTag("Player");
         camera = GameObject.FindGameObjectWithTag("MainCamera");
 
+        if (EnemyDataHolder.baseTrainer != null)
+        {
+            GameObject.Find(EnemyDataHolder.baseTrainer).GetComponentInChildren<Trainer>().defeated = true;
+        }
         SetPlayerLocation();
         SetCameraLocation();
 	}

@@ -32,7 +32,14 @@ public class DisplayDialogueText : MonoBehaviour {
                 if (playerDialogChecker.inDialogZone)
                 {
                     dialog = playerDialogChecker.GetDialogObject();
-                    StartDialogue(dialog.Name, dialog.Dialog);
+                    if (dialog.Trainer == true && dialog.gameObject.GetComponent<Trainer>().defeated == true)
+                    {
+                        StartDialogue(dialog.Name, dialog.gameObject.GetComponent<Trainer>().DefeatQuote);
+                    }
+                    else
+                    {
+                        StartDialogue(dialog.Name, dialog.Dialog);
+                    }
                 }
             }
             else if (dialogActive)
@@ -98,7 +105,7 @@ public class DisplayDialogueText : MonoBehaviour {
         {
             FindObjectOfType<PlayerDataHolder>().FullyHealTeam();
         }
-        else if (dialog.Trainer)
+        else if (dialog.Trainer && dialog.gameObject.GetComponent<Trainer>().defeated == false)
         {
             FindObjectOfType<RandomEncounterController>().StartTrainerBattle(dialog.gameObject.GetComponent<Trainer>());
         }

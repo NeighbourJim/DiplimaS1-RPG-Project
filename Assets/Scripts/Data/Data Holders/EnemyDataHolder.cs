@@ -7,6 +7,7 @@ public class EnemyDataHolder : MonoBehaviour {
     public static BattleType BattleType { get; set; }
 
     #region Trainer Battle
+    public static string baseTrainer;
     public static Trainer EnemyTrainer = new Trainer();
     public static MonData[] EnemyTeam { get; set; }
 
@@ -26,7 +27,7 @@ public class EnemyDataHolder : MonoBehaviour {
 
     public void SetWildData(int id, int level, bool fleeable)
     {
-        EnemyTrainer = null;
+        EnemyTrainer = new Trainer();
         if (fleeable)
         {
             BattleType = BattleType.WildFleeable;
@@ -44,6 +45,8 @@ public class EnemyDataHolder : MonoBehaviour {
 
     public void SetTrainerData(Trainer t)
     {
+        Debug.Log(t.TrainerName);
+        baseTrainer = t.gameObject.name;
         EnemyMonster = null;
 
         BattleType = BattleType.Trainer;

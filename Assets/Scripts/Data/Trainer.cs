@@ -15,8 +15,9 @@ public class Trainer : MonoBehaviour {
     public TrainerType trainerType = TrainerType.Monster_Trainer;
     public string TrainerName = "?TRAINERNAME?";
     public TrainerMonster[] trainerTeam;
-    public string DefeatQuote = "?DEFEATQUOTE?";
+    public List<string> DefeatQuote;
     int PrizeMoney = 0;
+    public bool defeated;
 
 
     public void CreateFromBase(Trainer t)
@@ -26,9 +27,7 @@ public class Trainer : MonoBehaviour {
         trainerTeam = t.trainerTeam;
         DefeatQuote = t.DefeatQuote;
         PrizeMoney = t.PrizeMoney;
-
     }
-
     private void OnValidate()
     {
         if(trainerTeam.Length > 6)

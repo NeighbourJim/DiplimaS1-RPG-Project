@@ -26,6 +26,7 @@ public class MainMenuControl : MonoBehaviour {
     {
         mainPanel.SetActive(true);
         monPanel.SetActive(false);
+        settingsPanel.SetActive(false);
     }
 
     public void ShowMonsterSelect()
@@ -36,7 +37,8 @@ public class MainMenuControl : MonoBehaviour {
 
     public void ShowSettings()
     {
-
+        mainPanel.SetActive(false);
+        settingsPanel.SetActive(true);
     }
 
 	public void LoadOverworld()

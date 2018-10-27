@@ -9,6 +9,7 @@ public class GetSliderValue : MonoBehaviour {
 
     private Slider slider;
     private Text text;
+    public string append;
 
     private void Start()
     {
@@ -19,6 +20,6 @@ public class GetSliderValue : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
-        text.text = slider.value.ToString();
+        text.text = slider.value.ToString() + append;
 	}
 }
