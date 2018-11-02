@@ -212,6 +212,30 @@ public class SoundManager : MonoBehaviour
         currentMusic.Stop();
     }
 
+    public void SetMusicMasterVolume(float value)
+    {
+        for (int i = 0; i < musicTracks.Length; i++)
+        {
+            musicTracks[i].volume = value;
+            musicTracks[i].GetSource().volume = value;
+        }
+    }
+
+    public void SetSFXMasterVolume(float value)
+    {
+        for (int i = 0; i < sounds.Length; i++)
+        {
+            sounds[i].volume = value;
+            sounds[i].GetSource().volume = value;
+        }
+
+        for (int i = 0; i < monsterCries.Length; i++)
+        {
+            monsterCries[i].volume = value;
+            monsterCries[i].GetSource().volume = value;
+        }
+    }
+
     IEnumerator resetPitch(Sound sound, float originalPitch)
     {
         while (sound.GetSource().isPlaying)

@@ -8,7 +8,7 @@ public class EnemyDataHolder : MonoBehaviour {
 
     #region Trainer Battle
     public static string baseTrainer;
-    public static Trainer EnemyTrainer = new Trainer();
+    public static Trainer EnemyTrainer;
     public static MonData[] EnemyTeam { get; set; }
 
     #endregion
@@ -23,6 +23,7 @@ public class EnemyDataHolder : MonoBehaviour {
     private void Awake()
     {
         mp = GetComponent<Monpedia>();
+        EnemyTrainer = gameObject.AddComponent<Trainer>();
     }
 
     public void SetWildData(int id, int level, bool fleeable)

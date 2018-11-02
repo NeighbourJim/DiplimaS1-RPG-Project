@@ -20,6 +20,13 @@ public class GetSliderValue : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
-        text.text = slider.value.ToString() + append;
+        if(append == "%")
+        {
+            text.text = ((int)(slider.value*100)).ToString() + append;
+        }
+        else
+        {
+            text.text = slider.value.ToString() + append;
+        }
 	}
 }
