@@ -8,12 +8,13 @@ public class Blink : MonoBehaviour {
     public float blinkSpeed = 0.7f;
     Text text;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization`
+    void Start()
+    {
         text = GetComponent<Text>();
         StartCoroutine(Blinky());
-	}
-	
+    }
+
 
     IEnumerator Blinky()
     {
