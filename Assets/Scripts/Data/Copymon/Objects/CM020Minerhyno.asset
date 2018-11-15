@@ -20,8 +20,8 @@ MonoBehaviour:
     of its home made extremely hardy.
   nickname: 
   ownership: 0
-  primaryType: {fileID: 11400000, guid: 3fc95d769d4b2364ba2e93259868b0e2, type: 2}
-  secondaryType: {fileID: 11400000, guid: 3cc3a70a088909745a082312ba4b2713, type: 2}
+  primaryType: {fileID: 11400000, guid: 3cc3a70a088909745a082312ba4b2713, type: 2}
+  secondaryType: {fileID: 0}
   level: 1
   curXP: 0
   xpToNextLevel: 0
