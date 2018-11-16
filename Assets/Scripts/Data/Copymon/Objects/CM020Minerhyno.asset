@@ -51,11 +51,19 @@ MonoBehaviour:
   hasStatus: 0
   remainingSleepTurns: 0
   learnedMoves:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 9509e6fd2d654264ba5f2bd74d428f74, type: 2}
+  - {fileID: 11400000, guid: 5c39c24349e4df24a95868b79c9be33b, type: 2}
+  - {fileID: 11400000, guid: de7a5417c20892b478510e0bd1850bbc, type: 2}
+  - {fileID: 11400000, guid: 6a1cb7ae7bf4fe242a3b5b2b6d8d5999, type: 2}
   selectedMove: {fileID: 0}
   learnset:
+  - levelToLearn: 1
+    moveToLearn: {fileID: 11400000, guid: 9509e6fd2d654264ba5f2bd74d428f74, type: 2}
+  - levelToLearn: 8
+    moveToLearn: {fileID: 11400000, guid: 6a1cb7ae7bf4fe242a3b5b2b6d8d5999, type: 2}
+  - levelToLearn: 11
+    moveToLearn: {fileID: 11400000, guid: de7a5417c20892b478510e0bd1850bbc, type: 2}
+  - levelToLearn: 15
+    moveToLearn: {fileID: 11400000, guid: 5c39c24349e4df24a95868b79c9be33b, type: 2}
   - levelToLearn: 1
     moveToLearn: {fileID: 11400000, guid: 9509e6fd2d654264ba5f2bd74d428f74, type: 2}

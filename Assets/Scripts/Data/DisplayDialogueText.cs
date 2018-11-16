@@ -9,8 +9,10 @@ public class DisplayDialogueText : MonoBehaviour {
     public Text nameText;
     public Text dialogueText;
 
+    public DataSettings masterSettings;
+
     Queue<string> messages = new Queue<string>();
-    public float characterDelay = 0.05f;
+    float characterDelay;
     public bool dialogActive = false;
 
     Coroutine co;
@@ -21,7 +23,19 @@ public class DisplayDialogueText : MonoBehaviour {
     private void Start()
     {
         playerDialogChecker = GameObject.FindGameObjectWithTag("Player").GetComponent<DialogZoneChecker>();
-        
+        Debug.Log(masterSettings.TextSpeed);
+        if(masterSettings.TextSpeed == TextSpeed.Slow)
+        {
+            characterDelay = 0.1f;
+        }
+        else if(masterSettings.TextSpeed == TextSpeed.Normal)
+        {
+            characterDelay = 0.05f;
+        }
+        else
+        {
+            characterDelay = 0.02f;
+        }
     }
 
     private void Update()

@@ -7,9 +7,11 @@ public class BattleTextUIControl : MonoBehaviour {
 
     public Button continueButton;
     public Text textArea;
-    public float characterDelay = 0.05f;
+    float characterDelay;
     public BattleUIEventHandler eventHandler;
     BattleDialogue battleDialogue;
+
+    public DataSettings masterSettings;
 
     string toDisplay;
 
@@ -23,6 +25,19 @@ public class BattleTextUIControl : MonoBehaviour {
         eventHandler = GetComponent<BattleUIEventHandler>();
         battleDialogue = GetComponent<BattleDialogue>();
         continueButton.interactable = true;
+
+        if (masterSettings.TextSpeed == TextSpeed.Slow)
+        {
+            characterDelay = 0.1f;
+        }
+        else if (masterSettings.TextSpeed == TextSpeed.Normal)
+        {
+            characterDelay = 0.05f;
+        }
+        else
+        {
+            characterDelay = 0.02f;
+        }
     }
 
     private void Update()
