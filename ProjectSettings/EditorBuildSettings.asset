@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Battle/BaseBattle.unity
     guid: 28c7f4a413a989a41b96179b18a3952b
+  - enabled: 1
+    path: Assets/Scenes/LODDemoScene.unity
+    guid: db68e4fdcd32d284bb551404a43776e1
   m_configObjects: {}

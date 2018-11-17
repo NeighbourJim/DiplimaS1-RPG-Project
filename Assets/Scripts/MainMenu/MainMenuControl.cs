@@ -51,6 +51,11 @@ public class MainMenuControl : MonoBehaviour {
         SceneManager.LoadScene("DebugMenu");
     }
 
+    public void LoadLOD()
+    {
+        SceneManager.LoadScene("LODDemoScene");
+    }
+
     public void SelectMonster(int monID)
     {
         PlayerDataHolder playerData = GameObject.Find("GameDataController").GetComponent<PlayerDataHolder>();
