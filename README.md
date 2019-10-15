@@ -11,7 +11,8 @@ Battle system is functional and works, though items and switching to different m
 Most other things work - Status effects, critical hits, accuracy, type effectiveness, etc.
 
 # Assets
-Assets are all free ones from the Unity Asset Store.
+Most assets are free ones from the Unity Asset Store, and are in the 3rdPartyAssets in individual folders if you are curious where they're from.  
+Other than the 3rd party ones the only self made ones were for the cries of the monsters which were done (poorly) by me in my microphone with Audacity.
 
 # Plans
 I stopped working on this to focus on Stage 2 of my Diploma, and kind of forgot about it afterwards.  
